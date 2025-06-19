@@ -2,10 +2,11 @@
   "name": "inventory-backend",
   "version": "1.0.0",
   "main": "dist/index.js",
+  "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "npx tsc",
-    "start": "tsx src/index.js",
+    "start": "node dist/index.js",
     "prisma": "prisma"
   },
   "dependencies": {
