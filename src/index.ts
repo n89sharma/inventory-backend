@@ -1,9 +1,7 @@
 import express from 'express';
-import { PrismaClient } from '@prisma/client';
-import assetRoutes from './routes/assets';
+import assetRoutes from './routes/assets.js';
 
 const app = express();
-const prisma = new PrismaClient();
 
 app.use(express.json());
 app.use('/assets', assetRoutes);
