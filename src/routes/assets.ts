@@ -1,13 +1,13 @@
 import express from 'express';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../../prisma/generated/prisma-client-js';
 
 const router = express.Router();
 const prisma = new PrismaClient();
 
 router.get('/:barcode', async (req, res) => {
   const { barcode } = req.params;
-  
-  const copiers = await prisma.asset.findUnique({
+
+  const asset = await prisma.asset.findUnique({
     where: { barcode },
     include: {
       brand: true,
@@ -20,10 +20,10 @@ router.get('/:barcode', async (req, res) => {
       departure: true
     }
   });
-  if (!copier) {
-    return res.status(404).json({ message: 'Copier not found' });
+  if (!asset) {
+    return res.status(404).json({ message: 'Asset not found' });
   }
-  res.json(copiers);
+  res.json(asset);
 });
 
 export default router;

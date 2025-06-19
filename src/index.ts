@@ -1,15 +1,15 @@
 import express from 'express';
 import { PrismaClient } from '@prisma/client';
-import copierRoutes from './routes/copiers';
+import assetRoutes from './routes/assets';
 
 const app = express();
 const prisma = new PrismaClient();
 
 app.use(express.json());
-app.use('/copiers', copierRoutes);
+app.use('/assets', assetRoutes);
 
 app.get('/', (req, res) => {
-  res.send('Copier Inventory API');
+  res.send('Inventory API');
 });
 
 const PORT = process.env.PORT || 3000;
