@@ -6,7 +6,7 @@ import morgan from 'morgan'
 const app = express();
 
 app.use(express.json());
-app.use(cors({ origin: ["http://localhost:5173", "https://shiva-inv.vercel.app/"] }))
+app.use(cors({ origin: ["http://localhost:5173", "https://shiva-inv.vercel.app"] }))
 app.use(morgan('dev')); 
 
 app.get('/', (req, res) => {
