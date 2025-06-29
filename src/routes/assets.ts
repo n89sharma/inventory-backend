@@ -17,7 +17,11 @@ router.get('/:barcode', async (req, res) => {
       technical_specification: true,
       cost: true,
       arrival: true,
-      departure: true
+      departure: true,
+      asset_accessories: true,
+      asset_errors: true,
+      asset_parts: true,
+      asset_transfers: true
     }
   });
   if (!asset) {
