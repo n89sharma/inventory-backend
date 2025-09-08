@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import assetRoutes from './routes/assets.js'
+import constants from './routes/constants.js'
 import morgan from 'morgan'
 
 const app = express();
@@ -14,6 +15,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/assets', assetRoutes);
+
+app.use('/constants', constants);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
