@@ -1,8 +1,7 @@
 import express from 'express';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '../prisma.js'
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
 router.get('/:barcode', async (req, res) => {
   const { barcode } = req.params;
@@ -10,7 +9,6 @@ router.get('/:barcode', async (req, res) => {
   const asset = await prisma.asset.findUnique({
     where: { barcode },
     include: {
-      brand: true,
       model: true,
       warehouse: true,
       location: true,
