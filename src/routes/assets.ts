@@ -19,7 +19,8 @@ router.get('/:barcode', async (req, res) => {
       asset_accessories: true,
       asset_errors: true,
       asset_parts: true,
-      asset_transfers: true
+      asset_transfers: true,
+      hold: true
     }
   });
   if (!asset) {

@@ -6,6 +6,10 @@ import morgan from 'morgan'
 
 const app = express();
 
+BigInt.prototype.toJSON = function () {
+  return this.toString();
+};
+
 app.use(express.json());
 app.use(cors({ origin: ["http://localhost:5173", "https://shiva-inv.vercel.app"] }))
 app.use(morgan('dev')); 
