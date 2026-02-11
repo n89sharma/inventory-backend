@@ -8,19 +8,55 @@ router.get('/:barcode', async (req, res) => {
 
   const asset = await prisma.asset.findUnique({
     where: { barcode },
-    include: {
-      model: true,
-      warehouse: true,
-      location: true,
-      technical_specification: true,
+    select: {
+      model: {
+        select: {
+          name: true,
+          brand: true
+        }
+      },
+      barcode: true,
+      serial_number: true,
+      asset_type: true,
+      tracking_status: true,
+      availability_status: true,
+      technical_status: true,
+      location: {
+        select: {
+          warehouse: true,
+          location:true
+        }
+      },
       cost: true,
-      arrival: true,
-      departure: true,
-      asset_accessories: true,
-      asset_errors: true,
-      asset_parts: true,
-      asset_transfers: true,
-      hold: true
+      technical_specification: true,
+      hold: {
+        select: {
+          created_by: {
+            select: {
+              email: true,
+              name: true
+            }
+          },
+          created_for: {
+            select: {
+              email: true,
+              name: true
+            }
+          },
+          created_at: true,
+          customer: {
+            select: {
+              name: true
+            }
+          },
+          from_dt: true,
+          to_dt: true,
+          notes: true,
+          hold_number: true
+        }
+      },
+      created_at: true,
+      is_held: true
     }
   });
   if (!asset) {
