@@ -55,8 +55,43 @@ router.get('/:barcode', async (req, res) => {
           hold_number: true
         }
       },
+      arrival: {
+        select: {
+          arrival_number: true,
+          origin: {
+            select: {
+              name: true
+            }
+          },
+          destination: {
+            select: {
+              city_code: true,
+              street: true
+            }
+          },
+          transporter: {
+            select: {
+              name: true
+            }
+          },
+          created_by: {
+            select: {
+              email: true,
+              name: true
+            }
+          },
+          notes: true,
+          created_at: true
+        }
+      },
       created_at: true,
-      is_held: true
+      is_held: true,
+      purchase_invoice: {
+        select: {
+          invoice_number: true,
+          is_cleared: true
+        }
+      }
     }
   });
   if (!asset) {
