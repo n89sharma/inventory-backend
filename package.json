@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "prisma generate --sql && npx tsc",
+    "build": "npx tsc",
     "start": "node dist/src/index.js",
-    "prisma": "prisma",
+    "prisma": "npx prisma generate",
     "bs": "npx tsc && node dist/src/index.js"
   },
   "dependencies": {
