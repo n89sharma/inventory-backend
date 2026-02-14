@@ -23,8 +23,13 @@ router.get('/:barcode', async (req, res) => {
       technical_status: true,
       location: {
         select: {
-          warehouse: true,
-          location:true
+          warehouse: {
+            select: {
+              city_code: true,
+              street: true
+            }
+          },
+          location: true
         }
       },
       cost: true,
@@ -81,6 +86,41 @@ router.get('/:barcode', async (req, res) => {
             }
           },
           notes: true,
+          created_at: true
+        }
+      },
+      departure: {
+        select: {
+          departure_number: true,
+          notes: true,
+          created_by: {
+            select: {
+              email: true,
+              name: true
+            }
+          },
+          destination: {
+            select: {
+              name: true
+            }
+          },
+          origin: {
+            select: {
+              city_code: true,
+              street: true
+            }
+          },
+          transporter: {
+            select: {
+              name: true
+            }
+          },
+          sales_representative: {
+            select: {
+              email: true,
+              name: true
+            }
+          },
           created_at: true
         }
       },
