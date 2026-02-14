@@ -7,6 +7,7 @@ router.get('/:barcode', async (req, res) => {
   const { barcode } = req.params;
 
   const asset = await prisma.asset.findUnique({
+    relationLoadStrategy: 'join',
     where: { barcode },
     select: {
       model: {
