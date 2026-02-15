@@ -1,7 +1,6 @@
 import express from 'express'
 import cors from 'cors'
 import assetRoutes from './routes/assets.js'
-import fastAssetRoutes from './routes/fassets.js'
 import constants from './routes/constants.js'
 import morgan from 'morgan'
 
@@ -20,7 +19,6 @@ app.get('/', (req, res) => {
 })
 
 app.use('/assets', assetRoutes);
-app.use('/fassets', fastAssetRoutes);
 
 app.use('/constants', constants);
 
