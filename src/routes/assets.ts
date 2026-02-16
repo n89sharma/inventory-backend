@@ -1,8 +1,6 @@
 import express from 'express';
 import { prisma } from '../prisma.js'
-import { getAssetDetails } from '../../generated/prisma/sql.js';
-import { getAssetAccessories } from '../../generated/prisma/sql.js';
-import { getAssetErrors } from '../../generated/prisma/sql.js';
+import { getAssetComments, getAssetDetails, getAssetAccessories, getAssetErrors } from '../../generated/prisma/sql.js';
 
 const router = express.Router();
 
@@ -31,6 +29,14 @@ router.get('/:barcode/errors', async (req, res) => {
   const errors = await prisma.$queryRawTyped(getAssetErrors(barcode))
 
   res.json(errors);
+});
+
+router.get('/:barcode/comments', async (req, res) => {
+  const { barcode } = req.params;
+
+  const comments = await prisma.$queryRawTyped(getAssetComments(barcode))
+
+  res.json(comments);
 });
 
 export default router;

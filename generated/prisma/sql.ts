@@ -7,6 +7,8 @@ export { type $DbEnums } from "./sql/$DbEnums.js"
 
 export * from "./sql/getAssetAccessories.js"
 
+export * from "./sql/getAssetComments.js"
+
 export * from "./sql/getAssetDetails.js"
 
 export * from "./sql/getAssetErrors.js"
