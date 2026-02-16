@@ -22,9 +22,6 @@ router.get('/:barcode/accessories', async (req, res) => {
 
   const accessories = await prisma.$queryRawTyped(getAssetAccessories(barcode))
 
-  if (!accessories || accessories.length === 0) {
-    return res.status(404).json({ message: 'Accessories not found' });
-  }
   res.json(accessories.map((a) => a.accessory));
 });
 
@@ -33,9 +30,6 @@ router.get('/:barcode/errors', async (req, res) => {
 
   const errors = await prisma.$queryRawTyped(getAssetErrors(barcode))
 
-  if (!errors || errors.length === 0) {
-    return res.status(404).json({ message: 'Errors not found' });
-  }
   res.json(errors);
 });
 
