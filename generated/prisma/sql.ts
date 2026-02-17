@@ -14,3 +14,5 @@ export * from "./sql/getAssetDetails.js"
 export * from "./sql/getAssetErrors.js"
 
 export * from "./sql/getAssetParts.js"
+
+export * from "./sql/getAssetTransfers.js"
