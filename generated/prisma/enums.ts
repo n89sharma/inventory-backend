@@ -111,14 +111,6 @@ export const GeneralOperation = {
 export type GeneralOperation = (typeof GeneralOperation)[keyof typeof GeneralOperation]
 
 
-export const PartOperation = {
-  ADDED: 'ADDED',
-  REMOVED: 'REMOVED'
-} as const
-
-export type PartOperation = (typeof PartOperation)[keyof typeof PartOperation]
-
-
 export const InvoiceType = {
   PURCHASE: 'PURCHASE',
   SALE: 'SALE',

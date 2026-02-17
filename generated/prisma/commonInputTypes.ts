@@ -368,23 +368,6 @@ export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedDecimalFilter<$PrismaModel>
 }
 
-export type EnumPartOperationFilter<$PrismaModel = never> = {
-  equals?: $Enums.PartOperation | Prisma.EnumPartOperationFieldRefInput<$PrismaModel>
-  in?: $Enums.PartOperation[] | Prisma.ListEnumPartOperationFieldRefInput<$PrismaModel>
-  notIn?: $Enums.PartOperation[] | Prisma.ListEnumPartOperationFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumPartOperationFilter<$PrismaModel> | $Enums.PartOperation
-}
-
-export type EnumPartOperationWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.PartOperation | Prisma.EnumPartOperationFieldRefInput<$PrismaModel>
-  in?: $Enums.PartOperation[] | Prisma.ListEnumPartOperationFieldRefInput<$PrismaModel>
-  notIn?: $Enums.PartOperation[] | Prisma.ListEnumPartOperationFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumPartOperationWithAggregatesFilter<$PrismaModel> | $Enums.PartOperation
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumPartOperationFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumPartOperationFilter<$PrismaModel>
-}
-
 export type EnumInvoiceTypeFilter<$PrismaModel = never> = {
   equals?: $Enums.InvoiceType | Prisma.EnumInvoiceTypeFieldRefInput<$PrismaModel>
   in?: $Enums.InvoiceType[] | Prisma.ListEnumInvoiceTypeFieldRefInput<$PrismaModel>
@@ -930,23 +913,6 @@ export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedDecimalFilter<$PrismaModel>
   _min?: Prisma.NestedDecimalFilter<$PrismaModel>
   _max?: Prisma.NestedDecimalFilter<$PrismaModel>
-}
-
-export type NestedEnumPartOperationFilter<$PrismaModel = never> = {
-  equals?: $Enums.PartOperation | Prisma.EnumPartOperationFieldRefInput<$PrismaModel>
-  in?: $Enums.PartOperation[] | Prisma.ListEnumPartOperationFieldRefInput<$PrismaModel>
-  notIn?: $Enums.PartOperation[] | Prisma.ListEnumPartOperationFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumPartOperationFilter<$PrismaModel> | $Enums.PartOperation
-}
-
-export type NestedEnumPartOperationWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.PartOperation | Prisma.EnumPartOperationFieldRefInput<$PrismaModel>
-  in?: $Enums.PartOperation[] | Prisma.ListEnumPartOperationFieldRefInput<$PrismaModel>
-  notIn?: $Enums.PartOperation[] | Prisma.ListEnumPartOperationFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumPartOperationWithAggregatesFilter<$PrismaModel> | $Enums.PartOperation
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumPartOperationFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumPartOperationFilter<$PrismaModel>
 }
 
 export type NestedEnumInvoiceTypeFilter<$PrismaModel = never> = {

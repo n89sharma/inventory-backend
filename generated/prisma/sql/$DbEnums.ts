@@ -12,7 +12,6 @@ export interface $DbEnums {
   Role: "ADMIN" | "MEMBER" | "INVENTORY" | "TECH" | "FINANCE" | "SALES"
   FileType: "PDF" | "IMAGE"
   GeneralOperation: "CREATE" | "UPDATE" | "DELETE"
-  PartOperation: "ADDED" | "REMOVED"
   InvoiceType: "PURCHASE" | "SALE" | "OTHER"
   DataField: "location" | "tracking_status" | "technical_status" | "exit_status" | "purchase_invoice" | "sales_invoice" | "arrival" | "departure" | "transfer" | "hold" | "cost" | "technical_specification" | "error" | "accessory" | "part"
 }

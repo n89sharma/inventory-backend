@@ -236,7 +236,7 @@ export type PartWhereInput = {
   dealer_price?: Prisma.DecimalFilter<"Part"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   sale_price?: Prisma.DecimalFilter<"Part"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   cost?: Prisma.DecimalFilter<"Part"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  asset_parts?: Prisma.AssetPartListRelationFilter
+  AssetPart?: Prisma.AssetPartListRelationFilter
 }
 
 export type PartOrderByWithRelationInput = {
@@ -246,7 +246,7 @@ export type PartOrderByWithRelationInput = {
   dealer_price?: Prisma.SortOrder
   sale_price?: Prisma.SortOrder
   cost?: Prisma.SortOrder
-  asset_parts?: Prisma.AssetPartOrderByRelationAggregateInput
+  AssetPart?: Prisma.AssetPartOrderByRelationAggregateInput
 }
 
 export type PartWhereUniqueInput = Prisma.AtLeast<{
@@ -259,7 +259,7 @@ export type PartWhereUniqueInput = Prisma.AtLeast<{
   dealer_price?: Prisma.DecimalFilter<"Part"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   sale_price?: Prisma.DecimalFilter<"Part"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   cost?: Prisma.DecimalFilter<"Part"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  asset_parts?: Prisma.AssetPartListRelationFilter
+  AssetPart?: Prisma.AssetPartListRelationFilter
 }, "id" | "part_number">
 
 export type PartOrderByWithAggregationInput = {
@@ -294,7 +294,7 @@ export type PartCreateInput = {
   dealer_price: runtime.Decimal | runtime.DecimalJsLike | number | string
   sale_price: runtime.Decimal | runtime.DecimalJsLike | number | string
   cost: runtime.Decimal | runtime.DecimalJsLike | number | string
-  asset_parts?: Prisma.AssetPartCreateNestedManyWithoutPartInput
+  AssetPart?: Prisma.AssetPartCreateNestedManyWithoutPartInput
 }
 
 export type PartUncheckedCreateInput = {
@@ -304,7 +304,7 @@ export type PartUncheckedCreateInput = {
   dealer_price: runtime.Decimal | runtime.DecimalJsLike | number | string
   sale_price: runtime.Decimal | runtime.DecimalJsLike | number | string
   cost: runtime.Decimal | runtime.DecimalJsLike | number | string
-  asset_parts?: Prisma.AssetPartUncheckedCreateNestedManyWithoutPartInput
+  AssetPart?: Prisma.AssetPartUncheckedCreateNestedManyWithoutPartInput
 }
 
 export type PartUpdateInput = {
@@ -313,7 +313,7 @@ export type PartUpdateInput = {
   dealer_price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   sale_price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   cost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  asset_parts?: Prisma.AssetPartUpdateManyWithoutPartNestedInput
+  AssetPart?: Prisma.AssetPartUpdateManyWithoutPartNestedInput
 }
 
 export type PartUncheckedUpdateInput = {
@@ -323,7 +323,7 @@ export type PartUncheckedUpdateInput = {
   dealer_price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   sale_price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   cost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  asset_parts?: Prisma.AssetPartUncheckedUpdateManyWithoutPartNestedInput
+  AssetPart?: Prisma.AssetPartUncheckedUpdateManyWithoutPartNestedInput
 }
 
 export type PartCreateManyInput = {
@@ -393,9 +393,9 @@ export type PartSumOrderByAggregateInput = {
   cost?: Prisma.SortOrder
 }
 
-export type PartScalarRelationFilter = {
-  is?: Prisma.PartWhereInput
-  isNot?: Prisma.PartWhereInput
+export type PartNullableScalarRelationFilter = {
+  is?: Prisma.PartWhereInput | null
+  isNot?: Prisma.PartWhereInput | null
 }
 
 export type DecimalFieldUpdateOperationsInput = {
@@ -406,21 +406,23 @@ export type DecimalFieldUpdateOperationsInput = {
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
-export type PartCreateNestedOneWithoutAsset_partsInput = {
-  create?: Prisma.XOR<Prisma.PartCreateWithoutAsset_partsInput, Prisma.PartUncheckedCreateWithoutAsset_partsInput>
-  connectOrCreate?: Prisma.PartCreateOrConnectWithoutAsset_partsInput
+export type PartCreateNestedOneWithoutAssetPartInput = {
+  create?: Prisma.XOR<Prisma.PartCreateWithoutAssetPartInput, Prisma.PartUncheckedCreateWithoutAssetPartInput>
+  connectOrCreate?: Prisma.PartCreateOrConnectWithoutAssetPartInput
   connect?: Prisma.PartWhereUniqueInput
 }
 
-export type PartUpdateOneRequiredWithoutAsset_partsNestedInput = {
-  create?: Prisma.XOR<Prisma.PartCreateWithoutAsset_partsInput, Prisma.PartUncheckedCreateWithoutAsset_partsInput>
-  connectOrCreate?: Prisma.PartCreateOrConnectWithoutAsset_partsInput
-  upsert?: Prisma.PartUpsertWithoutAsset_partsInput
+export type PartUpdateOneWithoutAssetPartNestedInput = {
+  create?: Prisma.XOR<Prisma.PartCreateWithoutAssetPartInput, Prisma.PartUncheckedCreateWithoutAssetPartInput>
+  connectOrCreate?: Prisma.PartCreateOrConnectWithoutAssetPartInput
+  upsert?: Prisma.PartUpsertWithoutAssetPartInput
+  disconnect?: Prisma.PartWhereInput | boolean
+  delete?: Prisma.PartWhereInput | boolean
   connect?: Prisma.PartWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PartUpdateToOneWithWhereWithoutAsset_partsInput, Prisma.PartUpdateWithoutAsset_partsInput>, Prisma.PartUncheckedUpdateWithoutAsset_partsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PartUpdateToOneWithWhereWithoutAssetPartInput, Prisma.PartUpdateWithoutAssetPartInput>, Prisma.PartUncheckedUpdateWithoutAssetPartInput>
 }
 
-export type PartCreateWithoutAsset_partsInput = {
+export type PartCreateWithoutAssetPartInput = {
   description: string
   part_number: string
   dealer_price: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -428,7 +430,7 @@ export type PartCreateWithoutAsset_partsInput = {
   cost: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
-export type PartUncheckedCreateWithoutAsset_partsInput = {
+export type PartUncheckedCreateWithoutAssetPartInput = {
   id?: number
   description: string
   part_number: string
@@ -437,23 +439,23 @@ export type PartUncheckedCreateWithoutAsset_partsInput = {
   cost: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
-export type PartCreateOrConnectWithoutAsset_partsInput = {
+export type PartCreateOrConnectWithoutAssetPartInput = {
   where: Prisma.PartWhereUniqueInput
-  create: Prisma.XOR<Prisma.PartCreateWithoutAsset_partsInput, Prisma.PartUncheckedCreateWithoutAsset_partsInput>
+  create: Prisma.XOR<Prisma.PartCreateWithoutAssetPartInput, Prisma.PartUncheckedCreateWithoutAssetPartInput>
 }
 
-export type PartUpsertWithoutAsset_partsInput = {
-  update: Prisma.XOR<Prisma.PartUpdateWithoutAsset_partsInput, Prisma.PartUncheckedUpdateWithoutAsset_partsInput>
-  create: Prisma.XOR<Prisma.PartCreateWithoutAsset_partsInput, Prisma.PartUncheckedCreateWithoutAsset_partsInput>
+export type PartUpsertWithoutAssetPartInput = {
+  update: Prisma.XOR<Prisma.PartUpdateWithoutAssetPartInput, Prisma.PartUncheckedUpdateWithoutAssetPartInput>
+  create: Prisma.XOR<Prisma.PartCreateWithoutAssetPartInput, Prisma.PartUncheckedCreateWithoutAssetPartInput>
   where?: Prisma.PartWhereInput
 }
 
-export type PartUpdateToOneWithWhereWithoutAsset_partsInput = {
+export type PartUpdateToOneWithWhereWithoutAssetPartInput = {
   where?: Prisma.PartWhereInput
-  data: Prisma.XOR<Prisma.PartUpdateWithoutAsset_partsInput, Prisma.PartUncheckedUpdateWithoutAsset_partsInput>
+  data: Prisma.XOR<Prisma.PartUpdateWithoutAssetPartInput, Prisma.PartUncheckedUpdateWithoutAssetPartInput>
 }
 
-export type PartUpdateWithoutAsset_partsInput = {
+export type PartUpdateWithoutAssetPartInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   part_number?: Prisma.StringFieldUpdateOperationsInput | string
   dealer_price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -461,7 +463,7 @@ export type PartUpdateWithoutAsset_partsInput = {
   cost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
-export type PartUncheckedUpdateWithoutAsset_partsInput = {
+export type PartUncheckedUpdateWithoutAssetPartInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   part_number?: Prisma.StringFieldUpdateOperationsInput | string
@@ -476,11 +478,11 @@ export type PartUncheckedUpdateWithoutAsset_partsInput = {
  */
 
 export type PartCountOutputType = {
-  asset_parts: number
+  AssetPart: number
 }
 
 export type PartCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  asset_parts?: boolean | PartCountOutputTypeCountAsset_partsArgs
+  AssetPart?: boolean | PartCountOutputTypeCountAssetPartArgs
 }
 
 /**
@@ -496,7 +498,7 @@ export type PartCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * PartCountOutputType without action
  */
-export type PartCountOutputTypeCountAsset_partsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type PartCountOutputTypeCountAssetPartArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.AssetPartWhereInput
 }
 
@@ -508,7 +510,7 @@ export type PartSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   dealer_price?: boolean
   sale_price?: boolean
   cost?: boolean
-  asset_parts?: boolean | Prisma.Part$asset_partsArgs<ExtArgs>
+  AssetPart?: boolean | Prisma.Part$AssetPartArgs<ExtArgs>
   _count?: boolean | Prisma.PartCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["part"]>
 
@@ -541,7 +543,7 @@ export type PartSelectScalar = {
 
 export type PartOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description" | "part_number" | "dealer_price" | "sale_price" | "cost", ExtArgs["result"]["part"]>
 export type PartInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  asset_parts?: boolean | Prisma.Part$asset_partsArgs<ExtArgs>
+  AssetPart?: boolean | Prisma.Part$AssetPartArgs<ExtArgs>
   _count?: boolean | Prisma.PartCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PartIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -550,7 +552,7 @@ export type PartIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $PartPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Part"
   objects: {
-    asset_parts: Prisma.$AssetPartPayload<ExtArgs>[]
+    AssetPart: Prisma.$AssetPartPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -953,7 +955,7 @@ readonly fields: PartFieldRefs;
  */
 export interface Prisma__PartClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  asset_parts<T extends Prisma.Part$asset_partsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Part$asset_partsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssetPartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  AssetPart<T extends Prisma.Part$AssetPartArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Part$AssetPartArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssetPartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1386,9 +1388,9 @@ export type PartDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Part.asset_parts
+ * Part.AssetPart
  */
-export type Part$asset_partsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Part$AssetPartArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the AssetPart
    */

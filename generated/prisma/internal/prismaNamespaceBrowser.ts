@@ -200,11 +200,13 @@ export type PartScalarFieldEnum = (typeof PartScalarFieldEnum)[keyof typeof Part
 
 
 export const AssetPartScalarFieldEnum = {
-  asset_id: 'asset_id',
-  part_id: 'part_id',
   updated_at: 'updated_at',
   updated_by: 'updated_by',
-  part_operation: 'part_operation'
+  donor_asset_id: 'donor_asset_id',
+  id: 'id',
+  notes: 'notes',
+  recipient_asset_id: 'recipient_asset_id',
+  store_part_id: 'store_part_id'
 } as const
 
 export type AssetPartScalarFieldEnum = (typeof AssetPartScalarFieldEnum)[keyof typeof AssetPartScalarFieldEnum]

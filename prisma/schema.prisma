@@ -1,7 +1,7 @@
 generator client {
-  provider = "prisma-client"
+  provider        = "prisma-client"
+  output          = "../generated/prisma"
   previewFeatures = ["relationJoins", "typedSql"]
-  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -9,40 +9,41 @@ datasource db {
 }
 
 model Asset {
-  id                      Int                     @id @default(autoincrement())
-  barcode                 String                  @unique @db.VarChar(50)
-  serial_number           String                  @db.VarChar(50)
-  model_id                Int
-  warehouse_id            Int?
-  asset_location          String?                 @db.VarChar(50)
-  asset_type              AssetType
-  tracking_status         TrackingStatus
-  technical_status        TechnicalStatus
-  purchase_invoice_id     Int?
-  sales_invoice_id        Int?
-  arrival_id              Int?
-  departure_id            Int?
-  hold_id                 Int?
-  created_at              DateTime
-  is_held                 Boolean
-  availability_status     AvailabilityStatus
-  arrival                 Arrival?                @relation(fields: [arrival_id], references: [id])
-  departure               Departure?              @relation(fields: [departure_id], references: [id])
-  hold                    Hold?                   @relation(fields: [hold_id], references: [id])
-  model                   Model                   @relation(fields: [model_id], references: [id])
-  purchase_invoice        Invoice?                @relation("PurchaseInvoice", fields: [purchase_invoice_id], references: [id])
-  sales_invoice           Invoice?                @relation("SalesInvoice", fields: [sales_invoice_id], references: [id])
-  location                Location?               @relation(fields: [warehouse_id, asset_location], references: [warehouse_id, location])
-  warehouse               Warehouse?              @relation(fields: [warehouse_id], references: [id])
-  asset_accessories       AssetAccessory[]
-  asset_errors            AssetError[]
-  asset_history           AssetHistory[]
-  asset_parts             AssetPart[]
-  asset_transfers         AssetTransfer[]
-  comments                Comment[]
-  cost                    Cost?
-  files                   File[]
-  technical_specification TechnicalSpecification?
+  id                                            Int                     @id @default(autoincrement())
+  barcode                                       String                  @unique @db.VarChar(50)
+  serial_number                                 String                  @db.VarChar(50)
+  model_id                                      Int
+  warehouse_id                                  Int?
+  asset_location                                String?                 @db.VarChar(50)
+  asset_type                                    AssetType
+  tracking_status                               TrackingStatus
+  technical_status                              TechnicalStatus
+  purchase_invoice_id                           Int?
+  sales_invoice_id                              Int?
+  arrival_id                                    Int?
+  departure_id                                  Int?
+  hold_id                                       Int?
+  created_at                                    DateTime
+  is_held                                       Boolean
+  availability_status                           AvailabilityStatus
+  arrival                                       Arrival?                @relation(fields: [arrival_id], references: [id])
+  departure                                     Departure?              @relation(fields: [departure_id], references: [id])
+  hold                                          Hold?                   @relation(fields: [hold_id], references: [id])
+  model                                         Model                   @relation(fields: [model_id], references: [id])
+  purchase_invoice                              Invoice?                @relation("PurchaseInvoice", fields: [purchase_invoice_id], references: [id])
+  sales_invoice                                 Invoice?                @relation("SalesInvoice", fields: [sales_invoice_id], references: [id])
+  location                                      Location?               @relation(fields: [warehouse_id, asset_location], references: [warehouse_id, location])
+  warehouse                                     Warehouse?              @relation(fields: [warehouse_id], references: [id])
+  asset_accessories                             AssetAccessory[]
+  asset_errors                                  AssetError[]
+  asset_history                                 AssetHistory[]
+  AssetPart_AssetPart_donor_asset_idToAsset     AssetPart[]             @relation("AssetPart_donor_asset_idToAsset")
+  AssetPart_AssetPart_recipient_asset_idToAsset AssetPart[]             @relation("AssetPart_recipient_asset_idToAsset")
+  asset_transfers                               AssetTransfer[]
+  comments                                      Comment[]
+  cost                                          Cost?
+  files                                         File[]
+  technical_specification                       TechnicalSpecification?
 
   @@index([serial_number])
   @@index([warehouse_id])
@@ -131,20 +132,23 @@ model Part {
   dealer_price Decimal     @db.Decimal(12, 2)
   sale_price   Decimal     @db.Decimal(12, 2)
   cost         Decimal     @db.Decimal(12, 2)
-  asset_parts  AssetPart[]
+  AssetPart    AssetPart[]
 }
 
 model AssetPart {
-  asset_id       Int
-  part_id        Int
-  updated_at     DateTime
-  updated_by     Int
-  part_operation PartOperation
-  asset          Asset         @relation(fields: [asset_id], references: [id])
-  part           Part          @relation(fields: [part_id], references: [id])
-  updatedBy      User          @relation(fields: [updated_by], references: [id])
+  updated_at                                DateTime
+  updated_by                                Int
+  donor_asset_id                            Int?
+  id                                        Int      @id @default(autoincrement())
+  notes                                     String
+  recipient_asset_id                        Int
+  store_part_id                             Int?
+  Asset_AssetPart_donor_asset_idToAsset     Asset?   @relation("AssetPart_donor_asset_idToAsset", fields: [donor_asset_id], references: [id])
+  Asset_AssetPart_recipient_asset_idToAsset Asset    @relation("AssetPart_recipient_asset_idToAsset", fields: [recipient_asset_id], references: [id])
+  Part                                      Part?    @relation(fields: [store_part_id], references: [id])
+  updatedBy                                 User     @relation(fields: [updated_by], references: [id])
 
-  @@id([asset_id, part_id])
+  @@unique([recipient_asset_id, donor_asset_id, store_part_id])
 }
 
 model Transfer {
@@ -479,11 +483,6 @@ enum GeneralOperation {
   CREATE
   UPDATE
   DELETE
-}
-
-enum PartOperation {
-  ADDED
-  REMOVED
 }
 
 enum InvoiceType {
