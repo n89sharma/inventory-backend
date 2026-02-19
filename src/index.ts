@@ -1,6 +1,11 @@
 import express from 'express'
 import cors from 'cors'
 import assetRoutes from './routes/assets.js'
+import arrivalRoutes from './routes/arrivals.js'
+import departureRoutes from './routes/depatures.js'
+import transferRoutes from './routes/transfers.js'
+import holdRoutes from './routes/holds.js'
+import invoiceRoutes from './routes/invoices.js'
 import constants from './routes/constants.js'
 import morgan from 'morgan'
 
@@ -21,6 +26,13 @@ app.get('/', (req, res) => {
 app.use('/assets', assetRoutes);
 
 app.use('/constants', constants);
+
+app.use('/arrivals', arrivalRoutes);
+app.use('/departures', departureRoutes);
+app.use('/transfers', transferRoutes);
+app.use('/holds', holdRoutes);
+app.use('/invoices', invoiceRoutes);
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
