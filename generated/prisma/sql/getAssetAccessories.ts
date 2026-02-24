@@ -4,16 +4,15 @@
 // biome-ignore-all lint: generated file
 // @ts-nocheck 
 import * as $runtime from "@prisma/client/runtime/client"
-import { type $DbEnums } from "./$DbEnums.js"
 
 /**
  * @param text
  */
-export const getAssetAccessories = $runtime.makeTypedQueryFactory("SELECT\naccessory\nfrom \"AssetAccessory\" aa\njoin \"Asset\" a ON a.id = aa.asset_id\nwhere a.barcode = $1") as (text: string) => $runtime.TypedSql<getAssetAccessories.Parameters, getAssetAccessories.Result>
+export const getAssetAccessories = $runtime.makeTypedQueryFactory("SELECT\nac.accessory\nfrom \"AssetAccessory\" aa\njoin \"Asset\" at on at.id = aa.asset_id\njoin \"Accessory\" ac on ac.id = aa.accessory_id\nwhere at.barcode = $1") as (text: string) => $runtime.TypedSql<getAssetAccessories.Parameters, getAssetAccessories.Result>
 
 export namespace getAssetAccessories {
   export type Parameters = [text: string]
   export type Result = {
-    accessory: $DbEnums["Accessory"]
+    accessory: string
   }
 }

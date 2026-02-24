@@ -1,5 +1,6 @@
 SELECT
-    accessory
+  ac.accessory
 from "AssetAccessory" aa
-join "Asset" a ON a.id = aa.asset_id
-where a.barcode = $1
+  join "Asset" at on at.id = aa.asset_id
+  join "Accessory" ac on ac.id = aa.accessory_id
+where at.barcode = $1

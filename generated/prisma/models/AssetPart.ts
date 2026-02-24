@@ -27,97 +27,97 @@ export type AggregateAssetPart = {
 }
 
 export type AssetPartAvgAggregateOutputType = {
-  updated_by: number | null
-  donor_asset_id: number | null
   id: number | null
   recipient_asset_id: number | null
+  donor_asset_id: number | null
   store_part_id: number | null
+  updated_by: number | null
 }
 
 export type AssetPartSumAggregateOutputType = {
-  updated_by: number | null
-  donor_asset_id: number | null
   id: number | null
   recipient_asset_id: number | null
+  donor_asset_id: number | null
   store_part_id: number | null
+  updated_by: number | null
 }
 
 export type AssetPartMinAggregateOutputType = {
+  id: number | null
+  recipient_asset_id: number | null
+  donor_asset_id: number | null
+  store_part_id: number | null
   updated_at: Date | null
   updated_by: number | null
-  donor_asset_id: number | null
-  id: number | null
   notes: string | null
-  recipient_asset_id: number | null
-  store_part_id: number | null
 }
 
 export type AssetPartMaxAggregateOutputType = {
+  id: number | null
+  recipient_asset_id: number | null
+  donor_asset_id: number | null
+  store_part_id: number | null
   updated_at: Date | null
   updated_by: number | null
-  donor_asset_id: number | null
-  id: number | null
   notes: string | null
-  recipient_asset_id: number | null
-  store_part_id: number | null
 }
 
 export type AssetPartCountAggregateOutputType = {
+  id: number
+  recipient_asset_id: number
+  donor_asset_id: number
+  store_part_id: number
   updated_at: number
   updated_by: number
-  donor_asset_id: number
-  id: number
   notes: number
-  recipient_asset_id: number
-  store_part_id: number
   _all: number
 }
 
 
 export type AssetPartAvgAggregateInputType = {
-  updated_by?: true
-  donor_asset_id?: true
   id?: true
   recipient_asset_id?: true
+  donor_asset_id?: true
   store_part_id?: true
+  updated_by?: true
 }
 
 export type AssetPartSumAggregateInputType = {
-  updated_by?: true
-  donor_asset_id?: true
   id?: true
   recipient_asset_id?: true
+  donor_asset_id?: true
   store_part_id?: true
+  updated_by?: true
 }
 
 export type AssetPartMinAggregateInputType = {
+  id?: true
+  recipient_asset_id?: true
+  donor_asset_id?: true
+  store_part_id?: true
   updated_at?: true
   updated_by?: true
-  donor_asset_id?: true
-  id?: true
   notes?: true
-  recipient_asset_id?: true
-  store_part_id?: true
 }
 
 export type AssetPartMaxAggregateInputType = {
+  id?: true
+  recipient_asset_id?: true
+  donor_asset_id?: true
+  store_part_id?: true
   updated_at?: true
   updated_by?: true
-  donor_asset_id?: true
-  id?: true
   notes?: true
-  recipient_asset_id?: true
-  store_part_id?: true
 }
 
 export type AssetPartCountAggregateInputType = {
+  id?: true
+  recipient_asset_id?: true
+  donor_asset_id?: true
+  store_part_id?: true
   updated_at?: true
   updated_by?: true
-  donor_asset_id?: true
-  id?: true
   notes?: true
-  recipient_asset_id?: true
-  store_part_id?: true
   _all?: true
 }
 
@@ -208,13 +208,13 @@ export type AssetPartGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 export type AssetPartGroupByOutputType = {
+  id: number
+  recipient_asset_id: number
+  donor_asset_id: number | null
+  store_part_id: number | null
   updated_at: Date
   updated_by: number
-  donor_asset_id: number | null
-  id: number
   notes: string
-  recipient_asset_id: number
-  store_part_id: number | null
   _count: AssetPartCountAggregateOutputType | null
   _avg: AssetPartAvgAggregateOutputType | null
   _sum: AssetPartSumAggregateOutputType | null
@@ -241,13 +241,13 @@ export type AssetPartWhereInput = {
   AND?: Prisma.AssetPartWhereInput | Prisma.AssetPartWhereInput[]
   OR?: Prisma.AssetPartWhereInput[]
   NOT?: Prisma.AssetPartWhereInput | Prisma.AssetPartWhereInput[]
+  id?: Prisma.IntFilter<"AssetPart"> | number
+  recipient_asset_id?: Prisma.IntFilter<"AssetPart"> | number
+  donor_asset_id?: Prisma.IntNullableFilter<"AssetPart"> | number | null
+  store_part_id?: Prisma.IntNullableFilter<"AssetPart"> | number | null
   updated_at?: Prisma.DateTimeFilter<"AssetPart"> | Date | string
   updated_by?: Prisma.IntFilter<"AssetPart"> | number
-  donor_asset_id?: Prisma.IntNullableFilter<"AssetPart"> | number | null
-  id?: Prisma.IntFilter<"AssetPart"> | number
   notes?: Prisma.StringFilter<"AssetPart"> | string
-  recipient_asset_id?: Prisma.IntFilter<"AssetPart"> | number
-  store_part_id?: Prisma.IntNullableFilter<"AssetPart"> | number | null
   Asset_AssetPart_donor_asset_idToAsset?: Prisma.XOR<Prisma.AssetNullableScalarRelationFilter, Prisma.AssetWhereInput> | null
   Asset_AssetPart_recipient_asset_idToAsset?: Prisma.XOR<Prisma.AssetScalarRelationFilter, Prisma.AssetWhereInput>
   Part?: Prisma.XOR<Prisma.PartNullableScalarRelationFilter, Prisma.PartWhereInput> | null
@@ -255,13 +255,13 @@ export type AssetPartWhereInput = {
 }
 
 export type AssetPartOrderByWithRelationInput = {
+  id?: Prisma.SortOrder
+  recipient_asset_id?: Prisma.SortOrder
+  donor_asset_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  store_part_id?: Prisma.SortOrderInput | Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   updated_by?: Prisma.SortOrder
-  donor_asset_id?: Prisma.SortOrderInput | Prisma.SortOrder
-  id?: Prisma.SortOrder
   notes?: Prisma.SortOrder
-  recipient_asset_id?: Prisma.SortOrder
-  store_part_id?: Prisma.SortOrderInput | Prisma.SortOrder
   Asset_AssetPart_donor_asset_idToAsset?: Prisma.AssetOrderByWithRelationInput
   Asset_AssetPart_recipient_asset_idToAsset?: Prisma.AssetOrderByWithRelationInput
   Part?: Prisma.PartOrderByWithRelationInput
@@ -274,12 +274,12 @@ export type AssetPartWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.AssetPartWhereInput | Prisma.AssetPartWhereInput[]
   OR?: Prisma.AssetPartWhereInput[]
   NOT?: Prisma.AssetPartWhereInput | Prisma.AssetPartWhereInput[]
+  recipient_asset_id?: Prisma.IntFilter<"AssetPart"> | number
+  donor_asset_id?: Prisma.IntNullableFilter<"AssetPart"> | number | null
+  store_part_id?: Prisma.IntNullableFilter<"AssetPart"> | number | null
   updated_at?: Prisma.DateTimeFilter<"AssetPart"> | Date | string
   updated_by?: Prisma.IntFilter<"AssetPart"> | number
-  donor_asset_id?: Prisma.IntNullableFilter<"AssetPart"> | number | null
   notes?: Prisma.StringFilter<"AssetPart"> | string
-  recipient_asset_id?: Prisma.IntFilter<"AssetPart"> | number
-  store_part_id?: Prisma.IntNullableFilter<"AssetPart"> | number | null
   Asset_AssetPart_donor_asset_idToAsset?: Prisma.XOR<Prisma.AssetNullableScalarRelationFilter, Prisma.AssetWhereInput> | null
   Asset_AssetPart_recipient_asset_idToAsset?: Prisma.XOR<Prisma.AssetScalarRelationFilter, Prisma.AssetWhereInput>
   Part?: Prisma.XOR<Prisma.PartNullableScalarRelationFilter, Prisma.PartWhereInput> | null
@@ -287,13 +287,13 @@ export type AssetPartWhereUniqueInput = Prisma.AtLeast<{
 }, "id" | "recipient_asset_id_donor_asset_id_store_part_id">
 
 export type AssetPartOrderByWithAggregationInput = {
+  id?: Prisma.SortOrder
+  recipient_asset_id?: Prisma.SortOrder
+  donor_asset_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  store_part_id?: Prisma.SortOrderInput | Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   updated_by?: Prisma.SortOrder
-  donor_asset_id?: Prisma.SortOrderInput | Prisma.SortOrder
-  id?: Prisma.SortOrder
   notes?: Prisma.SortOrder
-  recipient_asset_id?: Prisma.SortOrder
-  store_part_id?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.AssetPartCountOrderByAggregateInput
   _avg?: Prisma.AssetPartAvgOrderByAggregateInput
   _max?: Prisma.AssetPartMaxOrderByAggregateInput
@@ -305,13 +305,13 @@ export type AssetPartScalarWhereWithAggregatesInput = {
   AND?: Prisma.AssetPartScalarWhereWithAggregatesInput | Prisma.AssetPartScalarWhereWithAggregatesInput[]
   OR?: Prisma.AssetPartScalarWhereWithAggregatesInput[]
   NOT?: Prisma.AssetPartScalarWhereWithAggregatesInput | Prisma.AssetPartScalarWhereWithAggregatesInput[]
+  id?: Prisma.IntWithAggregatesFilter<"AssetPart"> | number
+  recipient_asset_id?: Prisma.IntWithAggregatesFilter<"AssetPart"> | number
+  donor_asset_id?: Prisma.IntNullableWithAggregatesFilter<"AssetPart"> | number | null
+  store_part_id?: Prisma.IntNullableWithAggregatesFilter<"AssetPart"> | number | null
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"AssetPart"> | Date | string
   updated_by?: Prisma.IntWithAggregatesFilter<"AssetPart"> | number
-  donor_asset_id?: Prisma.IntNullableWithAggregatesFilter<"AssetPart"> | number | null
-  id?: Prisma.IntWithAggregatesFilter<"AssetPart"> | number
   notes?: Prisma.StringWithAggregatesFilter<"AssetPart"> | string
-  recipient_asset_id?: Prisma.IntWithAggregatesFilter<"AssetPart"> | number
-  store_part_id?: Prisma.IntNullableWithAggregatesFilter<"AssetPart"> | number | null
 }
 
 export type AssetPartCreateInput = {
@@ -324,13 +324,13 @@ export type AssetPartCreateInput = {
 }
 
 export type AssetPartUncheckedCreateInput = {
+  id?: number
+  recipient_asset_id: number
+  donor_asset_id?: number | null
+  store_part_id?: number | null
   updated_at: Date | string
   updated_by: number
-  donor_asset_id?: number | null
-  id?: number
   notes: string
-  recipient_asset_id: number
-  store_part_id?: number | null
 }
 
 export type AssetPartUpdateInput = {
@@ -343,23 +343,23 @@ export type AssetPartUpdateInput = {
 }
 
 export type AssetPartUncheckedUpdateInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  recipient_asset_id?: Prisma.IntFieldUpdateOperationsInput | number
+  donor_asset_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  store_part_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_by?: Prisma.IntFieldUpdateOperationsInput | number
-  donor_asset_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.StringFieldUpdateOperationsInput | string
-  recipient_asset_id?: Prisma.IntFieldUpdateOperationsInput | number
-  store_part_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type AssetPartCreateManyInput = {
+  id?: number
+  recipient_asset_id: number
+  donor_asset_id?: number | null
+  store_part_id?: number | null
   updated_at: Date | string
   updated_by: number
-  donor_asset_id?: number | null
-  id?: number
   notes: string
-  recipient_asset_id: number
-  store_part_id?: number | null
 }
 
 export type AssetPartUpdateManyMutationInput = {
@@ -368,13 +368,13 @@ export type AssetPartUpdateManyMutationInput = {
 }
 
 export type AssetPartUncheckedUpdateManyInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  recipient_asset_id?: Prisma.IntFieldUpdateOperationsInput | number
+  donor_asset_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  store_part_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_by?: Prisma.IntFieldUpdateOperationsInput | number
-  donor_asset_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.StringFieldUpdateOperationsInput | string
-  recipient_asset_id?: Prisma.IntFieldUpdateOperationsInput | number
-  store_part_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type AssetPartListRelationFilter = {
@@ -394,49 +394,49 @@ export type AssetPartRecipient_asset_idDonor_asset_idStore_part_idCompoundUnique
 }
 
 export type AssetPartCountOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  recipient_asset_id?: Prisma.SortOrder
+  donor_asset_id?: Prisma.SortOrder
+  store_part_id?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   updated_by?: Prisma.SortOrder
-  donor_asset_id?: Prisma.SortOrder
-  id?: Prisma.SortOrder
   notes?: Prisma.SortOrder
-  recipient_asset_id?: Prisma.SortOrder
-  store_part_id?: Prisma.SortOrder
 }
 
 export type AssetPartAvgOrderByAggregateInput = {
-  updated_by?: Prisma.SortOrder
-  donor_asset_id?: Prisma.SortOrder
   id?: Prisma.SortOrder
   recipient_asset_id?: Prisma.SortOrder
+  donor_asset_id?: Prisma.SortOrder
   store_part_id?: Prisma.SortOrder
+  updated_by?: Prisma.SortOrder
 }
 
 export type AssetPartMaxOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  recipient_asset_id?: Prisma.SortOrder
+  donor_asset_id?: Prisma.SortOrder
+  store_part_id?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   updated_by?: Prisma.SortOrder
-  donor_asset_id?: Prisma.SortOrder
-  id?: Prisma.SortOrder
   notes?: Prisma.SortOrder
-  recipient_asset_id?: Prisma.SortOrder
-  store_part_id?: Prisma.SortOrder
 }
 
 export type AssetPartMinOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  recipient_asset_id?: Prisma.SortOrder
+  donor_asset_id?: Prisma.SortOrder
+  store_part_id?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   updated_by?: Prisma.SortOrder
-  donor_asset_id?: Prisma.SortOrder
-  id?: Prisma.SortOrder
   notes?: Prisma.SortOrder
-  recipient_asset_id?: Prisma.SortOrder
-  store_part_id?: Prisma.SortOrder
 }
 
 export type AssetPartSumOrderByAggregateInput = {
-  updated_by?: Prisma.SortOrder
-  donor_asset_id?: Prisma.SortOrder
   id?: Prisma.SortOrder
   recipient_asset_id?: Prisma.SortOrder
+  donor_asset_id?: Prisma.SortOrder
   store_part_id?: Prisma.SortOrder
+  updated_by?: Prisma.SortOrder
 }
 
 export type AssetPartCreateNestedManyWithoutAsset_AssetPart_donor_asset_idToAssetInput = {
@@ -616,12 +616,12 @@ export type AssetPartCreateWithoutAsset_AssetPart_donor_asset_idToAssetInput = {
 }
 
 export type AssetPartUncheckedCreateWithoutAsset_AssetPart_donor_asset_idToAssetInput = {
-  updated_at: Date | string
-  updated_by: number
   id?: number
-  notes: string
   recipient_asset_id: number
   store_part_id?: number | null
+  updated_at: Date | string
+  updated_by: number
+  notes: string
 }
 
 export type AssetPartCreateOrConnectWithoutAsset_AssetPart_donor_asset_idToAssetInput = {
@@ -643,12 +643,12 @@ export type AssetPartCreateWithoutAsset_AssetPart_recipient_asset_idToAssetInput
 }
 
 export type AssetPartUncheckedCreateWithoutAsset_AssetPart_recipient_asset_idToAssetInput = {
+  id?: number
+  donor_asset_id?: number | null
+  store_part_id?: number | null
   updated_at: Date | string
   updated_by: number
-  donor_asset_id?: number | null
-  id?: number
   notes: string
-  store_part_id?: number | null
 }
 
 export type AssetPartCreateOrConnectWithoutAsset_AssetPart_recipient_asset_idToAssetInput = {
@@ -681,13 +681,13 @@ export type AssetPartScalarWhereInput = {
   AND?: Prisma.AssetPartScalarWhereInput | Prisma.AssetPartScalarWhereInput[]
   OR?: Prisma.AssetPartScalarWhereInput[]
   NOT?: Prisma.AssetPartScalarWhereInput | Prisma.AssetPartScalarWhereInput[]
+  id?: Prisma.IntFilter<"AssetPart"> | number
+  recipient_asset_id?: Prisma.IntFilter<"AssetPart"> | number
+  donor_asset_id?: Prisma.IntNullableFilter<"AssetPart"> | number | null
+  store_part_id?: Prisma.IntNullableFilter<"AssetPart"> | number | null
   updated_at?: Prisma.DateTimeFilter<"AssetPart"> | Date | string
   updated_by?: Prisma.IntFilter<"AssetPart"> | number
-  donor_asset_id?: Prisma.IntNullableFilter<"AssetPart"> | number | null
-  id?: Prisma.IntFilter<"AssetPart"> | number
   notes?: Prisma.StringFilter<"AssetPart"> | string
-  recipient_asset_id?: Prisma.IntFilter<"AssetPart"> | number
-  store_part_id?: Prisma.IntNullableFilter<"AssetPart"> | number | null
 }
 
 export type AssetPartUpsertWithWhereUniqueWithoutAsset_AssetPart_recipient_asset_idToAssetInput = {
@@ -715,12 +715,12 @@ export type AssetPartCreateWithoutPartInput = {
 }
 
 export type AssetPartUncheckedCreateWithoutPartInput = {
+  id?: number
+  recipient_asset_id: number
+  donor_asset_id?: number | null
   updated_at: Date | string
   updated_by: number
-  donor_asset_id?: number | null
-  id?: number
   notes: string
-  recipient_asset_id: number
 }
 
 export type AssetPartCreateOrConnectWithoutPartInput = {
@@ -758,12 +758,12 @@ export type AssetPartCreateWithoutUpdatedByInput = {
 }
 
 export type AssetPartUncheckedCreateWithoutUpdatedByInput = {
-  updated_at: Date | string
-  donor_asset_id?: number | null
   id?: number
-  notes: string
   recipient_asset_id: number
+  donor_asset_id?: number | null
   store_part_id?: number | null
+  updated_at: Date | string
+  notes: string
 }
 
 export type AssetPartCreateOrConnectWithoutUpdatedByInput = {
@@ -793,21 +793,21 @@ export type AssetPartUpdateManyWithWhereWithoutUpdatedByInput = {
 }
 
 export type AssetPartCreateManyAsset_AssetPart_donor_asset_idToAssetInput = {
-  updated_at: Date | string
-  updated_by: number
   id?: number
-  notes: string
   recipient_asset_id: number
   store_part_id?: number | null
+  updated_at: Date | string
+  updated_by: number
+  notes: string
 }
 
 export type AssetPartCreateManyAsset_AssetPart_recipient_asset_idToAssetInput = {
+  id?: number
+  donor_asset_id?: number | null
+  store_part_id?: number | null
   updated_at: Date | string
   updated_by: number
-  donor_asset_id?: number | null
-  id?: number
   notes: string
-  store_part_id?: number | null
 }
 
 export type AssetPartUpdateWithoutAsset_AssetPart_donor_asset_idToAssetInput = {
@@ -819,21 +819,21 @@ export type AssetPartUpdateWithoutAsset_AssetPart_donor_asset_idToAssetInput = {
 }
 
 export type AssetPartUncheckedUpdateWithoutAsset_AssetPart_donor_asset_idToAssetInput = {
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_by?: Prisma.IntFieldUpdateOperationsInput | number
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  notes?: Prisma.StringFieldUpdateOperationsInput | string
   recipient_asset_id?: Prisma.IntFieldUpdateOperationsInput | number
   store_part_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_by?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AssetPartUncheckedUpdateManyWithoutAsset_AssetPart_donor_asset_idToAssetInput = {
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_by?: Prisma.IntFieldUpdateOperationsInput | number
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  notes?: Prisma.StringFieldUpdateOperationsInput | string
   recipient_asset_id?: Prisma.IntFieldUpdateOperationsInput | number
   store_part_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_by?: Prisma.IntFieldUpdateOperationsInput | number
+  notes?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AssetPartUpdateWithoutAsset_AssetPart_recipient_asset_idToAssetInput = {
@@ -845,30 +845,30 @@ export type AssetPartUpdateWithoutAsset_AssetPart_recipient_asset_idToAssetInput
 }
 
 export type AssetPartUncheckedUpdateWithoutAsset_AssetPart_recipient_asset_idToAssetInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  donor_asset_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  store_part_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_by?: Prisma.IntFieldUpdateOperationsInput | number
-  donor_asset_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.StringFieldUpdateOperationsInput | string
-  store_part_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type AssetPartUncheckedUpdateManyWithoutAsset_AssetPart_recipient_asset_idToAssetInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  donor_asset_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  store_part_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_by?: Prisma.IntFieldUpdateOperationsInput | number
-  donor_asset_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.StringFieldUpdateOperationsInput | string
-  store_part_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type AssetPartCreateManyPartInput = {
+  id?: number
+  recipient_asset_id: number
+  donor_asset_id?: number | null
   updated_at: Date | string
   updated_by: number
-  donor_asset_id?: number | null
-  id?: number
   notes: string
-  recipient_asset_id: number
 }
 
 export type AssetPartUpdateWithoutPartInput = {
@@ -880,30 +880,30 @@ export type AssetPartUpdateWithoutPartInput = {
 }
 
 export type AssetPartUncheckedUpdateWithoutPartInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  recipient_asset_id?: Prisma.IntFieldUpdateOperationsInput | number
+  donor_asset_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_by?: Prisma.IntFieldUpdateOperationsInput | number
-  donor_asset_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.StringFieldUpdateOperationsInput | string
-  recipient_asset_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type AssetPartUncheckedUpdateManyWithoutPartInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  recipient_asset_id?: Prisma.IntFieldUpdateOperationsInput | number
+  donor_asset_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_by?: Prisma.IntFieldUpdateOperationsInput | number
-  donor_asset_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  id?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.StringFieldUpdateOperationsInput | string
-  recipient_asset_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type AssetPartCreateManyUpdatedByInput = {
-  updated_at: Date | string
-  donor_asset_id?: number | null
   id?: number
-  notes: string
   recipient_asset_id: number
+  donor_asset_id?: number | null
   store_part_id?: number | null
+  updated_at: Date | string
+  notes: string
 }
 
 export type AssetPartUpdateWithoutUpdatedByInput = {
@@ -915,33 +915,33 @@ export type AssetPartUpdateWithoutUpdatedByInput = {
 }
 
 export type AssetPartUncheckedUpdateWithoutUpdatedByInput = {
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  donor_asset_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  notes?: Prisma.StringFieldUpdateOperationsInput | string
   recipient_asset_id?: Prisma.IntFieldUpdateOperationsInput | number
+  donor_asset_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   store_part_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notes?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AssetPartUncheckedUpdateManyWithoutUpdatedByInput = {
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  donor_asset_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  notes?: Prisma.StringFieldUpdateOperationsInput | string
   recipient_asset_id?: Prisma.IntFieldUpdateOperationsInput | number
+  donor_asset_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   store_part_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notes?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
 
 export type AssetPartSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  recipient_asset_id?: boolean
+  donor_asset_id?: boolean
+  store_part_id?: boolean
   updated_at?: boolean
   updated_by?: boolean
-  donor_asset_id?: boolean
-  id?: boolean
   notes?: boolean
-  recipient_asset_id?: boolean
-  store_part_id?: boolean
   Asset_AssetPart_donor_asset_idToAsset?: boolean | Prisma.AssetPart$Asset_AssetPart_donor_asset_idToAssetArgs<ExtArgs>
   Asset_AssetPart_recipient_asset_idToAsset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
   Part?: boolean | Prisma.AssetPart$PartArgs<ExtArgs>
@@ -949,13 +949,13 @@ export type AssetPartSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
 }, ExtArgs["result"]["assetPart"]>
 
 export type AssetPartSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  recipient_asset_id?: boolean
+  donor_asset_id?: boolean
+  store_part_id?: boolean
   updated_at?: boolean
   updated_by?: boolean
-  donor_asset_id?: boolean
-  id?: boolean
   notes?: boolean
-  recipient_asset_id?: boolean
-  store_part_id?: boolean
   Asset_AssetPart_donor_asset_idToAsset?: boolean | Prisma.AssetPart$Asset_AssetPart_donor_asset_idToAssetArgs<ExtArgs>
   Asset_AssetPart_recipient_asset_idToAsset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
   Part?: boolean | Prisma.AssetPart$PartArgs<ExtArgs>
@@ -963,13 +963,13 @@ export type AssetPartSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
 }, ExtArgs["result"]["assetPart"]>
 
 export type AssetPartSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  recipient_asset_id?: boolean
+  donor_asset_id?: boolean
+  store_part_id?: boolean
   updated_at?: boolean
   updated_by?: boolean
-  donor_asset_id?: boolean
-  id?: boolean
   notes?: boolean
-  recipient_asset_id?: boolean
-  store_part_id?: boolean
   Asset_AssetPart_donor_asset_idToAsset?: boolean | Prisma.AssetPart$Asset_AssetPart_donor_asset_idToAssetArgs<ExtArgs>
   Asset_AssetPart_recipient_asset_idToAsset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
   Part?: boolean | Prisma.AssetPart$PartArgs<ExtArgs>
@@ -977,16 +977,16 @@ export type AssetPartSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
 }, ExtArgs["result"]["assetPart"]>
 
 export type AssetPartSelectScalar = {
+  id?: boolean
+  recipient_asset_id?: boolean
+  donor_asset_id?: boolean
+  store_part_id?: boolean
   updated_at?: boolean
   updated_by?: boolean
-  donor_asset_id?: boolean
-  id?: boolean
   notes?: boolean
-  recipient_asset_id?: boolean
-  store_part_id?: boolean
 }
 
-export type AssetPartOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"updated_at" | "updated_by" | "donor_asset_id" | "id" | "notes" | "recipient_asset_id" | "store_part_id", ExtArgs["result"]["assetPart"]>
+export type AssetPartOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "recipient_asset_id" | "donor_asset_id" | "store_part_id" | "updated_at" | "updated_by" | "notes", ExtArgs["result"]["assetPart"]>
 export type AssetPartInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Asset_AssetPart_donor_asset_idToAsset?: boolean | Prisma.AssetPart$Asset_AssetPart_donor_asset_idToAssetArgs<ExtArgs>
   Asset_AssetPart_recipient_asset_idToAsset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
@@ -1015,13 +1015,13 @@ export type $AssetPartPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     updatedBy: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    id: number
+    recipient_asset_id: number
+    donor_asset_id: number | null
+    store_part_id: number | null
     updated_at: Date
     updated_by: number
-    donor_asset_id: number | null
-    id: number
     notes: string
-    recipient_asset_id: number
-    store_part_id: number | null
   }, ExtArgs["result"]["assetPart"]>
   composites: {}
 }
@@ -1105,8 +1105,8 @@ export interface AssetPartDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * // Get first 10 AssetParts
    * const assetParts = await prisma.assetPart.findMany({ take: 10 })
    * 
-   * // Only select the `updated_at`
-   * const assetPartWithUpdated_atOnly = await prisma.assetPart.findMany({ select: { updated_at: true } })
+   * // Only select the `id`
+   * const assetPartWithIdOnly = await prisma.assetPart.findMany({ select: { id: true } })
    * 
    */
   findMany<T extends AssetPartFindManyArgs>(args?: Prisma.SelectSubset<T, AssetPartFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssetPartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1150,9 +1150,9 @@ export interface AssetPartDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    *   ]
    * })
    * 
-   * // Create many AssetParts and only return the `updated_at`
-   * const assetPartWithUpdated_atOnly = await prisma.assetPart.createManyAndReturn({
-   *   select: { updated_at: true },
+   * // Create many AssetParts and only return the `id`
+   * const assetPartWithIdOnly = await prisma.assetPart.createManyAndReturn({
+   *   select: { id: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1241,9 +1241,9 @@ export interface AssetPartDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    *   ]
    * })
    * 
-   * // Update zero or more AssetParts and only return the `updated_at`
-   * const assetPartWithUpdated_atOnly = await prisma.assetPart.updateManyAndReturn({
-   *   select: { updated_at: true },
+   * // Update zero or more AssetParts and only return the `id`
+   * const assetPartWithIdOnly = await prisma.assetPart.updateManyAndReturn({
+   *   select: { id: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1449,13 +1449,13 @@ export interface Prisma__AssetPartClient<T, Null = never, ExtArgs extends runtim
  * Fields of the AssetPart model
  */
 export interface AssetPartFieldRefs {
+  readonly id: Prisma.FieldRef<"AssetPart", 'Int'>
+  readonly recipient_asset_id: Prisma.FieldRef<"AssetPart", 'Int'>
+  readonly donor_asset_id: Prisma.FieldRef<"AssetPart", 'Int'>
+  readonly store_part_id: Prisma.FieldRef<"AssetPart", 'Int'>
   readonly updated_at: Prisma.FieldRef<"AssetPart", 'DateTime'>
   readonly updated_by: Prisma.FieldRef<"AssetPart", 'Int'>
-  readonly donor_asset_id: Prisma.FieldRef<"AssetPart", 'Int'>
-  readonly id: Prisma.FieldRef<"AssetPart", 'Int'>
   readonly notes: Prisma.FieldRef<"AssetPart", 'String'>
-  readonly recipient_asset_id: Prisma.FieldRef<"AssetPart", 'Int'>
-  readonly store_part_id: Prisma.FieldRef<"AssetPart", 'Int'>
 }
     
 

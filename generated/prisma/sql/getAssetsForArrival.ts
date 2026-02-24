@@ -4,12 +4,11 @@
 // biome-ignore-all lint: generated file
 // @ts-nocheck 
 import * as $runtime from "@prisma/client/runtime/client"
-import { type $DbEnums } from "./$DbEnums.js"
 
 /**
  * @param text
  */
-export const getAssetsForArrival = $runtime.makeTypedQueryFactory("select\nb.\"name\" as brand,\nm.\"name\" as model,\na.barcode as barcode,\na.serial_number as serial_number,\na.technical_status as technical_status,\nt.meter_total as meter_total\nfrom \"Arrival\" ar\njoin \"Asset\" a on ar.id = a.arrival_id\njoin \"TechnicalSpecification\" t on t.asset_id = a.id\njoin \"Model\" m on m.id = a.model_id\njoin \"Brand\" b on b.id = m.brand_id\nwhere ar.arrival_number  = $1") as (text: string) => $runtime.TypedSql<getAssetsForArrival.Parameters, getAssetsForArrival.Result>
+export const getAssetsForArrival = $runtime.makeTypedQueryFactory("select\nb.\"name\" as brand,\nm.\"name\" as model,\na.barcode as barcode,\na.serial_number as serial_number,\nts.status as technical_status,\nt.meter_total as meter_total\nfrom \"Arrival\" ar\njoin \"Asset\" a on ar.id = a.arrival_id\njoin \"TechnicalSpecification\" t on t.asset_id = a.id\njoin \"TechnicalStatus\" ts on ts.id = a.technical_status_id\njoin \"Model\" m on m.id = a.model_id\njoin \"Brand\" b on b.id = m.brand_id\nwhere ar.arrival_number  = $1") as (text: string) => $runtime.TypedSql<getAssetsForArrival.Parameters, getAssetsForArrival.Result>
 
 export namespace getAssetsForArrival {
   export type Parameters = [text: string]
@@ -18,7 +17,7 @@ export namespace getAssetsForArrival {
     model: string
     barcode: string
     serial_number: string
-    technical_status: $DbEnums["TechnicalStatus"]
+    technical_status: string
     meter_total: bigint | null
   }
 }

@@ -4,13 +4,12 @@
 // biome-ignore-all lint: generated file
 // @ts-nocheck 
 import * as $runtime from "@prisma/client/runtime/client"
-import { type $DbEnums } from "./$DbEnums.js"
 
 /**
  * @param timestamp
  * @param timestamp
  */
-export const getInvoices = $runtime.makeTypedQueryFactory("select\ni.invoice_number,\no.\"name\" as organization,\nu.\"name\" as created_by,\ni.created_at as created_at,\ni.is_cleared as is_cleared,\ni.invoice_type as invoice_type\nfrom \"Invoice\" i\njoin \"Organization\" o on o.id = i.organization_id\njoin \"User\" u on u.id = i.updated_by_id\nwhere i.created_at between $1 and $2") as (timestamp: Date, timestamp: Date) => $runtime.TypedSql<getInvoices.Parameters, getInvoices.Result>
+export const getInvoices = $runtime.makeTypedQueryFactory("select\ni.invoice_number,\no.\"name\" as organization,\nu.\"name\" as created_by,\ni.created_at as created_at,\ni.is_cleared as is_cleared,\nit.type as invoice_type\nfrom \"Invoice\" i\njoin \"InvoiceType\" it on it.id = i.invoice_type_id\njoin \"Organization\" o on o.id = i.organization_id\njoin \"User\" u on u.id = i.updated_by_id\nwhere i.created_at between $1 and $2") as (timestamp: Date, timestamp: Date) => $runtime.TypedSql<getInvoices.Parameters, getInvoices.Result>
 
 export namespace getInvoices {
   export type Parameters = [timestamp: Date, timestamp: Date]
@@ -20,6 +19,6 @@ export namespace getInvoices {
     created_by: string
     created_at: Date
     is_cleared: boolean
-    invoice_type: $DbEnums["InvoiceType"]
+    invoice_type: string
   }
 }

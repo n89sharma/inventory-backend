@@ -30,20 +30,24 @@ export type AssetHistoryAvgAggregateOutputType = {
   id: number | null
   asset_id: number | null
   user_id: number | null
+  action_id: number | null
+  entity_id: number | null
 }
 
 export type AssetHistorySumAggregateOutputType = {
   id: number | null
   asset_id: number | null
   user_id: number | null
+  action_id: number | null
+  entity_id: number | null
 }
 
 export type AssetHistoryMinAggregateOutputType = {
   id: number | null
   asset_id: number | null
   user_id: number | null
-  operation: $Enums.GeneralOperation | null
-  data_field: $Enums.DataField | null
+  action_id: number | null
+  entity_id: number | null
   changed_on: Date | null
 }
 
@@ -51,8 +55,8 @@ export type AssetHistoryMaxAggregateOutputType = {
   id: number | null
   asset_id: number | null
   user_id: number | null
-  operation: $Enums.GeneralOperation | null
-  data_field: $Enums.DataField | null
+  action_id: number | null
+  entity_id: number | null
   changed_on: Date | null
 }
 
@@ -60,8 +64,8 @@ export type AssetHistoryCountAggregateOutputType = {
   id: number
   asset_id: number
   user_id: number
-  operation: number
-  data_field: number
+  action_id: number
+  entity_id: number
   changed_on: number
   changes: number
   _all: number
@@ -72,20 +76,24 @@ export type AssetHistoryAvgAggregateInputType = {
   id?: true
   asset_id?: true
   user_id?: true
+  action_id?: true
+  entity_id?: true
 }
 
 export type AssetHistorySumAggregateInputType = {
   id?: true
   asset_id?: true
   user_id?: true
+  action_id?: true
+  entity_id?: true
 }
 
 export type AssetHistoryMinAggregateInputType = {
   id?: true
   asset_id?: true
   user_id?: true
-  operation?: true
-  data_field?: true
+  action_id?: true
+  entity_id?: true
   changed_on?: true
 }
 
@@ -93,8 +101,8 @@ export type AssetHistoryMaxAggregateInputType = {
   id?: true
   asset_id?: true
   user_id?: true
-  operation?: true
-  data_field?: true
+  action_id?: true
+  entity_id?: true
   changed_on?: true
 }
 
@@ -102,8 +110,8 @@ export type AssetHistoryCountAggregateInputType = {
   id?: true
   asset_id?: true
   user_id?: true
-  operation?: true
-  data_field?: true
+  action_id?: true
+  entity_id?: true
   changed_on?: true
   changes?: true
   _all?: true
@@ -199,8 +207,8 @@ export type AssetHistoryGroupByOutputType = {
   id: number
   asset_id: number
   user_id: number
-  operation: $Enums.GeneralOperation
-  data_field: $Enums.DataField
+  action_id: number
+  entity_id: number
   changed_on: Date
   changes: runtime.JsonValue
   _count: AssetHistoryCountAggregateOutputType | null
@@ -232,11 +240,13 @@ export type AssetHistoryWhereInput = {
   id?: Prisma.IntFilter<"AssetHistory"> | number
   asset_id?: Prisma.IntFilter<"AssetHistory"> | number
   user_id?: Prisma.IntFilter<"AssetHistory"> | number
-  operation?: Prisma.EnumGeneralOperationFilter<"AssetHistory"> | $Enums.GeneralOperation
-  data_field?: Prisma.EnumDataFieldFilter<"AssetHistory"> | $Enums.DataField
+  action_id?: Prisma.IntFilter<"AssetHistory"> | number
+  entity_id?: Prisma.IntFilter<"AssetHistory"> | number
   changed_on?: Prisma.DateTimeFilter<"AssetHistory"> | Date | string
   changes?: Prisma.JsonFilter<"AssetHistory">
+  Action?: Prisma.XOR<Prisma.ActionScalarRelationFilter, Prisma.ActionWhereInput>
   asset?: Prisma.XOR<Prisma.AssetScalarRelationFilter, Prisma.AssetWhereInput>
+  Entity?: Prisma.XOR<Prisma.EntityScalarRelationFilter, Prisma.EntityWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
@@ -244,11 +254,13 @@ export type AssetHistoryOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   asset_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
-  operation?: Prisma.SortOrder
-  data_field?: Prisma.SortOrder
+  action_id?: Prisma.SortOrder
+  entity_id?: Prisma.SortOrder
   changed_on?: Prisma.SortOrder
   changes?: Prisma.SortOrder
+  Action?: Prisma.ActionOrderByWithRelationInput
   asset?: Prisma.AssetOrderByWithRelationInput
+  Entity?: Prisma.EntityOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
 }
 
@@ -259,11 +271,13 @@ export type AssetHistoryWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.AssetHistoryWhereInput | Prisma.AssetHistoryWhereInput[]
   asset_id?: Prisma.IntFilter<"AssetHistory"> | number
   user_id?: Prisma.IntFilter<"AssetHistory"> | number
-  operation?: Prisma.EnumGeneralOperationFilter<"AssetHistory"> | $Enums.GeneralOperation
-  data_field?: Prisma.EnumDataFieldFilter<"AssetHistory"> | $Enums.DataField
+  action_id?: Prisma.IntFilter<"AssetHistory"> | number
+  entity_id?: Prisma.IntFilter<"AssetHistory"> | number
   changed_on?: Prisma.DateTimeFilter<"AssetHistory"> | Date | string
   changes?: Prisma.JsonFilter<"AssetHistory">
+  Action?: Prisma.XOR<Prisma.ActionScalarRelationFilter, Prisma.ActionWhereInput>
   asset?: Prisma.XOR<Prisma.AssetScalarRelationFilter, Prisma.AssetWhereInput>
+  Entity?: Prisma.XOR<Prisma.EntityScalarRelationFilter, Prisma.EntityWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
@@ -271,8 +285,8 @@ export type AssetHistoryOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   asset_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
-  operation?: Prisma.SortOrder
-  data_field?: Prisma.SortOrder
+  action_id?: Prisma.SortOrder
+  entity_id?: Prisma.SortOrder
   changed_on?: Prisma.SortOrder
   changes?: Prisma.SortOrder
   _count?: Prisma.AssetHistoryCountOrderByAggregateInput
@@ -289,18 +303,18 @@ export type AssetHistoryScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"AssetHistory"> | number
   asset_id?: Prisma.IntWithAggregatesFilter<"AssetHistory"> | number
   user_id?: Prisma.IntWithAggregatesFilter<"AssetHistory"> | number
-  operation?: Prisma.EnumGeneralOperationWithAggregatesFilter<"AssetHistory"> | $Enums.GeneralOperation
-  data_field?: Prisma.EnumDataFieldWithAggregatesFilter<"AssetHistory"> | $Enums.DataField
+  action_id?: Prisma.IntWithAggregatesFilter<"AssetHistory"> | number
+  entity_id?: Prisma.IntWithAggregatesFilter<"AssetHistory"> | number
   changed_on?: Prisma.DateTimeWithAggregatesFilter<"AssetHistory"> | Date | string
   changes?: Prisma.JsonWithAggregatesFilter<"AssetHistory">
 }
 
 export type AssetHistoryCreateInput = {
-  operation: $Enums.GeneralOperation
-  data_field: $Enums.DataField
   changed_on: Date | string
   changes: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  Action: Prisma.ActionCreateNestedOneWithoutAssetHistoryInput
   asset: Prisma.AssetCreateNestedOneWithoutAsset_historyInput
+  Entity: Prisma.EntityCreateNestedOneWithoutAssetHistoryInput
   user: Prisma.UserCreateNestedOneWithoutAsset_historyInput
 }
 
@@ -308,18 +322,18 @@ export type AssetHistoryUncheckedCreateInput = {
   id?: number
   asset_id: number
   user_id: number
-  operation: $Enums.GeneralOperation
-  data_field: $Enums.DataField
+  action_id: number
+  entity_id: number
   changed_on: Date | string
   changes: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
 export type AssetHistoryUpdateInput = {
-  operation?: Prisma.EnumGeneralOperationFieldUpdateOperationsInput | $Enums.GeneralOperation
-  data_field?: Prisma.EnumDataFieldFieldUpdateOperationsInput | $Enums.DataField
   changed_on?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   changes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  Action?: Prisma.ActionUpdateOneRequiredWithoutAssetHistoryNestedInput
   asset?: Prisma.AssetUpdateOneRequiredWithoutAsset_historyNestedInput
+  Entity?: Prisma.EntityUpdateOneRequiredWithoutAssetHistoryNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutAsset_historyNestedInput
 }
 
@@ -327,8 +341,8 @@ export type AssetHistoryUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   asset_id?: Prisma.IntFieldUpdateOperationsInput | number
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
-  operation?: Prisma.EnumGeneralOperationFieldUpdateOperationsInput | $Enums.GeneralOperation
-  data_field?: Prisma.EnumDataFieldFieldUpdateOperationsInput | $Enums.DataField
+  action_id?: Prisma.IntFieldUpdateOperationsInput | number
+  entity_id?: Prisma.IntFieldUpdateOperationsInput | number
   changed_on?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   changes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
@@ -337,15 +351,13 @@ export type AssetHistoryCreateManyInput = {
   id?: number
   asset_id: number
   user_id: number
-  operation: $Enums.GeneralOperation
-  data_field: $Enums.DataField
+  action_id: number
+  entity_id: number
   changed_on: Date | string
   changes: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
 export type AssetHistoryUpdateManyMutationInput = {
-  operation?: Prisma.EnumGeneralOperationFieldUpdateOperationsInput | $Enums.GeneralOperation
-  data_field?: Prisma.EnumDataFieldFieldUpdateOperationsInput | $Enums.DataField
   changed_on?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   changes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
@@ -354,8 +366,8 @@ export type AssetHistoryUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   asset_id?: Prisma.IntFieldUpdateOperationsInput | number
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
-  operation?: Prisma.EnumGeneralOperationFieldUpdateOperationsInput | $Enums.GeneralOperation
-  data_field?: Prisma.EnumDataFieldFieldUpdateOperationsInput | $Enums.DataField
+  action_id?: Prisma.IntFieldUpdateOperationsInput | number
+  entity_id?: Prisma.IntFieldUpdateOperationsInput | number
   changed_on?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   changes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
@@ -374,8 +386,8 @@ export type AssetHistoryCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   asset_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
-  operation?: Prisma.SortOrder
-  data_field?: Prisma.SortOrder
+  action_id?: Prisma.SortOrder
+  entity_id?: Prisma.SortOrder
   changed_on?: Prisma.SortOrder
   changes?: Prisma.SortOrder
 }
@@ -384,14 +396,16 @@ export type AssetHistoryAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   asset_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
+  action_id?: Prisma.SortOrder
+  entity_id?: Prisma.SortOrder
 }
 
 export type AssetHistoryMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   asset_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
-  operation?: Prisma.SortOrder
-  data_field?: Prisma.SortOrder
+  action_id?: Prisma.SortOrder
+  entity_id?: Prisma.SortOrder
   changed_on?: Prisma.SortOrder
 }
 
@@ -399,8 +413,8 @@ export type AssetHistoryMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   asset_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
-  operation?: Prisma.SortOrder
-  data_field?: Prisma.SortOrder
+  action_id?: Prisma.SortOrder
+  entity_id?: Prisma.SortOrder
   changed_on?: Prisma.SortOrder
 }
 
@@ -408,6 +422,8 @@ export type AssetHistorySumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   asset_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
+  action_id?: Prisma.SortOrder
+  entity_id?: Prisma.SortOrder
 }
 
 export type AssetHistoryCreateNestedManyWithoutAssetInput = {
@@ -494,27 +510,103 @@ export type AssetHistoryUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.AssetHistoryScalarWhereInput | Prisma.AssetHistoryScalarWhereInput[]
 }
 
-export type EnumGeneralOperationFieldUpdateOperationsInput = {
-  set?: $Enums.GeneralOperation
+export type AssetHistoryCreateNestedManyWithoutActionInput = {
+  create?: Prisma.XOR<Prisma.AssetHistoryCreateWithoutActionInput, Prisma.AssetHistoryUncheckedCreateWithoutActionInput> | Prisma.AssetHistoryCreateWithoutActionInput[] | Prisma.AssetHistoryUncheckedCreateWithoutActionInput[]
+  connectOrCreate?: Prisma.AssetHistoryCreateOrConnectWithoutActionInput | Prisma.AssetHistoryCreateOrConnectWithoutActionInput[]
+  createMany?: Prisma.AssetHistoryCreateManyActionInputEnvelope
+  connect?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
 }
 
-export type EnumDataFieldFieldUpdateOperationsInput = {
-  set?: $Enums.DataField
+export type AssetHistoryUncheckedCreateNestedManyWithoutActionInput = {
+  create?: Prisma.XOR<Prisma.AssetHistoryCreateWithoutActionInput, Prisma.AssetHistoryUncheckedCreateWithoutActionInput> | Prisma.AssetHistoryCreateWithoutActionInput[] | Prisma.AssetHistoryUncheckedCreateWithoutActionInput[]
+  connectOrCreate?: Prisma.AssetHistoryCreateOrConnectWithoutActionInput | Prisma.AssetHistoryCreateOrConnectWithoutActionInput[]
+  createMany?: Prisma.AssetHistoryCreateManyActionInputEnvelope
+  connect?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
+}
+
+export type AssetHistoryUpdateManyWithoutActionNestedInput = {
+  create?: Prisma.XOR<Prisma.AssetHistoryCreateWithoutActionInput, Prisma.AssetHistoryUncheckedCreateWithoutActionInput> | Prisma.AssetHistoryCreateWithoutActionInput[] | Prisma.AssetHistoryUncheckedCreateWithoutActionInput[]
+  connectOrCreate?: Prisma.AssetHistoryCreateOrConnectWithoutActionInput | Prisma.AssetHistoryCreateOrConnectWithoutActionInput[]
+  upsert?: Prisma.AssetHistoryUpsertWithWhereUniqueWithoutActionInput | Prisma.AssetHistoryUpsertWithWhereUniqueWithoutActionInput[]
+  createMany?: Prisma.AssetHistoryCreateManyActionInputEnvelope
+  set?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
+  disconnect?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
+  delete?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
+  connect?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
+  update?: Prisma.AssetHistoryUpdateWithWhereUniqueWithoutActionInput | Prisma.AssetHistoryUpdateWithWhereUniqueWithoutActionInput[]
+  updateMany?: Prisma.AssetHistoryUpdateManyWithWhereWithoutActionInput | Prisma.AssetHistoryUpdateManyWithWhereWithoutActionInput[]
+  deleteMany?: Prisma.AssetHistoryScalarWhereInput | Prisma.AssetHistoryScalarWhereInput[]
+}
+
+export type AssetHistoryUncheckedUpdateManyWithoutActionNestedInput = {
+  create?: Prisma.XOR<Prisma.AssetHistoryCreateWithoutActionInput, Prisma.AssetHistoryUncheckedCreateWithoutActionInput> | Prisma.AssetHistoryCreateWithoutActionInput[] | Prisma.AssetHistoryUncheckedCreateWithoutActionInput[]
+  connectOrCreate?: Prisma.AssetHistoryCreateOrConnectWithoutActionInput | Prisma.AssetHistoryCreateOrConnectWithoutActionInput[]
+  upsert?: Prisma.AssetHistoryUpsertWithWhereUniqueWithoutActionInput | Prisma.AssetHistoryUpsertWithWhereUniqueWithoutActionInput[]
+  createMany?: Prisma.AssetHistoryCreateManyActionInputEnvelope
+  set?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
+  disconnect?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
+  delete?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
+  connect?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
+  update?: Prisma.AssetHistoryUpdateWithWhereUniqueWithoutActionInput | Prisma.AssetHistoryUpdateWithWhereUniqueWithoutActionInput[]
+  updateMany?: Prisma.AssetHistoryUpdateManyWithWhereWithoutActionInput | Prisma.AssetHistoryUpdateManyWithWhereWithoutActionInput[]
+  deleteMany?: Prisma.AssetHistoryScalarWhereInput | Prisma.AssetHistoryScalarWhereInput[]
+}
+
+export type AssetHistoryCreateNestedManyWithoutEntityInput = {
+  create?: Prisma.XOR<Prisma.AssetHistoryCreateWithoutEntityInput, Prisma.AssetHistoryUncheckedCreateWithoutEntityInput> | Prisma.AssetHistoryCreateWithoutEntityInput[] | Prisma.AssetHistoryUncheckedCreateWithoutEntityInput[]
+  connectOrCreate?: Prisma.AssetHistoryCreateOrConnectWithoutEntityInput | Prisma.AssetHistoryCreateOrConnectWithoutEntityInput[]
+  createMany?: Prisma.AssetHistoryCreateManyEntityInputEnvelope
+  connect?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
+}
+
+export type AssetHistoryUncheckedCreateNestedManyWithoutEntityInput = {
+  create?: Prisma.XOR<Prisma.AssetHistoryCreateWithoutEntityInput, Prisma.AssetHistoryUncheckedCreateWithoutEntityInput> | Prisma.AssetHistoryCreateWithoutEntityInput[] | Prisma.AssetHistoryUncheckedCreateWithoutEntityInput[]
+  connectOrCreate?: Prisma.AssetHistoryCreateOrConnectWithoutEntityInput | Prisma.AssetHistoryCreateOrConnectWithoutEntityInput[]
+  createMany?: Prisma.AssetHistoryCreateManyEntityInputEnvelope
+  connect?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
+}
+
+export type AssetHistoryUpdateManyWithoutEntityNestedInput = {
+  create?: Prisma.XOR<Prisma.AssetHistoryCreateWithoutEntityInput, Prisma.AssetHistoryUncheckedCreateWithoutEntityInput> | Prisma.AssetHistoryCreateWithoutEntityInput[] | Prisma.AssetHistoryUncheckedCreateWithoutEntityInput[]
+  connectOrCreate?: Prisma.AssetHistoryCreateOrConnectWithoutEntityInput | Prisma.AssetHistoryCreateOrConnectWithoutEntityInput[]
+  upsert?: Prisma.AssetHistoryUpsertWithWhereUniqueWithoutEntityInput | Prisma.AssetHistoryUpsertWithWhereUniqueWithoutEntityInput[]
+  createMany?: Prisma.AssetHistoryCreateManyEntityInputEnvelope
+  set?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
+  disconnect?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
+  delete?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
+  connect?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
+  update?: Prisma.AssetHistoryUpdateWithWhereUniqueWithoutEntityInput | Prisma.AssetHistoryUpdateWithWhereUniqueWithoutEntityInput[]
+  updateMany?: Prisma.AssetHistoryUpdateManyWithWhereWithoutEntityInput | Prisma.AssetHistoryUpdateManyWithWhereWithoutEntityInput[]
+  deleteMany?: Prisma.AssetHistoryScalarWhereInput | Prisma.AssetHistoryScalarWhereInput[]
+}
+
+export type AssetHistoryUncheckedUpdateManyWithoutEntityNestedInput = {
+  create?: Prisma.XOR<Prisma.AssetHistoryCreateWithoutEntityInput, Prisma.AssetHistoryUncheckedCreateWithoutEntityInput> | Prisma.AssetHistoryCreateWithoutEntityInput[] | Prisma.AssetHistoryUncheckedCreateWithoutEntityInput[]
+  connectOrCreate?: Prisma.AssetHistoryCreateOrConnectWithoutEntityInput | Prisma.AssetHistoryCreateOrConnectWithoutEntityInput[]
+  upsert?: Prisma.AssetHistoryUpsertWithWhereUniqueWithoutEntityInput | Prisma.AssetHistoryUpsertWithWhereUniqueWithoutEntityInput[]
+  createMany?: Prisma.AssetHistoryCreateManyEntityInputEnvelope
+  set?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
+  disconnect?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
+  delete?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
+  connect?: Prisma.AssetHistoryWhereUniqueInput | Prisma.AssetHistoryWhereUniqueInput[]
+  update?: Prisma.AssetHistoryUpdateWithWhereUniqueWithoutEntityInput | Prisma.AssetHistoryUpdateWithWhereUniqueWithoutEntityInput[]
+  updateMany?: Prisma.AssetHistoryUpdateManyWithWhereWithoutEntityInput | Prisma.AssetHistoryUpdateManyWithWhereWithoutEntityInput[]
+  deleteMany?: Prisma.AssetHistoryScalarWhereInput | Prisma.AssetHistoryScalarWhereInput[]
 }
 
 export type AssetHistoryCreateWithoutAssetInput = {
-  operation: $Enums.GeneralOperation
-  data_field: $Enums.DataField
   changed_on: Date | string
   changes: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  Action: Prisma.ActionCreateNestedOneWithoutAssetHistoryInput
+  Entity: Prisma.EntityCreateNestedOneWithoutAssetHistoryInput
   user: Prisma.UserCreateNestedOneWithoutAsset_historyInput
 }
 
 export type AssetHistoryUncheckedCreateWithoutAssetInput = {
   id?: number
   user_id: number
-  operation: $Enums.GeneralOperation
-  data_field: $Enums.DataField
+  action_id: number
+  entity_id: number
   changed_on: Date | string
   changes: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
@@ -552,25 +644,25 @@ export type AssetHistoryScalarWhereInput = {
   id?: Prisma.IntFilter<"AssetHistory"> | number
   asset_id?: Prisma.IntFilter<"AssetHistory"> | number
   user_id?: Prisma.IntFilter<"AssetHistory"> | number
-  operation?: Prisma.EnumGeneralOperationFilter<"AssetHistory"> | $Enums.GeneralOperation
-  data_field?: Prisma.EnumDataFieldFilter<"AssetHistory"> | $Enums.DataField
+  action_id?: Prisma.IntFilter<"AssetHistory"> | number
+  entity_id?: Prisma.IntFilter<"AssetHistory"> | number
   changed_on?: Prisma.DateTimeFilter<"AssetHistory"> | Date | string
   changes?: Prisma.JsonFilter<"AssetHistory">
 }
 
 export type AssetHistoryCreateWithoutUserInput = {
-  operation: $Enums.GeneralOperation
-  data_field: $Enums.DataField
   changed_on: Date | string
   changes: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  Action: Prisma.ActionCreateNestedOneWithoutAssetHistoryInput
   asset: Prisma.AssetCreateNestedOneWithoutAsset_historyInput
+  Entity: Prisma.EntityCreateNestedOneWithoutAssetHistoryInput
 }
 
 export type AssetHistoryUncheckedCreateWithoutUserInput = {
   id?: number
   asset_id: number
-  operation: $Enums.GeneralOperation
-  data_field: $Enums.DataField
+  action_id: number
+  entity_id: number
   changed_on: Date | string
   changes: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
@@ -601,28 +693,114 @@ export type AssetHistoryUpdateManyWithWhereWithoutUserInput = {
   data: Prisma.XOR<Prisma.AssetHistoryUpdateManyMutationInput, Prisma.AssetHistoryUncheckedUpdateManyWithoutUserInput>
 }
 
+export type AssetHistoryCreateWithoutActionInput = {
+  changed_on: Date | string
+  changes: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  asset: Prisma.AssetCreateNestedOneWithoutAsset_historyInput
+  Entity: Prisma.EntityCreateNestedOneWithoutAssetHistoryInput
+  user: Prisma.UserCreateNestedOneWithoutAsset_historyInput
+}
+
+export type AssetHistoryUncheckedCreateWithoutActionInput = {
+  id?: number
+  asset_id: number
+  user_id: number
+  entity_id: number
+  changed_on: Date | string
+  changes: Prisma.JsonNullValueInput | runtime.InputJsonValue
+}
+
+export type AssetHistoryCreateOrConnectWithoutActionInput = {
+  where: Prisma.AssetHistoryWhereUniqueInput
+  create: Prisma.XOR<Prisma.AssetHistoryCreateWithoutActionInput, Prisma.AssetHistoryUncheckedCreateWithoutActionInput>
+}
+
+export type AssetHistoryCreateManyActionInputEnvelope = {
+  data: Prisma.AssetHistoryCreateManyActionInput | Prisma.AssetHistoryCreateManyActionInput[]
+  skipDuplicates?: boolean
+}
+
+export type AssetHistoryUpsertWithWhereUniqueWithoutActionInput = {
+  where: Prisma.AssetHistoryWhereUniqueInput
+  update: Prisma.XOR<Prisma.AssetHistoryUpdateWithoutActionInput, Prisma.AssetHistoryUncheckedUpdateWithoutActionInput>
+  create: Prisma.XOR<Prisma.AssetHistoryCreateWithoutActionInput, Prisma.AssetHistoryUncheckedCreateWithoutActionInput>
+}
+
+export type AssetHistoryUpdateWithWhereUniqueWithoutActionInput = {
+  where: Prisma.AssetHistoryWhereUniqueInput
+  data: Prisma.XOR<Prisma.AssetHistoryUpdateWithoutActionInput, Prisma.AssetHistoryUncheckedUpdateWithoutActionInput>
+}
+
+export type AssetHistoryUpdateManyWithWhereWithoutActionInput = {
+  where: Prisma.AssetHistoryScalarWhereInput
+  data: Prisma.XOR<Prisma.AssetHistoryUpdateManyMutationInput, Prisma.AssetHistoryUncheckedUpdateManyWithoutActionInput>
+}
+
+export type AssetHistoryCreateWithoutEntityInput = {
+  changed_on: Date | string
+  changes: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  Action: Prisma.ActionCreateNestedOneWithoutAssetHistoryInput
+  asset: Prisma.AssetCreateNestedOneWithoutAsset_historyInput
+  user: Prisma.UserCreateNestedOneWithoutAsset_historyInput
+}
+
+export type AssetHistoryUncheckedCreateWithoutEntityInput = {
+  id?: number
+  asset_id: number
+  user_id: number
+  action_id: number
+  changed_on: Date | string
+  changes: Prisma.JsonNullValueInput | runtime.InputJsonValue
+}
+
+export type AssetHistoryCreateOrConnectWithoutEntityInput = {
+  where: Prisma.AssetHistoryWhereUniqueInput
+  create: Prisma.XOR<Prisma.AssetHistoryCreateWithoutEntityInput, Prisma.AssetHistoryUncheckedCreateWithoutEntityInput>
+}
+
+export type AssetHistoryCreateManyEntityInputEnvelope = {
+  data: Prisma.AssetHistoryCreateManyEntityInput | Prisma.AssetHistoryCreateManyEntityInput[]
+  skipDuplicates?: boolean
+}
+
+export type AssetHistoryUpsertWithWhereUniqueWithoutEntityInput = {
+  where: Prisma.AssetHistoryWhereUniqueInput
+  update: Prisma.XOR<Prisma.AssetHistoryUpdateWithoutEntityInput, Prisma.AssetHistoryUncheckedUpdateWithoutEntityInput>
+  create: Prisma.XOR<Prisma.AssetHistoryCreateWithoutEntityInput, Prisma.AssetHistoryUncheckedCreateWithoutEntityInput>
+}
+
+export type AssetHistoryUpdateWithWhereUniqueWithoutEntityInput = {
+  where: Prisma.AssetHistoryWhereUniqueInput
+  data: Prisma.XOR<Prisma.AssetHistoryUpdateWithoutEntityInput, Prisma.AssetHistoryUncheckedUpdateWithoutEntityInput>
+}
+
+export type AssetHistoryUpdateManyWithWhereWithoutEntityInput = {
+  where: Prisma.AssetHistoryScalarWhereInput
+  data: Prisma.XOR<Prisma.AssetHistoryUpdateManyMutationInput, Prisma.AssetHistoryUncheckedUpdateManyWithoutEntityInput>
+}
+
 export type AssetHistoryCreateManyAssetInput = {
   id?: number
   user_id: number
-  operation: $Enums.GeneralOperation
-  data_field: $Enums.DataField
+  action_id: number
+  entity_id: number
   changed_on: Date | string
   changes: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
 export type AssetHistoryUpdateWithoutAssetInput = {
-  operation?: Prisma.EnumGeneralOperationFieldUpdateOperationsInput | $Enums.GeneralOperation
-  data_field?: Prisma.EnumDataFieldFieldUpdateOperationsInput | $Enums.DataField
   changed_on?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   changes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  Action?: Prisma.ActionUpdateOneRequiredWithoutAssetHistoryNestedInput
+  Entity?: Prisma.EntityUpdateOneRequiredWithoutAssetHistoryNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutAsset_historyNestedInput
 }
 
 export type AssetHistoryUncheckedUpdateWithoutAssetInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
-  operation?: Prisma.EnumGeneralOperationFieldUpdateOperationsInput | $Enums.GeneralOperation
-  data_field?: Prisma.EnumDataFieldFieldUpdateOperationsInput | $Enums.DataField
+  action_id?: Prisma.IntFieldUpdateOperationsInput | number
+  entity_id?: Prisma.IntFieldUpdateOperationsInput | number
   changed_on?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   changes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
@@ -630,8 +808,8 @@ export type AssetHistoryUncheckedUpdateWithoutAssetInput = {
 export type AssetHistoryUncheckedUpdateManyWithoutAssetInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
-  operation?: Prisma.EnumGeneralOperationFieldUpdateOperationsInput | $Enums.GeneralOperation
-  data_field?: Prisma.EnumDataFieldFieldUpdateOperationsInput | $Enums.DataField
+  action_id?: Prisma.IntFieldUpdateOperationsInput | number
+  entity_id?: Prisma.IntFieldUpdateOperationsInput | number
   changed_on?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   changes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
@@ -639,25 +817,25 @@ export type AssetHistoryUncheckedUpdateManyWithoutAssetInput = {
 export type AssetHistoryCreateManyUserInput = {
   id?: number
   asset_id: number
-  operation: $Enums.GeneralOperation
-  data_field: $Enums.DataField
+  action_id: number
+  entity_id: number
   changed_on: Date | string
   changes: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
 
 export type AssetHistoryUpdateWithoutUserInput = {
-  operation?: Prisma.EnumGeneralOperationFieldUpdateOperationsInput | $Enums.GeneralOperation
-  data_field?: Prisma.EnumDataFieldFieldUpdateOperationsInput | $Enums.DataField
   changed_on?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   changes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  Action?: Prisma.ActionUpdateOneRequiredWithoutAssetHistoryNestedInput
   asset?: Prisma.AssetUpdateOneRequiredWithoutAsset_historyNestedInput
+  Entity?: Prisma.EntityUpdateOneRequiredWithoutAssetHistoryNestedInput
 }
 
 export type AssetHistoryUncheckedUpdateWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   asset_id?: Prisma.IntFieldUpdateOperationsInput | number
-  operation?: Prisma.EnumGeneralOperationFieldUpdateOperationsInput | $Enums.GeneralOperation
-  data_field?: Prisma.EnumDataFieldFieldUpdateOperationsInput | $Enums.DataField
+  action_id?: Prisma.IntFieldUpdateOperationsInput | number
+  entity_id?: Prisma.IntFieldUpdateOperationsInput | number
   changed_on?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   changes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
@@ -665,8 +843,78 @@ export type AssetHistoryUncheckedUpdateWithoutUserInput = {
 export type AssetHistoryUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   asset_id?: Prisma.IntFieldUpdateOperationsInput | number
-  operation?: Prisma.EnumGeneralOperationFieldUpdateOperationsInput | $Enums.GeneralOperation
-  data_field?: Prisma.EnumDataFieldFieldUpdateOperationsInput | $Enums.DataField
+  action_id?: Prisma.IntFieldUpdateOperationsInput | number
+  entity_id?: Prisma.IntFieldUpdateOperationsInput | number
+  changed_on?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  changes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+}
+
+export type AssetHistoryCreateManyActionInput = {
+  id?: number
+  asset_id: number
+  user_id: number
+  entity_id: number
+  changed_on: Date | string
+  changes: Prisma.JsonNullValueInput | runtime.InputJsonValue
+}
+
+export type AssetHistoryUpdateWithoutActionInput = {
+  changed_on?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  changes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  asset?: Prisma.AssetUpdateOneRequiredWithoutAsset_historyNestedInput
+  Entity?: Prisma.EntityUpdateOneRequiredWithoutAssetHistoryNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutAsset_historyNestedInput
+}
+
+export type AssetHistoryUncheckedUpdateWithoutActionInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  asset_id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  entity_id?: Prisma.IntFieldUpdateOperationsInput | number
+  changed_on?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  changes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+}
+
+export type AssetHistoryUncheckedUpdateManyWithoutActionInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  asset_id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  entity_id?: Prisma.IntFieldUpdateOperationsInput | number
+  changed_on?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  changes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+}
+
+export type AssetHistoryCreateManyEntityInput = {
+  id?: number
+  asset_id: number
+  user_id: number
+  action_id: number
+  changed_on: Date | string
+  changes: Prisma.JsonNullValueInput | runtime.InputJsonValue
+}
+
+export type AssetHistoryUpdateWithoutEntityInput = {
+  changed_on?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  changes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  Action?: Prisma.ActionUpdateOneRequiredWithoutAssetHistoryNestedInput
+  asset?: Prisma.AssetUpdateOneRequiredWithoutAsset_historyNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutAsset_historyNestedInput
+}
+
+export type AssetHistoryUncheckedUpdateWithoutEntityInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  asset_id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  action_id?: Prisma.IntFieldUpdateOperationsInput | number
+  changed_on?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  changes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+}
+
+export type AssetHistoryUncheckedUpdateManyWithoutEntityInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  asset_id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  action_id?: Prisma.IntFieldUpdateOperationsInput | number
   changed_on?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   changes?: Prisma.JsonNullValueInput | runtime.InputJsonValue
 }
@@ -677,11 +925,13 @@ export type AssetHistorySelect<ExtArgs extends runtime.Types.Extensions.Internal
   id?: boolean
   asset_id?: boolean
   user_id?: boolean
-  operation?: boolean
-  data_field?: boolean
+  action_id?: boolean
+  entity_id?: boolean
   changed_on?: boolean
   changes?: boolean
+  Action?: boolean | Prisma.ActionDefaultArgs<ExtArgs>
   asset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
+  Entity?: boolean | Prisma.EntityDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["assetHistory"]>
 
@@ -689,11 +939,13 @@ export type AssetHistorySelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   asset_id?: boolean
   user_id?: boolean
-  operation?: boolean
-  data_field?: boolean
+  action_id?: boolean
+  entity_id?: boolean
   changed_on?: boolean
   changes?: boolean
+  Action?: boolean | Prisma.ActionDefaultArgs<ExtArgs>
   asset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
+  Entity?: boolean | Prisma.EntityDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["assetHistory"]>
 
@@ -701,11 +953,13 @@ export type AssetHistorySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   asset_id?: boolean
   user_id?: boolean
-  operation?: boolean
-  data_field?: boolean
+  action_id?: boolean
+  entity_id?: boolean
   changed_on?: boolean
   changes?: boolean
+  Action?: boolean | Prisma.ActionDefaultArgs<ExtArgs>
   asset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
+  Entity?: boolean | Prisma.EntityDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["assetHistory"]>
 
@@ -713,38 +967,46 @@ export type AssetHistorySelectScalar = {
   id?: boolean
   asset_id?: boolean
   user_id?: boolean
-  operation?: boolean
-  data_field?: boolean
+  action_id?: boolean
+  entity_id?: boolean
   changed_on?: boolean
   changes?: boolean
 }
 
-export type AssetHistoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "asset_id" | "user_id" | "operation" | "data_field" | "changed_on" | "changes", ExtArgs["result"]["assetHistory"]>
+export type AssetHistoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "asset_id" | "user_id" | "action_id" | "entity_id" | "changed_on" | "changes", ExtArgs["result"]["assetHistory"]>
 export type AssetHistoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Action?: boolean | Prisma.ActionDefaultArgs<ExtArgs>
   asset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
+  Entity?: boolean | Prisma.EntityDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type AssetHistoryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Action?: boolean | Prisma.ActionDefaultArgs<ExtArgs>
   asset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
+  Entity?: boolean | Prisma.EntityDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type AssetHistoryIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Action?: boolean | Prisma.ActionDefaultArgs<ExtArgs>
   asset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
+  Entity?: boolean | Prisma.EntityDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $AssetHistoryPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "AssetHistory"
   objects: {
+    Action: Prisma.$ActionPayload<ExtArgs>
     asset: Prisma.$AssetPayload<ExtArgs>
+    Entity: Prisma.$EntityPayload<ExtArgs>
     user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     asset_id: number
     user_id: number
-    operation: $Enums.GeneralOperation
-    data_field: $Enums.DataField
+    action_id: number
+    entity_id: number
     changed_on: Date
     changes: runtime.JsonValue
   }, ExtArgs["result"]["assetHistory"]>
@@ -1141,7 +1403,9 @@ readonly fields: AssetHistoryFieldRefs;
  */
 export interface Prisma__AssetHistoryClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  Action<T extends Prisma.ActionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ActionDefaultArgs<ExtArgs>>): Prisma.Prisma__ActionClient<runtime.Types.Result.GetResult<Prisma.$ActionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   asset<T extends Prisma.AssetDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AssetDefaultArgs<ExtArgs>>): Prisma.Prisma__AssetClient<runtime.Types.Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  Entity<T extends Prisma.EntityDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EntityDefaultArgs<ExtArgs>>): Prisma.Prisma__EntityClient<runtime.Types.Result.GetResult<Prisma.$EntityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1175,8 +1439,8 @@ export interface AssetHistoryFieldRefs {
   readonly id: Prisma.FieldRef<"AssetHistory", 'Int'>
   readonly asset_id: Prisma.FieldRef<"AssetHistory", 'Int'>
   readonly user_id: Prisma.FieldRef<"AssetHistory", 'Int'>
-  readonly operation: Prisma.FieldRef<"AssetHistory", 'GeneralOperation'>
-  readonly data_field: Prisma.FieldRef<"AssetHistory", 'DataField'>
+  readonly action_id: Prisma.FieldRef<"AssetHistory", 'Int'>
+  readonly entity_id: Prisma.FieldRef<"AssetHistory", 'Int'>
   readonly changed_on: Prisma.FieldRef<"AssetHistory", 'DateTime'>
   readonly changes: Prisma.FieldRef<"AssetHistory", 'Json'>
 }

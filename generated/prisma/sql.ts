@@ -3,8 +3,6 @@
 /* eslint-disable */
 // biome-ignore-all lint: generated file
 // @ts-nocheck 
-export { type $DbEnums } from "./sql/$DbEnums.js"
-
 export * from "./sql/getArrivals.js"
 
 export * from "./sql/getAssetAccessories.js"
@@ -24,6 +22,8 @@ export * from "./sql/getAssetsForDepartures.js"
 export * from "./sql/getAssetsForHold.js"
 
 export * from "./sql/getAssetsForInvoice.js"
+
+export * from "./sql/getAssetsForQuery.js"
 
 export * from "./sql/getAssetsForTransfers.js"
 

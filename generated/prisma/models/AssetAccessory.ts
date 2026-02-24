@@ -28,50 +28,54 @@ export type AggregateAssetAccessory = {
 
 export type AssetAccessoryAvgAggregateOutputType = {
   asset_id: number | null
+  accessory_id: number | null
 }
 
 export type AssetAccessorySumAggregateOutputType = {
   asset_id: number | null
+  accessory_id: number | null
 }
 
 export type AssetAccessoryMinAggregateOutputType = {
   asset_id: number | null
-  accessory: $Enums.Accessory | null
+  accessory_id: number | null
 }
 
 export type AssetAccessoryMaxAggregateOutputType = {
   asset_id: number | null
-  accessory: $Enums.Accessory | null
+  accessory_id: number | null
 }
 
 export type AssetAccessoryCountAggregateOutputType = {
   asset_id: number
-  accessory: number
+  accessory_id: number
   _all: number
 }
 
 
 export type AssetAccessoryAvgAggregateInputType = {
   asset_id?: true
+  accessory_id?: true
 }
 
 export type AssetAccessorySumAggregateInputType = {
   asset_id?: true
+  accessory_id?: true
 }
 
 export type AssetAccessoryMinAggregateInputType = {
   asset_id?: true
-  accessory?: true
+  accessory_id?: true
 }
 
 export type AssetAccessoryMaxAggregateInputType = {
   asset_id?: true
-  accessory?: true
+  accessory_id?: true
 }
 
 export type AssetAccessoryCountAggregateInputType = {
   asset_id?: true
-  accessory?: true
+  accessory_id?: true
   _all?: true
 }
 
@@ -163,7 +167,7 @@ export type AssetAccessoryGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
 
 export type AssetAccessoryGroupByOutputType = {
   asset_id: number
-  accessory: $Enums.Accessory
+  accessory_id: number
   _count: AssetAccessoryCountAggregateOutputType | null
   _avg: AssetAccessoryAvgAggregateOutputType | null
   _sum: AssetAccessorySumAggregateOutputType | null
@@ -191,29 +195,32 @@ export type AssetAccessoryWhereInput = {
   OR?: Prisma.AssetAccessoryWhereInput[]
   NOT?: Prisma.AssetAccessoryWhereInput | Prisma.AssetAccessoryWhereInput[]
   asset_id?: Prisma.IntFilter<"AssetAccessory"> | number
-  accessory?: Prisma.EnumAccessoryFilter<"AssetAccessory"> | $Enums.Accessory
+  accessory_id?: Prisma.IntFilter<"AssetAccessory"> | number
+  Accessory?: Prisma.XOR<Prisma.AccessoryScalarRelationFilter, Prisma.AccessoryWhereInput>
   asset?: Prisma.XOR<Prisma.AssetScalarRelationFilter, Prisma.AssetWhereInput>
 }
 
 export type AssetAccessoryOrderByWithRelationInput = {
   asset_id?: Prisma.SortOrder
-  accessory?: Prisma.SortOrder
+  accessory_id?: Prisma.SortOrder
+  Accessory?: Prisma.AccessoryOrderByWithRelationInput
   asset?: Prisma.AssetOrderByWithRelationInput
 }
 
 export type AssetAccessoryWhereUniqueInput = Prisma.AtLeast<{
-  asset_id_accessory?: Prisma.AssetAccessoryAsset_idAccessoryCompoundUniqueInput
+  asset_id_accessory_id?: Prisma.AssetAccessoryAsset_idAccessory_idCompoundUniqueInput
   AND?: Prisma.AssetAccessoryWhereInput | Prisma.AssetAccessoryWhereInput[]
   OR?: Prisma.AssetAccessoryWhereInput[]
   NOT?: Prisma.AssetAccessoryWhereInput | Prisma.AssetAccessoryWhereInput[]
   asset_id?: Prisma.IntFilter<"AssetAccessory"> | number
-  accessory?: Prisma.EnumAccessoryFilter<"AssetAccessory"> | $Enums.Accessory
+  accessory_id?: Prisma.IntFilter<"AssetAccessory"> | number
+  Accessory?: Prisma.XOR<Prisma.AccessoryScalarRelationFilter, Prisma.AccessoryWhereInput>
   asset?: Prisma.XOR<Prisma.AssetScalarRelationFilter, Prisma.AssetWhereInput>
-}, "asset_id_accessory">
+}, "asset_id_accessory_id">
 
 export type AssetAccessoryOrderByWithAggregationInput = {
   asset_id?: Prisma.SortOrder
-  accessory?: Prisma.SortOrder
+  accessory_id?: Prisma.SortOrder
   _count?: Prisma.AssetAccessoryCountOrderByAggregateInput
   _avg?: Prisma.AssetAccessoryAvgOrderByAggregateInput
   _max?: Prisma.AssetAccessoryMaxOrderByAggregateInput
@@ -226,41 +233,41 @@ export type AssetAccessoryScalarWhereWithAggregatesInput = {
   OR?: Prisma.AssetAccessoryScalarWhereWithAggregatesInput[]
   NOT?: Prisma.AssetAccessoryScalarWhereWithAggregatesInput | Prisma.AssetAccessoryScalarWhereWithAggregatesInput[]
   asset_id?: Prisma.IntWithAggregatesFilter<"AssetAccessory"> | number
-  accessory?: Prisma.EnumAccessoryWithAggregatesFilter<"AssetAccessory"> | $Enums.Accessory
+  accessory_id?: Prisma.IntWithAggregatesFilter<"AssetAccessory"> | number
 }
 
 export type AssetAccessoryCreateInput = {
-  accessory: $Enums.Accessory
+  Accessory: Prisma.AccessoryCreateNestedOneWithoutAssetAccessoryInput
   asset: Prisma.AssetCreateNestedOneWithoutAsset_accessoriesInput
 }
 
 export type AssetAccessoryUncheckedCreateInput = {
   asset_id: number
-  accessory: $Enums.Accessory
+  accessory_id: number
 }
 
 export type AssetAccessoryUpdateInput = {
-  accessory?: Prisma.EnumAccessoryFieldUpdateOperationsInput | $Enums.Accessory
+  Accessory?: Prisma.AccessoryUpdateOneRequiredWithoutAssetAccessoryNestedInput
   asset?: Prisma.AssetUpdateOneRequiredWithoutAsset_accessoriesNestedInput
 }
 
 export type AssetAccessoryUncheckedUpdateInput = {
   asset_id?: Prisma.IntFieldUpdateOperationsInput | number
-  accessory?: Prisma.EnumAccessoryFieldUpdateOperationsInput | $Enums.Accessory
+  accessory_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type AssetAccessoryCreateManyInput = {
   asset_id: number
-  accessory: $Enums.Accessory
+  accessory_id: number
 }
 
 export type AssetAccessoryUpdateManyMutationInput = {
-  accessory?: Prisma.EnumAccessoryFieldUpdateOperationsInput | $Enums.Accessory
+
 }
 
 export type AssetAccessoryUncheckedUpdateManyInput = {
   asset_id?: Prisma.IntFieldUpdateOperationsInput | number
-  accessory?: Prisma.EnumAccessoryFieldUpdateOperationsInput | $Enums.Accessory
+  accessory_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type AssetAccessoryListRelationFilter = {
@@ -273,32 +280,34 @@ export type AssetAccessoryOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type AssetAccessoryAsset_idAccessoryCompoundUniqueInput = {
+export type AssetAccessoryAsset_idAccessory_idCompoundUniqueInput = {
   asset_id: number
-  accessory: $Enums.Accessory
+  accessory_id: number
 }
 
 export type AssetAccessoryCountOrderByAggregateInput = {
   asset_id?: Prisma.SortOrder
-  accessory?: Prisma.SortOrder
+  accessory_id?: Prisma.SortOrder
 }
 
 export type AssetAccessoryAvgOrderByAggregateInput = {
   asset_id?: Prisma.SortOrder
+  accessory_id?: Prisma.SortOrder
 }
 
 export type AssetAccessoryMaxOrderByAggregateInput = {
   asset_id?: Prisma.SortOrder
-  accessory?: Prisma.SortOrder
+  accessory_id?: Prisma.SortOrder
 }
 
 export type AssetAccessoryMinOrderByAggregateInput = {
   asset_id?: Prisma.SortOrder
-  accessory?: Prisma.SortOrder
+  accessory_id?: Prisma.SortOrder
 }
 
 export type AssetAccessorySumOrderByAggregateInput = {
   asset_id?: Prisma.SortOrder
+  accessory_id?: Prisma.SortOrder
 }
 
 export type AssetAccessoryCreateNestedManyWithoutAssetInput = {
@@ -343,16 +352,54 @@ export type AssetAccessoryUncheckedUpdateManyWithoutAssetNestedInput = {
   deleteMany?: Prisma.AssetAccessoryScalarWhereInput | Prisma.AssetAccessoryScalarWhereInput[]
 }
 
-export type EnumAccessoryFieldUpdateOperationsInput = {
-  set?: $Enums.Accessory
+export type AssetAccessoryCreateNestedManyWithoutAccessoryInput = {
+  create?: Prisma.XOR<Prisma.AssetAccessoryCreateWithoutAccessoryInput, Prisma.AssetAccessoryUncheckedCreateWithoutAccessoryInput> | Prisma.AssetAccessoryCreateWithoutAccessoryInput[] | Prisma.AssetAccessoryUncheckedCreateWithoutAccessoryInput[]
+  connectOrCreate?: Prisma.AssetAccessoryCreateOrConnectWithoutAccessoryInput | Prisma.AssetAccessoryCreateOrConnectWithoutAccessoryInput[]
+  createMany?: Prisma.AssetAccessoryCreateManyAccessoryInputEnvelope
+  connect?: Prisma.AssetAccessoryWhereUniqueInput | Prisma.AssetAccessoryWhereUniqueInput[]
+}
+
+export type AssetAccessoryUncheckedCreateNestedManyWithoutAccessoryInput = {
+  create?: Prisma.XOR<Prisma.AssetAccessoryCreateWithoutAccessoryInput, Prisma.AssetAccessoryUncheckedCreateWithoutAccessoryInput> | Prisma.AssetAccessoryCreateWithoutAccessoryInput[] | Prisma.AssetAccessoryUncheckedCreateWithoutAccessoryInput[]
+  connectOrCreate?: Prisma.AssetAccessoryCreateOrConnectWithoutAccessoryInput | Prisma.AssetAccessoryCreateOrConnectWithoutAccessoryInput[]
+  createMany?: Prisma.AssetAccessoryCreateManyAccessoryInputEnvelope
+  connect?: Prisma.AssetAccessoryWhereUniqueInput | Prisma.AssetAccessoryWhereUniqueInput[]
+}
+
+export type AssetAccessoryUpdateManyWithoutAccessoryNestedInput = {
+  create?: Prisma.XOR<Prisma.AssetAccessoryCreateWithoutAccessoryInput, Prisma.AssetAccessoryUncheckedCreateWithoutAccessoryInput> | Prisma.AssetAccessoryCreateWithoutAccessoryInput[] | Prisma.AssetAccessoryUncheckedCreateWithoutAccessoryInput[]
+  connectOrCreate?: Prisma.AssetAccessoryCreateOrConnectWithoutAccessoryInput | Prisma.AssetAccessoryCreateOrConnectWithoutAccessoryInput[]
+  upsert?: Prisma.AssetAccessoryUpsertWithWhereUniqueWithoutAccessoryInput | Prisma.AssetAccessoryUpsertWithWhereUniqueWithoutAccessoryInput[]
+  createMany?: Prisma.AssetAccessoryCreateManyAccessoryInputEnvelope
+  set?: Prisma.AssetAccessoryWhereUniqueInput | Prisma.AssetAccessoryWhereUniqueInput[]
+  disconnect?: Prisma.AssetAccessoryWhereUniqueInput | Prisma.AssetAccessoryWhereUniqueInput[]
+  delete?: Prisma.AssetAccessoryWhereUniqueInput | Prisma.AssetAccessoryWhereUniqueInput[]
+  connect?: Prisma.AssetAccessoryWhereUniqueInput | Prisma.AssetAccessoryWhereUniqueInput[]
+  update?: Prisma.AssetAccessoryUpdateWithWhereUniqueWithoutAccessoryInput | Prisma.AssetAccessoryUpdateWithWhereUniqueWithoutAccessoryInput[]
+  updateMany?: Prisma.AssetAccessoryUpdateManyWithWhereWithoutAccessoryInput | Prisma.AssetAccessoryUpdateManyWithWhereWithoutAccessoryInput[]
+  deleteMany?: Prisma.AssetAccessoryScalarWhereInput | Prisma.AssetAccessoryScalarWhereInput[]
+}
+
+export type AssetAccessoryUncheckedUpdateManyWithoutAccessoryNestedInput = {
+  create?: Prisma.XOR<Prisma.AssetAccessoryCreateWithoutAccessoryInput, Prisma.AssetAccessoryUncheckedCreateWithoutAccessoryInput> | Prisma.AssetAccessoryCreateWithoutAccessoryInput[] | Prisma.AssetAccessoryUncheckedCreateWithoutAccessoryInput[]
+  connectOrCreate?: Prisma.AssetAccessoryCreateOrConnectWithoutAccessoryInput | Prisma.AssetAccessoryCreateOrConnectWithoutAccessoryInput[]
+  upsert?: Prisma.AssetAccessoryUpsertWithWhereUniqueWithoutAccessoryInput | Prisma.AssetAccessoryUpsertWithWhereUniqueWithoutAccessoryInput[]
+  createMany?: Prisma.AssetAccessoryCreateManyAccessoryInputEnvelope
+  set?: Prisma.AssetAccessoryWhereUniqueInput | Prisma.AssetAccessoryWhereUniqueInput[]
+  disconnect?: Prisma.AssetAccessoryWhereUniqueInput | Prisma.AssetAccessoryWhereUniqueInput[]
+  delete?: Prisma.AssetAccessoryWhereUniqueInput | Prisma.AssetAccessoryWhereUniqueInput[]
+  connect?: Prisma.AssetAccessoryWhereUniqueInput | Prisma.AssetAccessoryWhereUniqueInput[]
+  update?: Prisma.AssetAccessoryUpdateWithWhereUniqueWithoutAccessoryInput | Prisma.AssetAccessoryUpdateWithWhereUniqueWithoutAccessoryInput[]
+  updateMany?: Prisma.AssetAccessoryUpdateManyWithWhereWithoutAccessoryInput | Prisma.AssetAccessoryUpdateManyWithWhereWithoutAccessoryInput[]
+  deleteMany?: Prisma.AssetAccessoryScalarWhereInput | Prisma.AssetAccessoryScalarWhereInput[]
 }
 
 export type AssetAccessoryCreateWithoutAssetInput = {
-  accessory: $Enums.Accessory
+  Accessory: Prisma.AccessoryCreateNestedOneWithoutAssetAccessoryInput
 }
 
 export type AssetAccessoryUncheckedCreateWithoutAssetInput = {
-  accessory: $Enums.Accessory
+  accessory_id: number
 }
 
 export type AssetAccessoryCreateOrConnectWithoutAssetInput = {
@@ -386,69 +433,126 @@ export type AssetAccessoryScalarWhereInput = {
   OR?: Prisma.AssetAccessoryScalarWhereInput[]
   NOT?: Prisma.AssetAccessoryScalarWhereInput | Prisma.AssetAccessoryScalarWhereInput[]
   asset_id?: Prisma.IntFilter<"AssetAccessory"> | number
-  accessory?: Prisma.EnumAccessoryFilter<"AssetAccessory"> | $Enums.Accessory
+  accessory_id?: Prisma.IntFilter<"AssetAccessory"> | number
+}
+
+export type AssetAccessoryCreateWithoutAccessoryInput = {
+  asset: Prisma.AssetCreateNestedOneWithoutAsset_accessoriesInput
+}
+
+export type AssetAccessoryUncheckedCreateWithoutAccessoryInput = {
+  asset_id: number
+}
+
+export type AssetAccessoryCreateOrConnectWithoutAccessoryInput = {
+  where: Prisma.AssetAccessoryWhereUniqueInput
+  create: Prisma.XOR<Prisma.AssetAccessoryCreateWithoutAccessoryInput, Prisma.AssetAccessoryUncheckedCreateWithoutAccessoryInput>
+}
+
+export type AssetAccessoryCreateManyAccessoryInputEnvelope = {
+  data: Prisma.AssetAccessoryCreateManyAccessoryInput | Prisma.AssetAccessoryCreateManyAccessoryInput[]
+  skipDuplicates?: boolean
+}
+
+export type AssetAccessoryUpsertWithWhereUniqueWithoutAccessoryInput = {
+  where: Prisma.AssetAccessoryWhereUniqueInput
+  update: Prisma.XOR<Prisma.AssetAccessoryUpdateWithoutAccessoryInput, Prisma.AssetAccessoryUncheckedUpdateWithoutAccessoryInput>
+  create: Prisma.XOR<Prisma.AssetAccessoryCreateWithoutAccessoryInput, Prisma.AssetAccessoryUncheckedCreateWithoutAccessoryInput>
+}
+
+export type AssetAccessoryUpdateWithWhereUniqueWithoutAccessoryInput = {
+  where: Prisma.AssetAccessoryWhereUniqueInput
+  data: Prisma.XOR<Prisma.AssetAccessoryUpdateWithoutAccessoryInput, Prisma.AssetAccessoryUncheckedUpdateWithoutAccessoryInput>
+}
+
+export type AssetAccessoryUpdateManyWithWhereWithoutAccessoryInput = {
+  where: Prisma.AssetAccessoryScalarWhereInput
+  data: Prisma.XOR<Prisma.AssetAccessoryUpdateManyMutationInput, Prisma.AssetAccessoryUncheckedUpdateManyWithoutAccessoryInput>
 }
 
 export type AssetAccessoryCreateManyAssetInput = {
-  accessory: $Enums.Accessory
+  accessory_id: number
 }
 
 export type AssetAccessoryUpdateWithoutAssetInput = {
-  accessory?: Prisma.EnumAccessoryFieldUpdateOperationsInput | $Enums.Accessory
+  Accessory?: Prisma.AccessoryUpdateOneRequiredWithoutAssetAccessoryNestedInput
 }
 
 export type AssetAccessoryUncheckedUpdateWithoutAssetInput = {
-  accessory?: Prisma.EnumAccessoryFieldUpdateOperationsInput | $Enums.Accessory
+  accessory_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type AssetAccessoryUncheckedUpdateManyWithoutAssetInput = {
-  accessory?: Prisma.EnumAccessoryFieldUpdateOperationsInput | $Enums.Accessory
+  accessory_id?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type AssetAccessoryCreateManyAccessoryInput = {
+  asset_id: number
+}
+
+export type AssetAccessoryUpdateWithoutAccessoryInput = {
+  asset?: Prisma.AssetUpdateOneRequiredWithoutAsset_accessoriesNestedInput
+}
+
+export type AssetAccessoryUncheckedUpdateWithoutAccessoryInput = {
+  asset_id?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type AssetAccessoryUncheckedUpdateManyWithoutAccessoryInput = {
+  asset_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
 
 export type AssetAccessorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   asset_id?: boolean
-  accessory?: boolean
+  accessory_id?: boolean
+  Accessory?: boolean | Prisma.AccessoryDefaultArgs<ExtArgs>
   asset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["assetAccessory"]>
 
 export type AssetAccessorySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   asset_id?: boolean
-  accessory?: boolean
+  accessory_id?: boolean
+  Accessory?: boolean | Prisma.AccessoryDefaultArgs<ExtArgs>
   asset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["assetAccessory"]>
 
 export type AssetAccessorySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   asset_id?: boolean
-  accessory?: boolean
+  accessory_id?: boolean
+  Accessory?: boolean | Prisma.AccessoryDefaultArgs<ExtArgs>
   asset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["assetAccessory"]>
 
 export type AssetAccessorySelectScalar = {
   asset_id?: boolean
-  accessory?: boolean
+  accessory_id?: boolean
 }
 
-export type AssetAccessoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"asset_id" | "accessory", ExtArgs["result"]["assetAccessory"]>
+export type AssetAccessoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"asset_id" | "accessory_id", ExtArgs["result"]["assetAccessory"]>
 export type AssetAccessoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Accessory?: boolean | Prisma.AccessoryDefaultArgs<ExtArgs>
   asset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
 }
 export type AssetAccessoryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Accessory?: boolean | Prisma.AccessoryDefaultArgs<ExtArgs>
   asset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
 }
 export type AssetAccessoryIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Accessory?: boolean | Prisma.AccessoryDefaultArgs<ExtArgs>
   asset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
 }
 
 export type $AssetAccessoryPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "AssetAccessory"
   objects: {
+    Accessory: Prisma.$AccessoryPayload<ExtArgs>
     asset: Prisma.$AssetPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     asset_id: number
-    accessory: $Enums.Accessory
+    accessory_id: number
   }, ExtArgs["result"]["assetAccessory"]>
   composites: {}
 }
@@ -843,6 +947,7 @@ readonly fields: AssetAccessoryFieldRefs;
  */
 export interface Prisma__AssetAccessoryClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  Accessory<T extends Prisma.AccessoryDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessoryDefaultArgs<ExtArgs>>): Prisma.Prisma__AccessoryClient<runtime.Types.Result.GetResult<Prisma.$AccessoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   asset<T extends Prisma.AssetDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AssetDefaultArgs<ExtArgs>>): Prisma.Prisma__AssetClient<runtime.Types.Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -874,7 +979,7 @@ export interface Prisma__AssetAccessoryClient<T, Null = never, ExtArgs extends r
  */
 export interface AssetAccessoryFieldRefs {
   readonly asset_id: Prisma.FieldRef<"AssetAccessory", 'Int'>
-  readonly accessory: Prisma.FieldRef<"AssetAccessory", 'Accessory'>
+  readonly accessory_id: Prisma.FieldRef<"AssetAccessory", 'Int'>
 }
     
 

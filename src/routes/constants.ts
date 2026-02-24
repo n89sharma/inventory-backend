@@ -1,19 +1,27 @@
 import express from 'express';
 import { prisma } from '../prisma.js'
-import { Accessory, AssetType, TrackingStatus, AvailabilityStatus, TechnicalStatus, Role, InvoiceType } from '../../generated/prisma/enums.js';
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
+
+  const accessories = await prisma.accessory.findMany()
+  const assetTypes = await prisma.assetType.findMany()
+  const trackingStatuses = await prisma.trackingStatus.findMany()
+  const availabilityStatuses = await prisma.availabilityStatus.findMany()
+  const technicalStatuses = await prisma.technicalStatus.findMany()
+  const roles = await prisma.role.findMany()
+  const invoiceTypes = await prisma.invoiceType.findMany()
+
   res.json({
-    coreFunctions: Object.values(Accessory),
-    assetType: Object.values(AssetType),
-    trackingStatus: Object.values(TrackingStatus),
-    availabilityStatus: Object.values(AvailabilityStatus),
-    technicalStatus: Object.values(TechnicalStatus),
-    role: Object.values(Role),
-    invoiceType: Object.values(InvoiceType)
-  });
-});
+    coreFunctions: accessories.map((a) => a.accessory),
+    assetTypes: assetTypes.map((a) => a.asset_type),
+    trackingStatuses: trackingStatuses.map((t) => t.status),
+    availabilityStatuses: availabilityStatuses.map((a) => a.status),
+    technicalStatuses: technicalStatuses.map((t) => t.status),
+    roles: roles.map((r) => r.role),
+    invoiceTypes: invoiceTypes.map((i) => i.type)
+  })
+})
 
 export default router;

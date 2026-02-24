@@ -38,25 +38,25 @@ export type ErrorSumAggregateOutputType = {
 
 export type ErrorMinAggregateOutputType = {
   id: number | null
+  brand_id: number | null
   code: string | null
   description: string | null
-  brand_id: number | null
   category: string | null
 }
 
 export type ErrorMaxAggregateOutputType = {
   id: number | null
+  brand_id: number | null
   code: string | null
   description: string | null
-  brand_id: number | null
   category: string | null
 }
 
 export type ErrorCountAggregateOutputType = {
   id: number
+  brand_id: number
   code: number
   description: number
-  brand_id: number
   category: number
   _all: number
 }
@@ -74,25 +74,25 @@ export type ErrorSumAggregateInputType = {
 
 export type ErrorMinAggregateInputType = {
   id?: true
+  brand_id?: true
   code?: true
   description?: true
-  brand_id?: true
   category?: true
 }
 
 export type ErrorMaxAggregateInputType = {
   id?: true
+  brand_id?: true
   code?: true
   description?: true
-  brand_id?: true
   category?: true
 }
 
 export type ErrorCountAggregateInputType = {
   id?: true
+  brand_id?: true
   code?: true
   description?: true
-  brand_id?: true
   category?: true
   _all?: true
 }
@@ -185,9 +185,9 @@ export type ErrorGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 
 export type ErrorGroupByOutputType = {
   id: number
+  brand_id: number
   code: string
   description: string | null
-  brand_id: number
   category: string
   _count: ErrorCountAggregateOutputType | null
   _avg: ErrorAvgAggregateOutputType | null
@@ -216,9 +216,9 @@ export type ErrorWhereInput = {
   OR?: Prisma.ErrorWhereInput[]
   NOT?: Prisma.ErrorWhereInput | Prisma.ErrorWhereInput[]
   id?: Prisma.IntFilter<"Error"> | number
+  brand_id?: Prisma.IntFilter<"Error"> | number
   code?: Prisma.StringFilter<"Error"> | string
   description?: Prisma.StringNullableFilter<"Error"> | string | null
-  brand_id?: Prisma.IntFilter<"Error"> | number
   category?: Prisma.StringFilter<"Error"> | string
   asset_errors?: Prisma.AssetErrorListRelationFilter
   brand?: Prisma.XOR<Prisma.BrandScalarRelationFilter, Prisma.BrandWhereInput>
@@ -226,9 +226,9 @@ export type ErrorWhereInput = {
 
 export type ErrorOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  brand_id?: Prisma.SortOrder
   code?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  brand_id?: Prisma.SortOrder
   category?: Prisma.SortOrder
   asset_errors?: Prisma.AssetErrorOrderByRelationAggregateInput
   brand?: Prisma.BrandOrderByWithRelationInput
@@ -240,9 +240,9 @@ export type ErrorWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ErrorWhereInput | Prisma.ErrorWhereInput[]
   OR?: Prisma.ErrorWhereInput[]
   NOT?: Prisma.ErrorWhereInput | Prisma.ErrorWhereInput[]
+  brand_id?: Prisma.IntFilter<"Error"> | number
   code?: Prisma.StringFilter<"Error"> | string
   description?: Prisma.StringNullableFilter<"Error"> | string | null
-  brand_id?: Prisma.IntFilter<"Error"> | number
   category?: Prisma.StringFilter<"Error"> | string
   asset_errors?: Prisma.AssetErrorListRelationFilter
   brand?: Prisma.XOR<Prisma.BrandScalarRelationFilter, Prisma.BrandWhereInput>
@@ -250,9 +250,9 @@ export type ErrorWhereUniqueInput = Prisma.AtLeast<{
 
 export type ErrorOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  brand_id?: Prisma.SortOrder
   code?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  brand_id?: Prisma.SortOrder
   category?: Prisma.SortOrder
   _count?: Prisma.ErrorCountOrderByAggregateInput
   _avg?: Prisma.ErrorAvgOrderByAggregateInput
@@ -266,9 +266,9 @@ export type ErrorScalarWhereWithAggregatesInput = {
   OR?: Prisma.ErrorScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ErrorScalarWhereWithAggregatesInput | Prisma.ErrorScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Error"> | number
+  brand_id?: Prisma.IntWithAggregatesFilter<"Error"> | number
   code?: Prisma.StringWithAggregatesFilter<"Error"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Error"> | string | null
-  brand_id?: Prisma.IntWithAggregatesFilter<"Error"> | number
   category?: Prisma.StringWithAggregatesFilter<"Error"> | string
 }
 
@@ -282,9 +282,9 @@ export type ErrorCreateInput = {
 
 export type ErrorUncheckedCreateInput = {
   id?: number
+  brand_id: number
   code: string
   description?: string | null
-  brand_id: number
   category: string
   asset_errors?: Prisma.AssetErrorUncheckedCreateNestedManyWithoutErrorInput
 }
@@ -299,18 +299,18 @@ export type ErrorUpdateInput = {
 
 export type ErrorUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  brand_id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  brand_id?: Prisma.IntFieldUpdateOperationsInput | number
   category?: Prisma.StringFieldUpdateOperationsInput | string
   asset_errors?: Prisma.AssetErrorUncheckedUpdateManyWithoutErrorNestedInput
 }
 
 export type ErrorCreateManyInput = {
   id?: number
+  brand_id: number
   code: string
   description?: string | null
-  brand_id: number
   category: string
 }
 
@@ -322,9 +322,9 @@ export type ErrorUpdateManyMutationInput = {
 
 export type ErrorUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  brand_id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  brand_id?: Prisma.IntFieldUpdateOperationsInput | number
   category?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -335,9 +335,9 @@ export type ErrorBrand_idCodeCompoundUniqueInput = {
 
 export type ErrorCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  brand_id?: Prisma.SortOrder
   code?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  brand_id?: Prisma.SortOrder
   category?: Prisma.SortOrder
 }
 
@@ -348,17 +348,17 @@ export type ErrorAvgOrderByAggregateInput = {
 
 export type ErrorMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  brand_id?: Prisma.SortOrder
   code?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  brand_id?: Prisma.SortOrder
   category?: Prisma.SortOrder
 }
 
 export type ErrorMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  brand_id?: Prisma.SortOrder
   code?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  brand_id?: Prisma.SortOrder
   category?: Prisma.SortOrder
 }
 
@@ -447,9 +447,9 @@ export type ErrorCreateWithoutAsset_errorsInput = {
 
 export type ErrorUncheckedCreateWithoutAsset_errorsInput = {
   id?: number
+  brand_id: number
   code: string
   description?: string | null
-  brand_id: number
   category: string
 }
 
@@ -478,9 +478,9 @@ export type ErrorUpdateWithoutAsset_errorsInput = {
 
 export type ErrorUncheckedUpdateWithoutAsset_errorsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  brand_id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  brand_id?: Prisma.IntFieldUpdateOperationsInput | number
   category?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -530,9 +530,9 @@ export type ErrorScalarWhereInput = {
   OR?: Prisma.ErrorScalarWhereInput[]
   NOT?: Prisma.ErrorScalarWhereInput | Prisma.ErrorScalarWhereInput[]
   id?: Prisma.IntFilter<"Error"> | number
+  brand_id?: Prisma.IntFilter<"Error"> | number
   code?: Prisma.StringFilter<"Error"> | string
   description?: Prisma.StringNullableFilter<"Error"> | string | null
-  brand_id?: Prisma.IntFilter<"Error"> | number
   category?: Prisma.StringFilter<"Error"> | string
 }
 
@@ -598,9 +598,9 @@ export type ErrorCountOutputTypeCountAsset_errorsArgs<ExtArgs extends runtime.Ty
 
 export type ErrorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  brand_id?: boolean
   code?: boolean
   description?: boolean
-  brand_id?: boolean
   category?: boolean
   asset_errors?: boolean | Prisma.Error$asset_errorsArgs<ExtArgs>
   brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
@@ -609,31 +609,31 @@ export type ErrorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 
 export type ErrorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  brand_id?: boolean
   code?: boolean
   description?: boolean
-  brand_id?: boolean
   category?: boolean
   brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["error"]>
 
 export type ErrorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  brand_id?: boolean
   code?: boolean
   description?: boolean
-  brand_id?: boolean
   category?: boolean
   brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["error"]>
 
 export type ErrorSelectScalar = {
   id?: boolean
+  brand_id?: boolean
   code?: boolean
   description?: boolean
-  brand_id?: boolean
   category?: boolean
 }
 
-export type ErrorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "description" | "brand_id" | "category", ExtArgs["result"]["error"]>
+export type ErrorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "brand_id" | "code" | "description" | "category", ExtArgs["result"]["error"]>
 export type ErrorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   asset_errors?: boolean | Prisma.Error$asset_errorsArgs<ExtArgs>
   brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
@@ -654,9 +654,9 @@ export type $ErrorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    brand_id: number
     code: string
     description: string | null
-    brand_id: number
     category: string
   }, ExtArgs["result"]["error"]>
   composites: {}
@@ -1084,9 +1084,9 @@ export interface Prisma__ErrorClient<T, Null = never, ExtArgs extends runtime.Ty
  */
 export interface ErrorFieldRefs {
   readonly id: Prisma.FieldRef<"Error", 'Int'>
+  readonly brand_id: Prisma.FieldRef<"Error", 'Int'>
   readonly code: Prisma.FieldRef<"Error", 'String'>
   readonly description: Prisma.FieldRef<"Error", 'String'>
-  readonly brand_id: Prisma.FieldRef<"Error", 'Int'>
   readonly category: Prisma.FieldRef<"Error", 'String'>
 }
     

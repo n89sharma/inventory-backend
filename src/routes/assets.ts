@@ -4,6 +4,10 @@ import { getAssetComments, getAssetDetails, getAssetAccessories, getAssetErrors,
 
 const router = express.Router();
 
+router.get('/', async (req, res) => {
+  
+})
+
 router.get('/:barcode', async (req, res) => {
   const { barcode } = req.params;
 

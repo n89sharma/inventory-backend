@@ -31,6 +31,7 @@ export type ModelAvgAggregateOutputType = {
   weight: number | null
   size: number | null
   brand_id: number | null
+  asset_type_id: number | null
 }
 
 export type ModelSumAggregateOutputType = {
@@ -38,33 +39,34 @@ export type ModelSumAggregateOutputType = {
   weight: number | null
   size: number | null
   brand_id: number | null
+  asset_type_id: number | null
 }
 
 export type ModelMinAggregateOutputType = {
   id: number | null
   name: string | null
-  asset_type: $Enums.AssetType | null
   weight: number | null
   size: number | null
   brand_id: number | null
+  asset_type_id: number | null
 }
 
 export type ModelMaxAggregateOutputType = {
   id: number | null
   name: string | null
-  asset_type: $Enums.AssetType | null
   weight: number | null
   size: number | null
   brand_id: number | null
+  asset_type_id: number | null
 }
 
 export type ModelCountAggregateOutputType = {
   id: number
   name: number
-  asset_type: number
   weight: number
   size: number
   brand_id: number
+  asset_type_id: number
   _all: number
 }
 
@@ -74,6 +76,7 @@ export type ModelAvgAggregateInputType = {
   weight?: true
   size?: true
   brand_id?: true
+  asset_type_id?: true
 }
 
 export type ModelSumAggregateInputType = {
@@ -81,33 +84,34 @@ export type ModelSumAggregateInputType = {
   weight?: true
   size?: true
   brand_id?: true
+  asset_type_id?: true
 }
 
 export type ModelMinAggregateInputType = {
   id?: true
   name?: true
-  asset_type?: true
   weight?: true
   size?: true
   brand_id?: true
+  asset_type_id?: true
 }
 
 export type ModelMaxAggregateInputType = {
   id?: true
   name?: true
-  asset_type?: true
   weight?: true
   size?: true
   brand_id?: true
+  asset_type_id?: true
 }
 
 export type ModelCountAggregateInputType = {
   id?: true
   name?: true
-  asset_type?: true
   weight?: true
   size?: true
   brand_id?: true
+  asset_type_id?: true
   _all?: true
 }
 
@@ -200,10 +204,10 @@ export type ModelGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type ModelGroupByOutputType = {
   id: number
   name: string
-  asset_type: $Enums.AssetType
   weight: number
   size: number
   brand_id: number
+  asset_type_id: number
   _count: ModelCountAggregateOutputType | null
   _avg: ModelAvgAggregateOutputType | null
   _sum: ModelSumAggregateOutputType | null
@@ -232,22 +236,24 @@ export type ModelWhereInput = {
   NOT?: Prisma.ModelWhereInput | Prisma.ModelWhereInput[]
   id?: Prisma.IntFilter<"Model"> | number
   name?: Prisma.StringFilter<"Model"> | string
-  asset_type?: Prisma.EnumAssetTypeFilter<"Model"> | $Enums.AssetType
   weight?: Prisma.FloatFilter<"Model"> | number
   size?: Prisma.FloatFilter<"Model"> | number
   brand_id?: Prisma.IntFilter<"Model"> | number
+  asset_type_id?: Prisma.IntFilter<"Model"> | number
   assets?: Prisma.AssetListRelationFilter
+  AssetType?: Prisma.XOR<Prisma.AssetTypeScalarRelationFilter, Prisma.AssetTypeWhereInput>
   brand?: Prisma.XOR<Prisma.BrandScalarRelationFilter, Prisma.BrandWhereInput>
 }
 
 export type ModelOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  asset_type?: Prisma.SortOrder
   weight?: Prisma.SortOrder
   size?: Prisma.SortOrder
   brand_id?: Prisma.SortOrder
+  asset_type_id?: Prisma.SortOrder
   assets?: Prisma.AssetOrderByRelationAggregateInput
+  AssetType?: Prisma.AssetTypeOrderByWithRelationInput
   brand?: Prisma.BrandOrderByWithRelationInput
 }
 
@@ -258,21 +264,22 @@ export type ModelWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ModelWhereInput[]
   NOT?: Prisma.ModelWhereInput | Prisma.ModelWhereInput[]
   name?: Prisma.StringFilter<"Model"> | string
-  asset_type?: Prisma.EnumAssetTypeFilter<"Model"> | $Enums.AssetType
   weight?: Prisma.FloatFilter<"Model"> | number
   size?: Prisma.FloatFilter<"Model"> | number
   brand_id?: Prisma.IntFilter<"Model"> | number
+  asset_type_id?: Prisma.IntFilter<"Model"> | number
   assets?: Prisma.AssetListRelationFilter
+  AssetType?: Prisma.XOR<Prisma.AssetTypeScalarRelationFilter, Prisma.AssetTypeWhereInput>
   brand?: Prisma.XOR<Prisma.BrandScalarRelationFilter, Prisma.BrandWhereInput>
 }, "id" | "brand_id_name">
 
 export type ModelOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  asset_type?: Prisma.SortOrder
   weight?: Prisma.SortOrder
   size?: Prisma.SortOrder
   brand_id?: Prisma.SortOrder
+  asset_type_id?: Prisma.SortOrder
   _count?: Prisma.ModelCountOrderByAggregateInput
   _avg?: Prisma.ModelAvgOrderByAggregateInput
   _max?: Prisma.ModelMaxOrderByAggregateInput
@@ -286,62 +293,61 @@ export type ModelScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ModelScalarWhereWithAggregatesInput | Prisma.ModelScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Model"> | number
   name?: Prisma.StringWithAggregatesFilter<"Model"> | string
-  asset_type?: Prisma.EnumAssetTypeWithAggregatesFilter<"Model"> | $Enums.AssetType
   weight?: Prisma.FloatWithAggregatesFilter<"Model"> | number
   size?: Prisma.FloatWithAggregatesFilter<"Model"> | number
   brand_id?: Prisma.IntWithAggregatesFilter<"Model"> | number
+  asset_type_id?: Prisma.IntWithAggregatesFilter<"Model"> | number
 }
 
 export type ModelCreateInput = {
   name: string
-  asset_type: $Enums.AssetType
   weight: number
   size: number
   assets?: Prisma.AssetCreateNestedManyWithoutModelInput
+  AssetType: Prisma.AssetTypeCreateNestedOneWithoutModelInput
   brand: Prisma.BrandCreateNestedOneWithoutModelsInput
 }
 
 export type ModelUncheckedCreateInput = {
   id?: number
   name: string
-  asset_type: $Enums.AssetType
   weight: number
   size: number
   brand_id: number
+  asset_type_id: number
   assets?: Prisma.AssetUncheckedCreateNestedManyWithoutModelInput
 }
 
 export type ModelUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  asset_type?: Prisma.EnumAssetTypeFieldUpdateOperationsInput | $Enums.AssetType
   weight?: Prisma.FloatFieldUpdateOperationsInput | number
   size?: Prisma.FloatFieldUpdateOperationsInput | number
   assets?: Prisma.AssetUpdateManyWithoutModelNestedInput
+  AssetType?: Prisma.AssetTypeUpdateOneRequiredWithoutModelNestedInput
   brand?: Prisma.BrandUpdateOneRequiredWithoutModelsNestedInput
 }
 
 export type ModelUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  asset_type?: Prisma.EnumAssetTypeFieldUpdateOperationsInput | $Enums.AssetType
   weight?: Prisma.FloatFieldUpdateOperationsInput | number
   size?: Prisma.FloatFieldUpdateOperationsInput | number
   brand_id?: Prisma.IntFieldUpdateOperationsInput | number
+  asset_type_id?: Prisma.IntFieldUpdateOperationsInput | number
   assets?: Prisma.AssetUncheckedUpdateManyWithoutModelNestedInput
 }
 
 export type ModelCreateManyInput = {
   id?: number
   name: string
-  asset_type: $Enums.AssetType
   weight: number
   size: number
   brand_id: number
+  asset_type_id: number
 }
 
 export type ModelUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  asset_type?: Prisma.EnumAssetTypeFieldUpdateOperationsInput | $Enums.AssetType
   weight?: Prisma.FloatFieldUpdateOperationsInput | number
   size?: Prisma.FloatFieldUpdateOperationsInput | number
 }
@@ -349,10 +355,10 @@ export type ModelUpdateManyMutationInput = {
 export type ModelUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  asset_type?: Prisma.EnumAssetTypeFieldUpdateOperationsInput | $Enums.AssetType
   weight?: Prisma.FloatFieldUpdateOperationsInput | number
   size?: Prisma.FloatFieldUpdateOperationsInput | number
   brand_id?: Prisma.IntFieldUpdateOperationsInput | number
+  asset_type_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ModelScalarRelationFilter = {
@@ -378,10 +384,10 @@ export type ModelBrand_idNameCompoundUniqueInput = {
 export type ModelCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  asset_type?: Prisma.SortOrder
   weight?: Prisma.SortOrder
   size?: Prisma.SortOrder
   brand_id?: Prisma.SortOrder
+  asset_type_id?: Prisma.SortOrder
 }
 
 export type ModelAvgOrderByAggregateInput = {
@@ -389,24 +395,25 @@ export type ModelAvgOrderByAggregateInput = {
   weight?: Prisma.SortOrder
   size?: Prisma.SortOrder
   brand_id?: Prisma.SortOrder
+  asset_type_id?: Prisma.SortOrder
 }
 
 export type ModelMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  asset_type?: Prisma.SortOrder
   weight?: Prisma.SortOrder
   size?: Prisma.SortOrder
   brand_id?: Prisma.SortOrder
+  asset_type_id?: Prisma.SortOrder
 }
 
 export type ModelMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  asset_type?: Prisma.SortOrder
   weight?: Prisma.SortOrder
   size?: Prisma.SortOrder
   brand_id?: Prisma.SortOrder
+  asset_type_id?: Prisma.SortOrder
 }
 
 export type ModelSumOrderByAggregateInput = {
@@ -414,6 +421,7 @@ export type ModelSumOrderByAggregateInput = {
   weight?: Prisma.SortOrder
   size?: Prisma.SortOrder
   brand_id?: Prisma.SortOrder
+  asset_type_id?: Prisma.SortOrder
 }
 
 export type ModelCreateNestedOneWithoutAssetsInput = {
@@ -480,21 +488,63 @@ export type FloatFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type ModelCreateNestedManyWithoutAssetTypeInput = {
+  create?: Prisma.XOR<Prisma.ModelCreateWithoutAssetTypeInput, Prisma.ModelUncheckedCreateWithoutAssetTypeInput> | Prisma.ModelCreateWithoutAssetTypeInput[] | Prisma.ModelUncheckedCreateWithoutAssetTypeInput[]
+  connectOrCreate?: Prisma.ModelCreateOrConnectWithoutAssetTypeInput | Prisma.ModelCreateOrConnectWithoutAssetTypeInput[]
+  createMany?: Prisma.ModelCreateManyAssetTypeInputEnvelope
+  connect?: Prisma.ModelWhereUniqueInput | Prisma.ModelWhereUniqueInput[]
+}
+
+export type ModelUncheckedCreateNestedManyWithoutAssetTypeInput = {
+  create?: Prisma.XOR<Prisma.ModelCreateWithoutAssetTypeInput, Prisma.ModelUncheckedCreateWithoutAssetTypeInput> | Prisma.ModelCreateWithoutAssetTypeInput[] | Prisma.ModelUncheckedCreateWithoutAssetTypeInput[]
+  connectOrCreate?: Prisma.ModelCreateOrConnectWithoutAssetTypeInput | Prisma.ModelCreateOrConnectWithoutAssetTypeInput[]
+  createMany?: Prisma.ModelCreateManyAssetTypeInputEnvelope
+  connect?: Prisma.ModelWhereUniqueInput | Prisma.ModelWhereUniqueInput[]
+}
+
+export type ModelUpdateManyWithoutAssetTypeNestedInput = {
+  create?: Prisma.XOR<Prisma.ModelCreateWithoutAssetTypeInput, Prisma.ModelUncheckedCreateWithoutAssetTypeInput> | Prisma.ModelCreateWithoutAssetTypeInput[] | Prisma.ModelUncheckedCreateWithoutAssetTypeInput[]
+  connectOrCreate?: Prisma.ModelCreateOrConnectWithoutAssetTypeInput | Prisma.ModelCreateOrConnectWithoutAssetTypeInput[]
+  upsert?: Prisma.ModelUpsertWithWhereUniqueWithoutAssetTypeInput | Prisma.ModelUpsertWithWhereUniqueWithoutAssetTypeInput[]
+  createMany?: Prisma.ModelCreateManyAssetTypeInputEnvelope
+  set?: Prisma.ModelWhereUniqueInput | Prisma.ModelWhereUniqueInput[]
+  disconnect?: Prisma.ModelWhereUniqueInput | Prisma.ModelWhereUniqueInput[]
+  delete?: Prisma.ModelWhereUniqueInput | Prisma.ModelWhereUniqueInput[]
+  connect?: Prisma.ModelWhereUniqueInput | Prisma.ModelWhereUniqueInput[]
+  update?: Prisma.ModelUpdateWithWhereUniqueWithoutAssetTypeInput | Prisma.ModelUpdateWithWhereUniqueWithoutAssetTypeInput[]
+  updateMany?: Prisma.ModelUpdateManyWithWhereWithoutAssetTypeInput | Prisma.ModelUpdateManyWithWhereWithoutAssetTypeInput[]
+  deleteMany?: Prisma.ModelScalarWhereInput | Prisma.ModelScalarWhereInput[]
+}
+
+export type ModelUncheckedUpdateManyWithoutAssetTypeNestedInput = {
+  create?: Prisma.XOR<Prisma.ModelCreateWithoutAssetTypeInput, Prisma.ModelUncheckedCreateWithoutAssetTypeInput> | Prisma.ModelCreateWithoutAssetTypeInput[] | Prisma.ModelUncheckedCreateWithoutAssetTypeInput[]
+  connectOrCreate?: Prisma.ModelCreateOrConnectWithoutAssetTypeInput | Prisma.ModelCreateOrConnectWithoutAssetTypeInput[]
+  upsert?: Prisma.ModelUpsertWithWhereUniqueWithoutAssetTypeInput | Prisma.ModelUpsertWithWhereUniqueWithoutAssetTypeInput[]
+  createMany?: Prisma.ModelCreateManyAssetTypeInputEnvelope
+  set?: Prisma.ModelWhereUniqueInput | Prisma.ModelWhereUniqueInput[]
+  disconnect?: Prisma.ModelWhereUniqueInput | Prisma.ModelWhereUniqueInput[]
+  delete?: Prisma.ModelWhereUniqueInput | Prisma.ModelWhereUniqueInput[]
+  connect?: Prisma.ModelWhereUniqueInput | Prisma.ModelWhereUniqueInput[]
+  update?: Prisma.ModelUpdateWithWhereUniqueWithoutAssetTypeInput | Prisma.ModelUpdateWithWhereUniqueWithoutAssetTypeInput[]
+  updateMany?: Prisma.ModelUpdateManyWithWhereWithoutAssetTypeInput | Prisma.ModelUpdateManyWithWhereWithoutAssetTypeInput[]
+  deleteMany?: Prisma.ModelScalarWhereInput | Prisma.ModelScalarWhereInput[]
+}
+
 export type ModelCreateWithoutAssetsInput = {
   name: string
-  asset_type: $Enums.AssetType
   weight: number
   size: number
+  AssetType: Prisma.AssetTypeCreateNestedOneWithoutModelInput
   brand: Prisma.BrandCreateNestedOneWithoutModelsInput
 }
 
 export type ModelUncheckedCreateWithoutAssetsInput = {
   id?: number
   name: string
-  asset_type: $Enums.AssetType
   weight: number
   size: number
   brand_id: number
+  asset_type_id: number
 }
 
 export type ModelCreateOrConnectWithoutAssetsInput = {
@@ -515,35 +565,35 @@ export type ModelUpdateToOneWithWhereWithoutAssetsInput = {
 
 export type ModelUpdateWithoutAssetsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  asset_type?: Prisma.EnumAssetTypeFieldUpdateOperationsInput | $Enums.AssetType
   weight?: Prisma.FloatFieldUpdateOperationsInput | number
   size?: Prisma.FloatFieldUpdateOperationsInput | number
+  AssetType?: Prisma.AssetTypeUpdateOneRequiredWithoutModelNestedInput
   brand?: Prisma.BrandUpdateOneRequiredWithoutModelsNestedInput
 }
 
 export type ModelUncheckedUpdateWithoutAssetsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  asset_type?: Prisma.EnumAssetTypeFieldUpdateOperationsInput | $Enums.AssetType
   weight?: Prisma.FloatFieldUpdateOperationsInput | number
   size?: Prisma.FloatFieldUpdateOperationsInput | number
   brand_id?: Prisma.IntFieldUpdateOperationsInput | number
+  asset_type_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ModelCreateWithoutBrandInput = {
   name: string
-  asset_type: $Enums.AssetType
   weight: number
   size: number
   assets?: Prisma.AssetCreateNestedManyWithoutModelInput
+  AssetType: Prisma.AssetTypeCreateNestedOneWithoutModelInput
 }
 
 export type ModelUncheckedCreateWithoutBrandInput = {
   id?: number
   name: string
-  asset_type: $Enums.AssetType
   weight: number
   size: number
+  asset_type_id: number
   assets?: Prisma.AssetUncheckedCreateNestedManyWithoutModelInput
 }
 
@@ -579,43 +629,119 @@ export type ModelScalarWhereInput = {
   NOT?: Prisma.ModelScalarWhereInput | Prisma.ModelScalarWhereInput[]
   id?: Prisma.IntFilter<"Model"> | number
   name?: Prisma.StringFilter<"Model"> | string
-  asset_type?: Prisma.EnumAssetTypeFilter<"Model"> | $Enums.AssetType
   weight?: Prisma.FloatFilter<"Model"> | number
   size?: Prisma.FloatFilter<"Model"> | number
   brand_id?: Prisma.IntFilter<"Model"> | number
+  asset_type_id?: Prisma.IntFilter<"Model"> | number
+}
+
+export type ModelCreateWithoutAssetTypeInput = {
+  name: string
+  weight: number
+  size: number
+  assets?: Prisma.AssetCreateNestedManyWithoutModelInput
+  brand: Prisma.BrandCreateNestedOneWithoutModelsInput
+}
+
+export type ModelUncheckedCreateWithoutAssetTypeInput = {
+  id?: number
+  name: string
+  weight: number
+  size: number
+  brand_id: number
+  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutModelInput
+}
+
+export type ModelCreateOrConnectWithoutAssetTypeInput = {
+  where: Prisma.ModelWhereUniqueInput
+  create: Prisma.XOR<Prisma.ModelCreateWithoutAssetTypeInput, Prisma.ModelUncheckedCreateWithoutAssetTypeInput>
+}
+
+export type ModelCreateManyAssetTypeInputEnvelope = {
+  data: Prisma.ModelCreateManyAssetTypeInput | Prisma.ModelCreateManyAssetTypeInput[]
+  skipDuplicates?: boolean
+}
+
+export type ModelUpsertWithWhereUniqueWithoutAssetTypeInput = {
+  where: Prisma.ModelWhereUniqueInput
+  update: Prisma.XOR<Prisma.ModelUpdateWithoutAssetTypeInput, Prisma.ModelUncheckedUpdateWithoutAssetTypeInput>
+  create: Prisma.XOR<Prisma.ModelCreateWithoutAssetTypeInput, Prisma.ModelUncheckedCreateWithoutAssetTypeInput>
+}
+
+export type ModelUpdateWithWhereUniqueWithoutAssetTypeInput = {
+  where: Prisma.ModelWhereUniqueInput
+  data: Prisma.XOR<Prisma.ModelUpdateWithoutAssetTypeInput, Prisma.ModelUncheckedUpdateWithoutAssetTypeInput>
+}
+
+export type ModelUpdateManyWithWhereWithoutAssetTypeInput = {
+  where: Prisma.ModelScalarWhereInput
+  data: Prisma.XOR<Prisma.ModelUpdateManyMutationInput, Prisma.ModelUncheckedUpdateManyWithoutAssetTypeInput>
 }
 
 export type ModelCreateManyBrandInput = {
   id?: number
   name: string
-  asset_type: $Enums.AssetType
   weight: number
   size: number
+  asset_type_id: number
 }
 
 export type ModelUpdateWithoutBrandInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  asset_type?: Prisma.EnumAssetTypeFieldUpdateOperationsInput | $Enums.AssetType
   weight?: Prisma.FloatFieldUpdateOperationsInput | number
   size?: Prisma.FloatFieldUpdateOperationsInput | number
   assets?: Prisma.AssetUpdateManyWithoutModelNestedInput
+  AssetType?: Prisma.AssetTypeUpdateOneRequiredWithoutModelNestedInput
 }
 
 export type ModelUncheckedUpdateWithoutBrandInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  asset_type?: Prisma.EnumAssetTypeFieldUpdateOperationsInput | $Enums.AssetType
   weight?: Prisma.FloatFieldUpdateOperationsInput | number
   size?: Prisma.FloatFieldUpdateOperationsInput | number
+  asset_type_id?: Prisma.IntFieldUpdateOperationsInput | number
   assets?: Prisma.AssetUncheckedUpdateManyWithoutModelNestedInput
 }
 
 export type ModelUncheckedUpdateManyWithoutBrandInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  asset_type?: Prisma.EnumAssetTypeFieldUpdateOperationsInput | $Enums.AssetType
   weight?: Prisma.FloatFieldUpdateOperationsInput | number
   size?: Prisma.FloatFieldUpdateOperationsInput | number
+  asset_type_id?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type ModelCreateManyAssetTypeInput = {
+  id?: number
+  name: string
+  weight: number
+  size: number
+  brand_id: number
+}
+
+export type ModelUpdateWithoutAssetTypeInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  weight?: Prisma.FloatFieldUpdateOperationsInput | number
+  size?: Prisma.FloatFieldUpdateOperationsInput | number
+  assets?: Prisma.AssetUpdateManyWithoutModelNestedInput
+  brand?: Prisma.BrandUpdateOneRequiredWithoutModelsNestedInput
+}
+
+export type ModelUncheckedUpdateWithoutAssetTypeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  weight?: Prisma.FloatFieldUpdateOperationsInput | number
+  size?: Prisma.FloatFieldUpdateOperationsInput | number
+  brand_id?: Prisma.IntFieldUpdateOperationsInput | number
+  assets?: Prisma.AssetUncheckedUpdateManyWithoutModelNestedInput
+}
+
+export type ModelUncheckedUpdateManyWithoutAssetTypeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  weight?: Prisma.FloatFieldUpdateOperationsInput | number
+  size?: Prisma.FloatFieldUpdateOperationsInput | number
+  brand_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -652,11 +778,12 @@ export type ModelCountOutputTypeCountAssetsArgs<ExtArgs extends runtime.Types.Ex
 export type ModelSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  asset_type?: boolean
   weight?: boolean
   size?: boolean
   brand_id?: boolean
+  asset_type_id?: boolean
   assets?: boolean | Prisma.Model$assetsArgs<ExtArgs>
+  AssetType?: boolean | Prisma.AssetTypeDefaultArgs<ExtArgs>
   brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.ModelCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["model"]>
@@ -664,42 +791,47 @@ export type ModelSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 export type ModelSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  asset_type?: boolean
   weight?: boolean
   size?: boolean
   brand_id?: boolean
+  asset_type_id?: boolean
+  AssetType?: boolean | Prisma.AssetTypeDefaultArgs<ExtArgs>
   brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["model"]>
 
 export type ModelSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  asset_type?: boolean
   weight?: boolean
   size?: boolean
   brand_id?: boolean
+  asset_type_id?: boolean
+  AssetType?: boolean | Prisma.AssetTypeDefaultArgs<ExtArgs>
   brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["model"]>
 
 export type ModelSelectScalar = {
   id?: boolean
   name?: boolean
-  asset_type?: boolean
   weight?: boolean
   size?: boolean
   brand_id?: boolean
+  asset_type_id?: boolean
 }
 
-export type ModelOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "asset_type" | "weight" | "size" | "brand_id", ExtArgs["result"]["model"]>
+export type ModelOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "weight" | "size" | "brand_id" | "asset_type_id", ExtArgs["result"]["model"]>
 export type ModelInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   assets?: boolean | Prisma.Model$assetsArgs<ExtArgs>
+  AssetType?: boolean | Prisma.AssetTypeDefaultArgs<ExtArgs>
   brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.ModelCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ModelIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  AssetType?: boolean | Prisma.AssetTypeDefaultArgs<ExtArgs>
   brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
 }
 export type ModelIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  AssetType?: boolean | Prisma.AssetTypeDefaultArgs<ExtArgs>
   brand?: boolean | Prisma.BrandDefaultArgs<ExtArgs>
 }
 
@@ -707,15 +839,16 @@ export type $ModelPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name: "Model"
   objects: {
     assets: Prisma.$AssetPayload<ExtArgs>[]
+    AssetType: Prisma.$AssetTypePayload<ExtArgs>
     brand: Prisma.$BrandPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     name: string
-    asset_type: $Enums.AssetType
     weight: number
     size: number
     brand_id: number
+    asset_type_id: number
   }, ExtArgs["result"]["model"]>
   composites: {}
 }
@@ -1111,6 +1244,7 @@ readonly fields: ModelFieldRefs;
 export interface Prisma__ModelClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   assets<T extends Prisma.Model$assetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Model$assetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  AssetType<T extends Prisma.AssetTypeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AssetTypeDefaultArgs<ExtArgs>>): Prisma.Prisma__AssetTypeClient<runtime.Types.Result.GetResult<Prisma.$AssetTypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   brand<T extends Prisma.BrandDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BrandDefaultArgs<ExtArgs>>): Prisma.Prisma__BrandClient<runtime.Types.Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1143,10 +1277,10 @@ export interface Prisma__ModelClient<T, Null = never, ExtArgs extends runtime.Ty
 export interface ModelFieldRefs {
   readonly id: Prisma.FieldRef<"Model", 'Int'>
   readonly name: Prisma.FieldRef<"Model", 'String'>
-  readonly asset_type: Prisma.FieldRef<"Model", 'AssetType'>
   readonly weight: Prisma.FieldRef<"Model", 'Float'>
   readonly size: Prisma.FieldRef<"Model", 'Float'>
   readonly brand_id: Prisma.FieldRef<"Model", 'Int'>
+  readonly asset_type_id: Prisma.FieldRef<"Model", 'Int'>
 }
     
 

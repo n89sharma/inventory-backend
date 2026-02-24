@@ -132,3 +132,53 @@ export type Organization = Prisma.OrganizationModel
  * 
  */
 export type AssetHistory = Prisma.AssetHistoryModel
+/**
+ * Model Accessory
+ * 
+ */
+export type Accessory = Prisma.AccessoryModel
+/**
+ * Model Action
+ * 
+ */
+export type Action = Prisma.ActionModel
+/**
+ * Model AssetType
+ * 
+ */
+export type AssetType = Prisma.AssetTypeModel
+/**
+ * Model AvailabilityStatus
+ * 
+ */
+export type AvailabilityStatus = Prisma.AvailabilityStatusModel
+/**
+ * Model Entity
+ * 
+ */
+export type Entity = Prisma.EntityModel
+/**
+ * Model FileType
+ * 
+ */
+export type FileType = Prisma.FileTypeModel
+/**
+ * Model InvoiceType
+ * 
+ */
+export type InvoiceType = Prisma.InvoiceTypeModel
+/**
+ * Model Role
+ * 
+ */
+export type Role = Prisma.RoleModel
+/**
+ * Model TechnicalStatus
+ * 
+ */
+export type TechnicalStatus = Prisma.TechnicalStatusModel
+/**
+ * Model TrackingStatus
+ * 
+ */
+export type TrackingStatus = Prisma.TrackingStatusModel

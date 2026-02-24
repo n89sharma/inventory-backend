@@ -31,6 +31,7 @@ export type FileAvgAggregateOutputType = {
   asset_id: number | null
   uploaded_by_id: number | null
   size: number | null
+  file_type_id: number | null
 }
 
 export type FileSumAggregateOutputType = {
@@ -38,6 +39,7 @@ export type FileSumAggregateOutputType = {
   asset_id: number | null
   uploaded_by_id: number | null
   size: number | null
+  file_type_id: number | null
 }
 
 export type FileMinAggregateOutputType = {
@@ -45,11 +47,11 @@ export type FileMinAggregateOutputType = {
   asset_id: number | null
   uploaded_by_id: number | null
   name: string | null
-  type: $Enums.FileType | null
   data: runtime.Bytes | null
   url: string | null
   size: number | null
   uploaded_at: Date | null
+  file_type_id: number | null
 }
 
 export type FileMaxAggregateOutputType = {
@@ -57,11 +59,11 @@ export type FileMaxAggregateOutputType = {
   asset_id: number | null
   uploaded_by_id: number | null
   name: string | null
-  type: $Enums.FileType | null
   data: runtime.Bytes | null
   url: string | null
   size: number | null
   uploaded_at: Date | null
+  file_type_id: number | null
 }
 
 export type FileCountAggregateOutputType = {
@@ -69,11 +71,11 @@ export type FileCountAggregateOutputType = {
   asset_id: number
   uploaded_by_id: number
   name: number
-  type: number
   data: number
   url: number
   size: number
   uploaded_at: number
+  file_type_id: number
   _all: number
 }
 
@@ -83,6 +85,7 @@ export type FileAvgAggregateInputType = {
   asset_id?: true
   uploaded_by_id?: true
   size?: true
+  file_type_id?: true
 }
 
 export type FileSumAggregateInputType = {
@@ -90,6 +93,7 @@ export type FileSumAggregateInputType = {
   asset_id?: true
   uploaded_by_id?: true
   size?: true
+  file_type_id?: true
 }
 
 export type FileMinAggregateInputType = {
@@ -97,11 +101,11 @@ export type FileMinAggregateInputType = {
   asset_id?: true
   uploaded_by_id?: true
   name?: true
-  type?: true
   data?: true
   url?: true
   size?: true
   uploaded_at?: true
+  file_type_id?: true
 }
 
 export type FileMaxAggregateInputType = {
@@ -109,11 +113,11 @@ export type FileMaxAggregateInputType = {
   asset_id?: true
   uploaded_by_id?: true
   name?: true
-  type?: true
   data?: true
   url?: true
   size?: true
   uploaded_at?: true
+  file_type_id?: true
 }
 
 export type FileCountAggregateInputType = {
@@ -121,11 +125,11 @@ export type FileCountAggregateInputType = {
   asset_id?: true
   uploaded_by_id?: true
   name?: true
-  type?: true
   data?: true
   url?: true
   size?: true
   uploaded_at?: true
+  file_type_id?: true
   _all?: true
 }
 
@@ -220,11 +224,11 @@ export type FileGroupByOutputType = {
   asset_id: number
   uploaded_by_id: number
   name: string
-  type: $Enums.FileType
   data: runtime.Bytes
   url: string
   size: number
   uploaded_at: Date
+  file_type_id: number
   _count: FileCountAggregateOutputType | null
   _avg: FileAvgAggregateOutputType | null
   _sum: FileSumAggregateOutputType | null
@@ -255,12 +259,13 @@ export type FileWhereInput = {
   asset_id?: Prisma.IntFilter<"File"> | number
   uploaded_by_id?: Prisma.IntFilter<"File"> | number
   name?: Prisma.StringFilter<"File"> | string
-  type?: Prisma.EnumFileTypeFilter<"File"> | $Enums.FileType
   data?: Prisma.BytesFilter<"File"> | runtime.Bytes
   url?: Prisma.StringFilter<"File"> | string
   size?: Prisma.IntFilter<"File"> | number
   uploaded_at?: Prisma.DateTimeFilter<"File"> | Date | string
+  file_type_id?: Prisma.IntFilter<"File"> | number
   asset?: Prisma.XOR<Prisma.AssetScalarRelationFilter, Prisma.AssetWhereInput>
+  FileType?: Prisma.XOR<Prisma.FileTypeScalarRelationFilter, Prisma.FileTypeWhereInput>
   uploaded_by?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
@@ -269,12 +274,13 @@ export type FileOrderByWithRelationInput = {
   asset_id?: Prisma.SortOrder
   uploaded_by_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   data?: Prisma.SortOrder
   url?: Prisma.SortOrder
   size?: Prisma.SortOrder
   uploaded_at?: Prisma.SortOrder
+  file_type_id?: Prisma.SortOrder
   asset?: Prisma.AssetOrderByWithRelationInput
+  FileType?: Prisma.FileTypeOrderByWithRelationInput
   uploaded_by?: Prisma.UserOrderByWithRelationInput
 }
 
@@ -286,12 +292,13 @@ export type FileWhereUniqueInput = Prisma.AtLeast<{
   asset_id?: Prisma.IntFilter<"File"> | number
   uploaded_by_id?: Prisma.IntFilter<"File"> | number
   name?: Prisma.StringFilter<"File"> | string
-  type?: Prisma.EnumFileTypeFilter<"File"> | $Enums.FileType
   data?: Prisma.BytesFilter<"File"> | runtime.Bytes
   url?: Prisma.StringFilter<"File"> | string
   size?: Prisma.IntFilter<"File"> | number
   uploaded_at?: Prisma.DateTimeFilter<"File"> | Date | string
+  file_type_id?: Prisma.IntFilter<"File"> | number
   asset?: Prisma.XOR<Prisma.AssetScalarRelationFilter, Prisma.AssetWhereInput>
+  FileType?: Prisma.XOR<Prisma.FileTypeScalarRelationFilter, Prisma.FileTypeWhereInput>
   uploaded_by?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
@@ -300,11 +307,11 @@ export type FileOrderByWithAggregationInput = {
   asset_id?: Prisma.SortOrder
   uploaded_by_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   data?: Prisma.SortOrder
   url?: Prisma.SortOrder
   size?: Prisma.SortOrder
   uploaded_at?: Prisma.SortOrder
+  file_type_id?: Prisma.SortOrder
   _count?: Prisma.FileCountOrderByAggregateInput
   _avg?: Prisma.FileAvgOrderByAggregateInput
   _max?: Prisma.FileMaxOrderByAggregateInput
@@ -320,21 +327,21 @@ export type FileScalarWhereWithAggregatesInput = {
   asset_id?: Prisma.IntWithAggregatesFilter<"File"> | number
   uploaded_by_id?: Prisma.IntWithAggregatesFilter<"File"> | number
   name?: Prisma.StringWithAggregatesFilter<"File"> | string
-  type?: Prisma.EnumFileTypeWithAggregatesFilter<"File"> | $Enums.FileType
   data?: Prisma.BytesWithAggregatesFilter<"File"> | runtime.Bytes
   url?: Prisma.StringWithAggregatesFilter<"File"> | string
   size?: Prisma.IntWithAggregatesFilter<"File"> | number
   uploaded_at?: Prisma.DateTimeWithAggregatesFilter<"File"> | Date | string
+  file_type_id?: Prisma.IntWithAggregatesFilter<"File"> | number
 }
 
 export type FileCreateInput = {
   name: string
-  type: $Enums.FileType
   data: runtime.Bytes
   url: string
   size: number
   uploaded_at: Date | string
   asset: Prisma.AssetCreateNestedOneWithoutFilesInput
+  FileType: Prisma.FileTypeCreateNestedOneWithoutFileInput
   uploaded_by: Prisma.UserCreateNestedOneWithoutFilesInput
 }
 
@@ -343,21 +350,21 @@ export type FileUncheckedCreateInput = {
   asset_id: number
   uploaded_by_id: number
   name: string
-  type: $Enums.FileType
   data: runtime.Bytes
   url: string
   size: number
   uploaded_at: Date | string
+  file_type_id: number
 }
 
 export type FileUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType
   data?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
   url?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.IntFieldUpdateOperationsInput | number
   uploaded_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   asset?: Prisma.AssetUpdateOneRequiredWithoutFilesNestedInput
+  FileType?: Prisma.FileTypeUpdateOneRequiredWithoutFileNestedInput
   uploaded_by?: Prisma.UserUpdateOneRequiredWithoutFilesNestedInput
 }
 
@@ -366,11 +373,11 @@ export type FileUncheckedUpdateInput = {
   asset_id?: Prisma.IntFieldUpdateOperationsInput | number
   uploaded_by_id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType
   data?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
   url?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.IntFieldUpdateOperationsInput | number
   uploaded_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  file_type_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type FileCreateManyInput = {
@@ -378,16 +385,15 @@ export type FileCreateManyInput = {
   asset_id: number
   uploaded_by_id: number
   name: string
-  type: $Enums.FileType
   data: runtime.Bytes
   url: string
   size: number
   uploaded_at: Date | string
+  file_type_id: number
 }
 
 export type FileUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType
   data?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
   url?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.IntFieldUpdateOperationsInput | number
@@ -399,11 +405,11 @@ export type FileUncheckedUpdateManyInput = {
   asset_id?: Prisma.IntFieldUpdateOperationsInput | number
   uploaded_by_id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType
   data?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
   url?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.IntFieldUpdateOperationsInput | number
   uploaded_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  file_type_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type FileListRelationFilter = {
@@ -421,11 +427,11 @@ export type FileCountOrderByAggregateInput = {
   asset_id?: Prisma.SortOrder
   uploaded_by_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   data?: Prisma.SortOrder
   url?: Prisma.SortOrder
   size?: Prisma.SortOrder
   uploaded_at?: Prisma.SortOrder
+  file_type_id?: Prisma.SortOrder
 }
 
 export type FileAvgOrderByAggregateInput = {
@@ -433,6 +439,7 @@ export type FileAvgOrderByAggregateInput = {
   asset_id?: Prisma.SortOrder
   uploaded_by_id?: Prisma.SortOrder
   size?: Prisma.SortOrder
+  file_type_id?: Prisma.SortOrder
 }
 
 export type FileMaxOrderByAggregateInput = {
@@ -440,11 +447,11 @@ export type FileMaxOrderByAggregateInput = {
   asset_id?: Prisma.SortOrder
   uploaded_by_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   data?: Prisma.SortOrder
   url?: Prisma.SortOrder
   size?: Prisma.SortOrder
   uploaded_at?: Prisma.SortOrder
+  file_type_id?: Prisma.SortOrder
 }
 
 export type FileMinOrderByAggregateInput = {
@@ -452,11 +459,11 @@ export type FileMinOrderByAggregateInput = {
   asset_id?: Prisma.SortOrder
   uploaded_by_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   data?: Prisma.SortOrder
   url?: Prisma.SortOrder
   size?: Prisma.SortOrder
   uploaded_at?: Prisma.SortOrder
+  file_type_id?: Prisma.SortOrder
 }
 
 export type FileSumOrderByAggregateInput = {
@@ -464,6 +471,7 @@ export type FileSumOrderByAggregateInput = {
   asset_id?: Prisma.SortOrder
   uploaded_by_id?: Prisma.SortOrder
   size?: Prisma.SortOrder
+  file_type_id?: Prisma.SortOrder
 }
 
 export type FileCreateNestedManyWithoutAssetInput = {
@@ -506,10 +514,6 @@ export type FileUncheckedUpdateManyWithoutAssetNestedInput = {
   update?: Prisma.FileUpdateWithWhereUniqueWithoutAssetInput | Prisma.FileUpdateWithWhereUniqueWithoutAssetInput[]
   updateMany?: Prisma.FileUpdateManyWithWhereWithoutAssetInput | Prisma.FileUpdateManyWithWhereWithoutAssetInput[]
   deleteMany?: Prisma.FileScalarWhereInput | Prisma.FileScalarWhereInput[]
-}
-
-export type EnumFileTypeFieldUpdateOperationsInput = {
-  set?: $Enums.FileType
 }
 
 export type BytesFieldUpdateOperationsInput = {
@@ -558,13 +562,55 @@ export type FileUncheckedUpdateManyWithoutUploaded_byNestedInput = {
   deleteMany?: Prisma.FileScalarWhereInput | Prisma.FileScalarWhereInput[]
 }
 
+export type FileCreateNestedManyWithoutFileTypeInput = {
+  create?: Prisma.XOR<Prisma.FileCreateWithoutFileTypeInput, Prisma.FileUncheckedCreateWithoutFileTypeInput> | Prisma.FileCreateWithoutFileTypeInput[] | Prisma.FileUncheckedCreateWithoutFileTypeInput[]
+  connectOrCreate?: Prisma.FileCreateOrConnectWithoutFileTypeInput | Prisma.FileCreateOrConnectWithoutFileTypeInput[]
+  createMany?: Prisma.FileCreateManyFileTypeInputEnvelope
+  connect?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
+}
+
+export type FileUncheckedCreateNestedManyWithoutFileTypeInput = {
+  create?: Prisma.XOR<Prisma.FileCreateWithoutFileTypeInput, Prisma.FileUncheckedCreateWithoutFileTypeInput> | Prisma.FileCreateWithoutFileTypeInput[] | Prisma.FileUncheckedCreateWithoutFileTypeInput[]
+  connectOrCreate?: Prisma.FileCreateOrConnectWithoutFileTypeInput | Prisma.FileCreateOrConnectWithoutFileTypeInput[]
+  createMany?: Prisma.FileCreateManyFileTypeInputEnvelope
+  connect?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
+}
+
+export type FileUpdateManyWithoutFileTypeNestedInput = {
+  create?: Prisma.XOR<Prisma.FileCreateWithoutFileTypeInput, Prisma.FileUncheckedCreateWithoutFileTypeInput> | Prisma.FileCreateWithoutFileTypeInput[] | Prisma.FileUncheckedCreateWithoutFileTypeInput[]
+  connectOrCreate?: Prisma.FileCreateOrConnectWithoutFileTypeInput | Prisma.FileCreateOrConnectWithoutFileTypeInput[]
+  upsert?: Prisma.FileUpsertWithWhereUniqueWithoutFileTypeInput | Prisma.FileUpsertWithWhereUniqueWithoutFileTypeInput[]
+  createMany?: Prisma.FileCreateManyFileTypeInputEnvelope
+  set?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
+  disconnect?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
+  delete?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
+  connect?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
+  update?: Prisma.FileUpdateWithWhereUniqueWithoutFileTypeInput | Prisma.FileUpdateWithWhereUniqueWithoutFileTypeInput[]
+  updateMany?: Prisma.FileUpdateManyWithWhereWithoutFileTypeInput | Prisma.FileUpdateManyWithWhereWithoutFileTypeInput[]
+  deleteMany?: Prisma.FileScalarWhereInput | Prisma.FileScalarWhereInput[]
+}
+
+export type FileUncheckedUpdateManyWithoutFileTypeNestedInput = {
+  create?: Prisma.XOR<Prisma.FileCreateWithoutFileTypeInput, Prisma.FileUncheckedCreateWithoutFileTypeInput> | Prisma.FileCreateWithoutFileTypeInput[] | Prisma.FileUncheckedCreateWithoutFileTypeInput[]
+  connectOrCreate?: Prisma.FileCreateOrConnectWithoutFileTypeInput | Prisma.FileCreateOrConnectWithoutFileTypeInput[]
+  upsert?: Prisma.FileUpsertWithWhereUniqueWithoutFileTypeInput | Prisma.FileUpsertWithWhereUniqueWithoutFileTypeInput[]
+  createMany?: Prisma.FileCreateManyFileTypeInputEnvelope
+  set?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
+  disconnect?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
+  delete?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
+  connect?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
+  update?: Prisma.FileUpdateWithWhereUniqueWithoutFileTypeInput | Prisma.FileUpdateWithWhereUniqueWithoutFileTypeInput[]
+  updateMany?: Prisma.FileUpdateManyWithWhereWithoutFileTypeInput | Prisma.FileUpdateManyWithWhereWithoutFileTypeInput[]
+  deleteMany?: Prisma.FileScalarWhereInput | Prisma.FileScalarWhereInput[]
+}
+
 export type FileCreateWithoutAssetInput = {
   name: string
-  type: $Enums.FileType
   data: runtime.Bytes
   url: string
   size: number
   uploaded_at: Date | string
+  FileType: Prisma.FileTypeCreateNestedOneWithoutFileInput
   uploaded_by: Prisma.UserCreateNestedOneWithoutFilesInput
 }
 
@@ -572,11 +618,11 @@ export type FileUncheckedCreateWithoutAssetInput = {
   id?: number
   uploaded_by_id: number
   name: string
-  type: $Enums.FileType
   data: runtime.Bytes
   url: string
   size: number
   uploaded_at: Date | string
+  file_type_id: number
 }
 
 export type FileCreateOrConnectWithoutAssetInput = {
@@ -613,32 +659,32 @@ export type FileScalarWhereInput = {
   asset_id?: Prisma.IntFilter<"File"> | number
   uploaded_by_id?: Prisma.IntFilter<"File"> | number
   name?: Prisma.StringFilter<"File"> | string
-  type?: Prisma.EnumFileTypeFilter<"File"> | $Enums.FileType
   data?: Prisma.BytesFilter<"File"> | runtime.Bytes
   url?: Prisma.StringFilter<"File"> | string
   size?: Prisma.IntFilter<"File"> | number
   uploaded_at?: Prisma.DateTimeFilter<"File"> | Date | string
+  file_type_id?: Prisma.IntFilter<"File"> | number
 }
 
 export type FileCreateWithoutUploaded_byInput = {
   name: string
-  type: $Enums.FileType
   data: runtime.Bytes
   url: string
   size: number
   uploaded_at: Date | string
   asset: Prisma.AssetCreateNestedOneWithoutFilesInput
+  FileType: Prisma.FileTypeCreateNestedOneWithoutFileInput
 }
 
 export type FileUncheckedCreateWithoutUploaded_byInput = {
   id?: number
   asset_id: number
   name: string
-  type: $Enums.FileType
   data: runtime.Bytes
   url: string
   size: number
   uploaded_at: Date | string
+  file_type_id: number
 }
 
 export type FileCreateOrConnectWithoutUploaded_byInput = {
@@ -667,24 +713,71 @@ export type FileUpdateManyWithWhereWithoutUploaded_byInput = {
   data: Prisma.XOR<Prisma.FileUpdateManyMutationInput, Prisma.FileUncheckedUpdateManyWithoutUploaded_byInput>
 }
 
-export type FileCreateManyAssetInput = {
+export type FileCreateWithoutFileTypeInput = {
+  name: string
+  data: runtime.Bytes
+  url: string
+  size: number
+  uploaded_at: Date | string
+  asset: Prisma.AssetCreateNestedOneWithoutFilesInput
+  uploaded_by: Prisma.UserCreateNestedOneWithoutFilesInput
+}
+
+export type FileUncheckedCreateWithoutFileTypeInput = {
   id?: number
+  asset_id: number
   uploaded_by_id: number
   name: string
-  type: $Enums.FileType
   data: runtime.Bytes
   url: string
   size: number
   uploaded_at: Date | string
 }
 
+export type FileCreateOrConnectWithoutFileTypeInput = {
+  where: Prisma.FileWhereUniqueInput
+  create: Prisma.XOR<Prisma.FileCreateWithoutFileTypeInput, Prisma.FileUncheckedCreateWithoutFileTypeInput>
+}
+
+export type FileCreateManyFileTypeInputEnvelope = {
+  data: Prisma.FileCreateManyFileTypeInput | Prisma.FileCreateManyFileTypeInput[]
+  skipDuplicates?: boolean
+}
+
+export type FileUpsertWithWhereUniqueWithoutFileTypeInput = {
+  where: Prisma.FileWhereUniqueInput
+  update: Prisma.XOR<Prisma.FileUpdateWithoutFileTypeInput, Prisma.FileUncheckedUpdateWithoutFileTypeInput>
+  create: Prisma.XOR<Prisma.FileCreateWithoutFileTypeInput, Prisma.FileUncheckedCreateWithoutFileTypeInput>
+}
+
+export type FileUpdateWithWhereUniqueWithoutFileTypeInput = {
+  where: Prisma.FileWhereUniqueInput
+  data: Prisma.XOR<Prisma.FileUpdateWithoutFileTypeInput, Prisma.FileUncheckedUpdateWithoutFileTypeInput>
+}
+
+export type FileUpdateManyWithWhereWithoutFileTypeInput = {
+  where: Prisma.FileScalarWhereInput
+  data: Prisma.XOR<Prisma.FileUpdateManyMutationInput, Prisma.FileUncheckedUpdateManyWithoutFileTypeInput>
+}
+
+export type FileCreateManyAssetInput = {
+  id?: number
+  uploaded_by_id: number
+  name: string
+  data: runtime.Bytes
+  url: string
+  size: number
+  uploaded_at: Date | string
+  file_type_id: number
+}
+
 export type FileUpdateWithoutAssetInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType
   data?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
   url?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.IntFieldUpdateOperationsInput | number
   uploaded_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  FileType?: Prisma.FileTypeUpdateOneRequiredWithoutFileNestedInput
   uploaded_by?: Prisma.UserUpdateOneRequiredWithoutFilesNestedInput
 }
 
@@ -692,61 +785,104 @@ export type FileUncheckedUpdateWithoutAssetInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   uploaded_by_id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType
   data?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
   url?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.IntFieldUpdateOperationsInput | number
   uploaded_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  file_type_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type FileUncheckedUpdateManyWithoutAssetInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   uploaded_by_id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType
   data?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
   url?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.IntFieldUpdateOperationsInput | number
   uploaded_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  file_type_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type FileCreateManyUploaded_byInput = {
   id?: number
   asset_id: number
   name: string
-  type: $Enums.FileType
   data: runtime.Bytes
   url: string
   size: number
   uploaded_at: Date | string
+  file_type_id: number
 }
 
 export type FileUpdateWithoutUploaded_byInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType
   data?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
   url?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.IntFieldUpdateOperationsInput | number
   uploaded_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   asset?: Prisma.AssetUpdateOneRequiredWithoutFilesNestedInput
+  FileType?: Prisma.FileTypeUpdateOneRequiredWithoutFileNestedInput
 }
 
 export type FileUncheckedUpdateWithoutUploaded_byInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   asset_id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType
   data?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
   url?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.IntFieldUpdateOperationsInput | number
   uploaded_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  file_type_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type FileUncheckedUpdateManyWithoutUploaded_byInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   asset_id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType
+  data?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.IntFieldUpdateOperationsInput | number
+  uploaded_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  file_type_id?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type FileCreateManyFileTypeInput = {
+  id?: number
+  asset_id: number
+  uploaded_by_id: number
+  name: string
+  data: runtime.Bytes
+  url: string
+  size: number
+  uploaded_at: Date | string
+}
+
+export type FileUpdateWithoutFileTypeInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  data?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.IntFieldUpdateOperationsInput | number
+  uploaded_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  asset?: Prisma.AssetUpdateOneRequiredWithoutFilesNestedInput
+  uploaded_by?: Prisma.UserUpdateOneRequiredWithoutFilesNestedInput
+}
+
+export type FileUncheckedUpdateWithoutFileTypeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  asset_id?: Prisma.IntFieldUpdateOperationsInput | number
+  uploaded_by_id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  data?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.IntFieldUpdateOperationsInput | number
+  uploaded_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type FileUncheckedUpdateManyWithoutFileTypeInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  asset_id?: Prisma.IntFieldUpdateOperationsInput | number
+  uploaded_by_id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   data?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
   url?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.IntFieldUpdateOperationsInput | number
@@ -760,12 +896,13 @@ export type FileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   asset_id?: boolean
   uploaded_by_id?: boolean
   name?: boolean
-  type?: boolean
   data?: boolean
   url?: boolean
   size?: boolean
   uploaded_at?: boolean
+  file_type_id?: boolean
   asset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
+  FileType?: boolean | Prisma.FileTypeDefaultArgs<ExtArgs>
   uploaded_by?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["file"]>
 
@@ -774,12 +911,13 @@ export type FileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   asset_id?: boolean
   uploaded_by_id?: boolean
   name?: boolean
-  type?: boolean
   data?: boolean
   url?: boolean
   size?: boolean
   uploaded_at?: boolean
+  file_type_id?: boolean
   asset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
+  FileType?: boolean | Prisma.FileTypeDefaultArgs<ExtArgs>
   uploaded_by?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["file"]>
 
@@ -788,12 +926,13 @@ export type FileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   asset_id?: boolean
   uploaded_by_id?: boolean
   name?: boolean
-  type?: boolean
   data?: boolean
   url?: boolean
   size?: boolean
   uploaded_at?: boolean
+  file_type_id?: boolean
   asset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
+  FileType?: boolean | Prisma.FileTypeDefaultArgs<ExtArgs>
   uploaded_by?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["file"]>
 
@@ -802,24 +941,27 @@ export type FileSelectScalar = {
   asset_id?: boolean
   uploaded_by_id?: boolean
   name?: boolean
-  type?: boolean
   data?: boolean
   url?: boolean
   size?: boolean
   uploaded_at?: boolean
+  file_type_id?: boolean
 }
 
-export type FileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "asset_id" | "uploaded_by_id" | "name" | "type" | "data" | "url" | "size" | "uploaded_at", ExtArgs["result"]["file"]>
+export type FileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "asset_id" | "uploaded_by_id" | "name" | "data" | "url" | "size" | "uploaded_at" | "file_type_id", ExtArgs["result"]["file"]>
 export type FileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   asset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
+  FileType?: boolean | Prisma.FileTypeDefaultArgs<ExtArgs>
   uploaded_by?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type FileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   asset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
+  FileType?: boolean | Prisma.FileTypeDefaultArgs<ExtArgs>
   uploaded_by?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type FileIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   asset?: boolean | Prisma.AssetDefaultArgs<ExtArgs>
+  FileType?: boolean | Prisma.FileTypeDefaultArgs<ExtArgs>
   uploaded_by?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
@@ -827,6 +969,7 @@ export type $FilePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "File"
   objects: {
     asset: Prisma.$AssetPayload<ExtArgs>
+    FileType: Prisma.$FileTypePayload<ExtArgs>
     uploaded_by: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -834,11 +977,11 @@ export type $FilePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     asset_id: number
     uploaded_by_id: number
     name: string
-    type: $Enums.FileType
     data: runtime.Bytes
     url: string
     size: number
     uploaded_at: Date
+    file_type_id: number
   }, ExtArgs["result"]["file"]>
   composites: {}
 }
@@ -1234,6 +1377,7 @@ readonly fields: FileFieldRefs;
 export interface Prisma__FileClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   asset<T extends Prisma.AssetDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AssetDefaultArgs<ExtArgs>>): Prisma.Prisma__AssetClient<runtime.Types.Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  FileType<T extends Prisma.FileTypeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FileTypeDefaultArgs<ExtArgs>>): Prisma.Prisma__FileTypeClient<runtime.Types.Result.GetResult<Prisma.$FileTypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   uploaded_by<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1268,11 +1412,11 @@ export interface FileFieldRefs {
   readonly asset_id: Prisma.FieldRef<"File", 'Int'>
   readonly uploaded_by_id: Prisma.FieldRef<"File", 'Int'>
   readonly name: Prisma.FieldRef<"File", 'String'>
-  readonly type: Prisma.FieldRef<"File", 'FileType'>
   readonly data: Prisma.FieldRef<"File", 'Bytes'>
   readonly url: Prisma.FieldRef<"File", 'String'>
   readonly size: Prisma.FieldRef<"File", 'Int'>
   readonly uploaded_at: Prisma.FieldRef<"File", 'DateTime'>
+  readonly file_type_id: Prisma.FieldRef<"File", 'Int'>
 }
     
 
