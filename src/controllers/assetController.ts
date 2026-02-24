@@ -2,17 +2,20 @@ import { Request, Response } from 'express'
 import { prisma } from '../prisma.js'
 import { getAssetsForQuery } from '../../generated/prisma/sql.js'
 
+const dbIgnoreFlag = 'NOT_PROVIDED'
+const dbMap = (val: any) => (val ? String(val) : dbIgnoreFlag)
+
 export async function getAssets(req: Request, res: Response) {
   try {
     const { brand, model, assetType, trackingStatus, location, meter } = req.query
 
     const assets = await prisma.$queryRawTyped(getAssetsForQuery(
-      String(brand) ?? 'NOT_PROVIDED',
-      String(model) ?? 'NOT_PROVIDED',
-      String(assetType) ?? 'NOT_PROVIDED',
-      String(trackingStatus) ?? 'NOT_PROVIDED',
-      String(location) ?? 'NOT_PROVIDED',
-      BigInt(String(meter)) ?? 999999999
+      dbMap(brand),
+      dbMap(model),
+      dbMap(assetType),
+      dbMap(trackingStatus),
+      dbMap(location),
+      meter ? BigInt(String(meter)) : 999999999
     ))
     res.json(assets)
   } catch (error) {
