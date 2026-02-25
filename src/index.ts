@@ -1,13 +1,14 @@
 import express from 'express'
 import cors from 'cors'
+import morgan from 'morgan'
 import assetRoutes from './routes/assets.js'
 import arrivalRoutes from './routes/arrivals.js'
 import departureRoutes from './routes/depatures.js'
 import transferRoutes from './routes/transfers.js'
 import holdRoutes from './routes/holds.js'
 import invoiceRoutes from './routes/invoices.js'
-import constants from './routes/constants.js'
-import morgan from 'morgan'
+import constantRoutes from './routes/constants.js'
+import modelRoutes from './routes/models.js'
 
 const app = express();
 
@@ -17,22 +18,20 @@ BigInt.prototype.toJSON = function () {
 
 app.use(express.json());
 app.use(cors({ origin: ["http://localhost:5173", "https://shiva-inv.vercel.app"] }))
-app.use(morgan('dev')); 
+app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
   res.send('Inventory API');
 })
 
+app.use('/constants', constantRoutes);
 app.use('/assets', assetRoutes);
-
-app.use('/constants', constants);
-
 app.use('/arrivals', arrivalRoutes);
 app.use('/departures', departureRoutes);
 app.use('/transfers', transferRoutes);
 app.use('/holds', holdRoutes);
 app.use('/invoices', invoiceRoutes);
-
+app.use('/models', modelRoutes)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

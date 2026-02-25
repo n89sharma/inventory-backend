@@ -35,4 +35,6 @@ export * from "./sql/getHolds.js"
 
 export * from "./sql/getInvoices.js"
 
+export * from "./sql/getModels.js"
+
 export * from "./sql/getTransfers.js"
