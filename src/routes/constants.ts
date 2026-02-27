@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
   const technicalStatuses = await prisma.technicalStatus.findMany()
   const roles = await prisma.role.findMany()
   const invoiceTypes = await prisma.invoiceType.findMany()
+  const warehouses = await prisma.warehouse.findMany()
 
   res.json({
     coreFunctions: accessories,
@@ -20,7 +21,8 @@ router.get('/', async (req, res) => {
     availabilityStatuses: availabilityStatuses,
     technicalStatuses: technicalStatuses,
     roles: roles,
-    invoiceTypes: invoiceTypes
+    invoiceTypes: invoiceTypes,
+    warehouses: warehouses
   })
 })
 
