@@ -5,11 +5,11 @@ import { z } from 'zod'
 
 const AssetQuerySchema = z.object({
   model: z.string(),
-  trackingStatusId: z.string().optional().transform(Number),
-  availabilityStatusId: z.string().optional().transform(Number),
-  technicalStatusId: z.string().optional().transform(Number),
-  warehouseId: z.string().optional().transform(Number),
-  meter: z.string().optional().transform(Number)
+  trackingStatusId: z.string().transform(Number),
+  availabilityStatusId: z.string().transform(Number),
+  technicalStatusId: z.string().transform(Number),
+  warehouseId: z.string().transform(Number),
+  meter: z.string().transform(Number)
 })
 
 export async function getAssets(req: Request, res: Response) {
@@ -20,15 +20,21 @@ export async function getAssets(req: Request, res: Response) {
       return res.status(400).json({ error: 'Request parameters incorrect' })
     }
 
-    const { model, trackingStatusId, availabilityStatusId, technicalStatusId, warehouseId, meter } = result.data
+    const {
+      model,
+      trackingStatusId,
+      availabilityStatusId,
+      technicalStatusId,
+      warehouseId,
+      meter } = result.data
 
     const assets = await prisma.$queryRawTyped(getAssetsForQuery(
       model,
-      !!trackingStatusId ? trackingStatusId : 999999999999,
-      !!availabilityStatusId ? availabilityStatusId : 999999999999,
-      !!technicalStatusId ? technicalStatusId : 999999999999,
-      !!warehouseId ? warehouseId : 999999999999,
-      !!meter ? meter : 999999999999
+      trackingStatusId,
+      availabilityStatusId,
+      technicalStatusId,
+      warehouseId,
+      meter
     ))
     res.json(assets)
   } catch (error) {

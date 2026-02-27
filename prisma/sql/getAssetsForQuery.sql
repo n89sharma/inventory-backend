@@ -28,12 +28,12 @@ from "Asset" a
 where m."name"
 ~* $1
   AND
-($2 = 999999999999 or tr.id = $2)
+($2 = 0 or tr.id = $2)
   AND
-($3 = 999999999999 or av.id = $3)
+($3 = 0 or av.id = $3)
   AND
-($4 = 999999999999 or te.id = $4)
+($4 = 0 or te.id = $4)
   AND
-($5 = 999999999999 or w.id = $5)
+($5 = 0 or w.id = $5)
   AND
-($6 = 999999999999 or t.meter_total <= $6)
+($6 = -1 or t.meter_total <= $6)
