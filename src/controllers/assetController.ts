@@ -5,11 +5,11 @@ import { z } from 'zod'
 
 const AssetQuerySchema = z.object({
   model: z.string(),
-  trackingStatusId: z.string().transform(Number),
-  availabilityStatusId: z.string().transform(Number),
-  technicalStatusId: z.string().transform(Number),
-  warehouseId: z.string().transform(Number),
-  meter: z.string().transform(Number)
+  trackingStatusId: z.string().optional().transform(Number),
+  availabilityStatusId: z.string().optional().transform(Number),
+  technicalStatusId: z.string().optional().transform(Number),
+  warehouseId: z.string().optional().transform(Number),
+  meter: z.string().optional().transform(Number)
 })
 
 export async function getAssets(req: Request, res: Response) {
@@ -30,11 +30,11 @@ export async function getAssets(req: Request, res: Response) {
 
     const assets = await prisma.$queryRawTyped(getAssetsForQuery(
       model,
-      trackingStatusId,
-      availabilityStatusId,
-      technicalStatusId,
-      warehouseId,
-      meter
+      isNaN(trackingStatusId) ? 0 : trackingStatusId,
+      isNaN(availabilityStatusId) ? 0 : availabilityStatusId,
+      isNaN(technicalStatusId) ? 0 : technicalStatusId,
+      isNaN(warehouseId) ? 0 : warehouseId,
+      isNaN(meter) ? -1 : meter
     ))
     res.json(assets)
   } catch (error) {
