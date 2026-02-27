@@ -8,16 +8,21 @@ import * as $runtime from "@prisma/client/runtime/client"
 /**
  * @param text
  */
-export const getAssetsForTransfers = $runtime.makeTypedQueryFactory("select\nb.\"name\" as brand,\nm.\"name\" as model,\na.barcode as barcode,\na.serial_number as serial_number,\nte.status as technical_status,\nts.meter_total as meter_total\nfrom \"AssetTransfer\" at\njoin \"Transfer\" t on t.id = at.transfer_id\njoin \"Asset\" a on a.id = at.asset_id\njoin \"TechnicalSpecification\" ts on ts.asset_id  = a.id\njoin \"TechnicalStatus\" te on te.id = a.technical_status_id\njoin \"Model\" m on m.id = a.model_id\njoin \"Brand\" b on b.id = m.brand_id\nwhere t.transfer_number = $1") as (text: string) => $runtime.TypedSql<getAssetsForTransfers.Parameters, getAssetsForTransfers.Result>
+export const getAssetsForTransfers = $runtime.makeTypedQueryFactory("select\nb.\"name\" as brand,\nm.\"name\" as model,\nat.asset_type as asset_type,\na.barcode as barcode,\na.serial_number as serial_number,\ns.meter_total as meter_total,\nw.city_code as warehouse_city_code,\nw.street as warehouse_street,\ntr.status as tracking_status,\nav.status as availability_status,\nte.status as technical_status\nfrom \"AssetTransfer\" tt\njoin \"Transfer\" t on t.id = tt.transfer_id\njoin \"Asset\" a on a.id = tt.asset_id\njoin \"TechnicalSpecification\" s on s.asset_id = a.id\njoin \"Model\" m on m.id = a.model_id\njoin \"Brand\" b on b.id = m.brand_id\njoin \"AssetType\" at on at.id = a.asset_type_id\njoin \"TrackingStatus\" tr on tr.id = a.tracking_status_id\njoin \"AvailabilityStatus\" av on av.id = a.availability_status_id\njoin \"TechnicalStatus\" te on te.id = a.technical_status_id\nleft join \"Warehouse\" w on w.id = a.warehouse_id\nwhere t.transfer_number = $1") as (text: string) => $runtime.TypedSql<getAssetsForTransfers.Parameters, getAssetsForTransfers.Result>
 
 export namespace getAssetsForTransfers {
   export type Parameters = [text: string]
   export type Result = {
     brand: string
     model: string
+    asset_type: string
     barcode: string
     serial_number: string
-    technical_status: string
     meter_total: bigint | null
+    warehouse_city_code: string
+    warehouse_street: string
+    tracking_status: string
+    availability_status: string
+    technical_status: string
   }
 }
