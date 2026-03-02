@@ -293,6 +293,7 @@ model Warehouse {
   id                    Int         @id @default(autoincrement())
   city_code             String      @db.Char(3)
   street                String
+  is_active             Boolean     @default(false)
   arrivals              Arrival[]
   assets                Asset[]
   departures            Departure[]

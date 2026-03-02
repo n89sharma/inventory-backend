@@ -38,18 +38,21 @@ export type WarehouseMinAggregateOutputType = {
   id: number | null
   city_code: string | null
   street: string | null
+  is_active: boolean | null
 }
 
 export type WarehouseMaxAggregateOutputType = {
   id: number | null
   city_code: string | null
   street: string | null
+  is_active: boolean | null
 }
 
 export type WarehouseCountAggregateOutputType = {
   id: number
   city_code: number
   street: number
+  is_active: number
   _all: number
 }
 
@@ -66,18 +69,21 @@ export type WarehouseMinAggregateInputType = {
   id?: true
   city_code?: true
   street?: true
+  is_active?: true
 }
 
 export type WarehouseMaxAggregateInputType = {
   id?: true
   city_code?: true
   street?: true
+  is_active?: true
 }
 
 export type WarehouseCountAggregateInputType = {
   id?: true
   city_code?: true
   street?: true
+  is_active?: true
   _all?: true
 }
 
@@ -171,6 +177,7 @@ export type WarehouseGroupByOutputType = {
   id: number
   city_code: string
   street: string
+  is_active: boolean
   _count: WarehouseCountAggregateOutputType | null
   _avg: WarehouseAvgAggregateOutputType | null
   _sum: WarehouseSumAggregateOutputType | null
@@ -200,6 +207,7 @@ export type WarehouseWhereInput = {
   id?: Prisma.IntFilter<"Warehouse"> | number
   city_code?: Prisma.StringFilter<"Warehouse"> | string
   street?: Prisma.StringFilter<"Warehouse"> | string
+  is_active?: Prisma.BoolFilter<"Warehouse"> | boolean
   arrivals?: Prisma.ArrivalListRelationFilter
   assets?: Prisma.AssetListRelationFilter
   departures?: Prisma.DepartureListRelationFilter
@@ -212,6 +220,7 @@ export type WarehouseOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   city_code?: Prisma.SortOrder
   street?: Prisma.SortOrder
+  is_active?: Prisma.SortOrder
   arrivals?: Prisma.ArrivalOrderByRelationAggregateInput
   assets?: Prisma.AssetOrderByRelationAggregateInput
   departures?: Prisma.DepartureOrderByRelationAggregateInput
@@ -228,6 +237,7 @@ export type WarehouseWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.WarehouseWhereInput | Prisma.WarehouseWhereInput[]
   city_code?: Prisma.StringFilter<"Warehouse"> | string
   street?: Prisma.StringFilter<"Warehouse"> | string
+  is_active?: Prisma.BoolFilter<"Warehouse"> | boolean
   arrivals?: Prisma.ArrivalListRelationFilter
   assets?: Prisma.AssetListRelationFilter
   departures?: Prisma.DepartureListRelationFilter
@@ -240,6 +250,7 @@ export type WarehouseOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   city_code?: Prisma.SortOrder
   street?: Prisma.SortOrder
+  is_active?: Prisma.SortOrder
   _count?: Prisma.WarehouseCountOrderByAggregateInput
   _avg?: Prisma.WarehouseAvgOrderByAggregateInput
   _max?: Prisma.WarehouseMaxOrderByAggregateInput
@@ -254,11 +265,13 @@ export type WarehouseScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Warehouse"> | number
   city_code?: Prisma.StringWithAggregatesFilter<"Warehouse"> | string
   street?: Prisma.StringWithAggregatesFilter<"Warehouse"> | string
+  is_active?: Prisma.BoolWithAggregatesFilter<"Warehouse"> | boolean
 }
 
 export type WarehouseCreateInput = {
   city_code: string
   street: string
+  is_active?: boolean
   arrivals?: Prisma.ArrivalCreateNestedManyWithoutDestinationInput
   assets?: Prisma.AssetCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureCreateNestedManyWithoutOriginInput
@@ -271,6 +284,7 @@ export type WarehouseUncheckedCreateInput = {
   id?: number
   city_code: string
   street: string
+  is_active?: boolean
   arrivals?: Prisma.ArrivalUncheckedCreateNestedManyWithoutDestinationInput
   assets?: Prisma.AssetUncheckedCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureUncheckedCreateNestedManyWithoutOriginInput
@@ -282,6 +296,7 @@ export type WarehouseUncheckedCreateInput = {
 export type WarehouseUpdateInput = {
   city_code?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUpdateManyWithoutDestinationNestedInput
   assets?: Prisma.AssetUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUpdateManyWithoutOriginNestedInput
@@ -294,6 +309,7 @@ export type WarehouseUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   city_code?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUncheckedUpdateManyWithoutDestinationNestedInput
   assets?: Prisma.AssetUncheckedUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUncheckedUpdateManyWithoutOriginNestedInput
@@ -306,17 +322,20 @@ export type WarehouseCreateManyInput = {
   id?: number
   city_code: string
   street: string
+  is_active?: boolean
 }
 
 export type WarehouseUpdateManyMutationInput = {
   city_code?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type WarehouseUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   city_code?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type WarehouseNullableScalarRelationFilter = {
@@ -338,6 +357,7 @@ export type WarehouseCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   city_code?: Prisma.SortOrder
   street?: Prisma.SortOrder
+  is_active?: Prisma.SortOrder
 }
 
 export type WarehouseAvgOrderByAggregateInput = {
@@ -348,12 +368,14 @@ export type WarehouseMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   city_code?: Prisma.SortOrder
   street?: Prisma.SortOrder
+  is_active?: Prisma.SortOrder
 }
 
 export type WarehouseMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   city_code?: Prisma.SortOrder
   street?: Prisma.SortOrder
+  is_active?: Prisma.SortOrder
 }
 
 export type WarehouseSumOrderByAggregateInput = {
@@ -451,6 +473,7 @@ export type WarehouseUpdateOneRequiredWithoutLocationsNestedInput = {
 export type WarehouseCreateWithoutAssetsInput = {
   city_code: string
   street: string
+  is_active?: boolean
   arrivals?: Prisma.ArrivalCreateNestedManyWithoutDestinationInput
   departures?: Prisma.DepartureCreateNestedManyWithoutOriginInput
   locations?: Prisma.LocationCreateNestedManyWithoutWarehouseInput
@@ -462,6 +485,7 @@ export type WarehouseUncheckedCreateWithoutAssetsInput = {
   id?: number
   city_code: string
   street: string
+  is_active?: boolean
   arrivals?: Prisma.ArrivalUncheckedCreateNestedManyWithoutDestinationInput
   departures?: Prisma.DepartureUncheckedCreateNestedManyWithoutOriginInput
   locations?: Prisma.LocationUncheckedCreateNestedManyWithoutWarehouseInput
@@ -488,6 +512,7 @@ export type WarehouseUpdateToOneWithWhereWithoutAssetsInput = {
 export type WarehouseUpdateWithoutAssetsInput = {
   city_code?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUpdateManyWithoutDestinationNestedInput
   departures?: Prisma.DepartureUpdateManyWithoutOriginNestedInput
   locations?: Prisma.LocationUpdateManyWithoutWarehouseNestedInput
@@ -499,6 +524,7 @@ export type WarehouseUncheckedUpdateWithoutAssetsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   city_code?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUncheckedUpdateManyWithoutDestinationNestedInput
   departures?: Prisma.DepartureUncheckedUpdateManyWithoutOriginNestedInput
   locations?: Prisma.LocationUncheckedUpdateManyWithoutWarehouseNestedInput
@@ -509,6 +535,7 @@ export type WarehouseUncheckedUpdateWithoutAssetsInput = {
 export type WarehouseCreateWithoutDestination_transfersInput = {
   city_code: string
   street: string
+  is_active?: boolean
   arrivals?: Prisma.ArrivalCreateNestedManyWithoutDestinationInput
   assets?: Prisma.AssetCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureCreateNestedManyWithoutOriginInput
@@ -520,6 +547,7 @@ export type WarehouseUncheckedCreateWithoutDestination_transfersInput = {
   id?: number
   city_code: string
   street: string
+  is_active?: boolean
   arrivals?: Prisma.ArrivalUncheckedCreateNestedManyWithoutDestinationInput
   assets?: Prisma.AssetUncheckedCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureUncheckedCreateNestedManyWithoutOriginInput
@@ -535,6 +563,7 @@ export type WarehouseCreateOrConnectWithoutDestination_transfersInput = {
 export type WarehouseCreateWithoutOrigin_transfersInput = {
   city_code: string
   street: string
+  is_active?: boolean
   arrivals?: Prisma.ArrivalCreateNestedManyWithoutDestinationInput
   assets?: Prisma.AssetCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureCreateNestedManyWithoutOriginInput
@@ -546,6 +575,7 @@ export type WarehouseUncheckedCreateWithoutOrigin_transfersInput = {
   id?: number
   city_code: string
   street: string
+  is_active?: boolean
   arrivals?: Prisma.ArrivalUncheckedCreateNestedManyWithoutDestinationInput
   assets?: Prisma.AssetUncheckedCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureUncheckedCreateNestedManyWithoutOriginInput
@@ -572,6 +602,7 @@ export type WarehouseUpdateToOneWithWhereWithoutDestination_transfersInput = {
 export type WarehouseUpdateWithoutDestination_transfersInput = {
   city_code?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUpdateManyWithoutDestinationNestedInput
   assets?: Prisma.AssetUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUpdateManyWithoutOriginNestedInput
@@ -583,6 +614,7 @@ export type WarehouseUncheckedUpdateWithoutDestination_transfersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   city_code?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUncheckedUpdateManyWithoutDestinationNestedInput
   assets?: Prisma.AssetUncheckedUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUncheckedUpdateManyWithoutOriginNestedInput
@@ -604,6 +636,7 @@ export type WarehouseUpdateToOneWithWhereWithoutOrigin_transfersInput = {
 export type WarehouseUpdateWithoutOrigin_transfersInput = {
   city_code?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUpdateManyWithoutDestinationNestedInput
   assets?: Prisma.AssetUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUpdateManyWithoutOriginNestedInput
@@ -615,6 +648,7 @@ export type WarehouseUncheckedUpdateWithoutOrigin_transfersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   city_code?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUncheckedUpdateManyWithoutDestinationNestedInput
   assets?: Prisma.AssetUncheckedUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUncheckedUpdateManyWithoutOriginNestedInput
@@ -625,6 +659,7 @@ export type WarehouseUncheckedUpdateWithoutOrigin_transfersInput = {
 export type WarehouseCreateWithoutArrivalsInput = {
   city_code: string
   street: string
+  is_active?: boolean
   assets?: Prisma.AssetCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureCreateNestedManyWithoutOriginInput
   locations?: Prisma.LocationCreateNestedManyWithoutWarehouseInput
@@ -636,6 +671,7 @@ export type WarehouseUncheckedCreateWithoutArrivalsInput = {
   id?: number
   city_code: string
   street: string
+  is_active?: boolean
   assets?: Prisma.AssetUncheckedCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureUncheckedCreateNestedManyWithoutOriginInput
   locations?: Prisma.LocationUncheckedCreateNestedManyWithoutWarehouseInput
@@ -662,6 +698,7 @@ export type WarehouseUpdateToOneWithWhereWithoutArrivalsInput = {
 export type WarehouseUpdateWithoutArrivalsInput = {
   city_code?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   assets?: Prisma.AssetUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUpdateManyWithoutOriginNestedInput
   locations?: Prisma.LocationUpdateManyWithoutWarehouseNestedInput
@@ -673,6 +710,7 @@ export type WarehouseUncheckedUpdateWithoutArrivalsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   city_code?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   assets?: Prisma.AssetUncheckedUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUncheckedUpdateManyWithoutOriginNestedInput
   locations?: Prisma.LocationUncheckedUpdateManyWithoutWarehouseNestedInput
@@ -683,6 +721,7 @@ export type WarehouseUncheckedUpdateWithoutArrivalsInput = {
 export type WarehouseCreateWithoutDeparturesInput = {
   city_code: string
   street: string
+  is_active?: boolean
   arrivals?: Prisma.ArrivalCreateNestedManyWithoutDestinationInput
   assets?: Prisma.AssetCreateNestedManyWithoutWarehouseInput
   locations?: Prisma.LocationCreateNestedManyWithoutWarehouseInput
@@ -694,6 +733,7 @@ export type WarehouseUncheckedCreateWithoutDeparturesInput = {
   id?: number
   city_code: string
   street: string
+  is_active?: boolean
   arrivals?: Prisma.ArrivalUncheckedCreateNestedManyWithoutDestinationInput
   assets?: Prisma.AssetUncheckedCreateNestedManyWithoutWarehouseInput
   locations?: Prisma.LocationUncheckedCreateNestedManyWithoutWarehouseInput
@@ -720,6 +760,7 @@ export type WarehouseUpdateToOneWithWhereWithoutDeparturesInput = {
 export type WarehouseUpdateWithoutDeparturesInput = {
   city_code?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUpdateManyWithoutDestinationNestedInput
   assets?: Prisma.AssetUpdateManyWithoutWarehouseNestedInput
   locations?: Prisma.LocationUpdateManyWithoutWarehouseNestedInput
@@ -731,6 +772,7 @@ export type WarehouseUncheckedUpdateWithoutDeparturesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   city_code?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUncheckedUpdateManyWithoutDestinationNestedInput
   assets?: Prisma.AssetUncheckedUpdateManyWithoutWarehouseNestedInput
   locations?: Prisma.LocationUncheckedUpdateManyWithoutWarehouseNestedInput
@@ -741,6 +783,7 @@ export type WarehouseUncheckedUpdateWithoutDeparturesInput = {
 export type WarehouseCreateWithoutLocationsInput = {
   city_code: string
   street: string
+  is_active?: boolean
   arrivals?: Prisma.ArrivalCreateNestedManyWithoutDestinationInput
   assets?: Prisma.AssetCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureCreateNestedManyWithoutOriginInput
@@ -752,6 +795,7 @@ export type WarehouseUncheckedCreateWithoutLocationsInput = {
   id?: number
   city_code: string
   street: string
+  is_active?: boolean
   arrivals?: Prisma.ArrivalUncheckedCreateNestedManyWithoutDestinationInput
   assets?: Prisma.AssetUncheckedCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureUncheckedCreateNestedManyWithoutOriginInput
@@ -778,6 +822,7 @@ export type WarehouseUpdateToOneWithWhereWithoutLocationsInput = {
 export type WarehouseUpdateWithoutLocationsInput = {
   city_code?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUpdateManyWithoutDestinationNestedInput
   assets?: Prisma.AssetUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUpdateManyWithoutOriginNestedInput
@@ -789,6 +834,7 @@ export type WarehouseUncheckedUpdateWithoutLocationsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   city_code?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUncheckedUpdateManyWithoutDestinationNestedInput
   assets?: Prisma.AssetUncheckedUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUncheckedUpdateManyWithoutOriginNestedInput
@@ -876,6 +922,7 @@ export type WarehouseSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   id?: boolean
   city_code?: boolean
   street?: boolean
+  is_active?: boolean
   arrivals?: boolean | Prisma.Warehouse$arrivalsArgs<ExtArgs>
   assets?: boolean | Prisma.Warehouse$assetsArgs<ExtArgs>
   departures?: boolean | Prisma.Warehouse$departuresArgs<ExtArgs>
@@ -889,21 +936,24 @@ export type WarehouseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   id?: boolean
   city_code?: boolean
   street?: boolean
+  is_active?: boolean
 }, ExtArgs["result"]["warehouse"]>
 
 export type WarehouseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   city_code?: boolean
   street?: boolean
+  is_active?: boolean
 }, ExtArgs["result"]["warehouse"]>
 
 export type WarehouseSelectScalar = {
   id?: boolean
   city_code?: boolean
   street?: boolean
+  is_active?: boolean
 }
 
-export type WarehouseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "city_code" | "street", ExtArgs["result"]["warehouse"]>
+export type WarehouseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "city_code" | "street" | "is_active", ExtArgs["result"]["warehouse"]>
 export type WarehouseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   arrivals?: boolean | Prisma.Warehouse$arrivalsArgs<ExtArgs>
   assets?: boolean | Prisma.Warehouse$assetsArgs<ExtArgs>
@@ -930,6 +980,7 @@ export type $WarehousePayload<ExtArgs extends runtime.Types.Extensions.InternalA
     id: number
     city_code: string
     street: string
+    is_active: boolean
   }, ExtArgs["result"]["warehouse"]>
   composites: {}
 }
@@ -1362,6 +1413,7 @@ export interface WarehouseFieldRefs {
   readonly id: Prisma.FieldRef<"Warehouse", 'Int'>
   readonly city_code: Prisma.FieldRef<"Warehouse", 'String'>
   readonly street: Prisma.FieldRef<"Warehouse", 'String'>
+  readonly is_active: Prisma.FieldRef<"Warehouse", 'Boolean'>
 }
     
 

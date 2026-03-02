@@ -304,7 +304,8 @@ export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeo
 export const WarehouseScalarFieldEnum = {
   id: 'id',
   city_code: 'city_code',
-  street: 'street'
+  street: 'street',
+  is_active: 'is_active'
 } as const
 
 export type WarehouseScalarFieldEnum = (typeof WarehouseScalarFieldEnum)[keyof typeof WarehouseScalarFieldEnum]
