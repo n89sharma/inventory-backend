@@ -9,6 +9,7 @@ import holdRoutes from './routes/holds.js'
 import invoiceRoutes from './routes/invoices.js'
 import constantRoutes from './routes/constants.js'
 import modelRoutes from './routes/models.js'
+import organizationRoutes from './routes/organizations.js'
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use('/transfers', transferRoutes);
 app.use('/holds', holdRoutes);
 app.use('/invoices', invoiceRoutes);
 app.use('/models', modelRoutes)
+app.use('/organizations', organizationRoutes)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

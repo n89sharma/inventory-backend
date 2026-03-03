@@ -37,4 +37,6 @@ export * from "./sql/getInvoices.js"
 
 export * from "./sql/getModels.js"
 
+export * from "./sql/getOrganizations.js"
+
 export * from "./sql/getTransfers.js"
