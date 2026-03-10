@@ -83,7 +83,8 @@ export const ModelName = {
   InvoiceType: 'InvoiceType',
   Role: 'Role',
   TechnicalStatus: 'TechnicalStatus',
-  TrackingStatus: 'TrackingStatus'
+  TrackingStatus: 'TrackingStatus',
+  Sequence: 'Sequence'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -109,7 +110,6 @@ export const AssetScalarFieldEnum = {
   model_id: 'model_id',
   warehouse_id: 'warehouse_id',
   asset_location: 'asset_location',
-  asset_type_id: 'asset_type_id',
   tracking_status_id: 'tracking_status_id',
   availability_status_id: 'availability_status_id',
   technical_status_id: 'technical_status_id',
@@ -489,6 +489,16 @@ export const TrackingStatusScalarFieldEnum = {
 } as const
 
 export type TrackingStatusScalarFieldEnum = (typeof TrackingStatusScalarFieldEnum)[keyof typeof TrackingStatusScalarFieldEnum]
+
+
+export const SequenceScalarFieldEnum = {
+  entity_type: 'entity_type',
+  warehouse_code: 'warehouse_code',
+  sequence_date: 'sequence_date',
+  last_number: 'last_number'
+} as const
+
+export type SequenceScalarFieldEnum = (typeof SequenceScalarFieldEnum)[keyof typeof SequenceScalarFieldEnum]
 
 
 export const SortOrder = {

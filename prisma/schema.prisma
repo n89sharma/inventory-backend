@@ -15,7 +15,6 @@ model Asset {
   model_id                                      Int
   warehouse_id                                  Int?
   asset_location                                String?                 @db.VarChar(50)
-  asset_type_id                                 Int
   tracking_status_id                            Int
   availability_status_id                        Int
   technical_status_id                           Int
@@ -27,7 +26,6 @@ model Asset {
   created_at                                    DateTime
   is_held                                       Boolean
   arrival                                       Arrival?                @relation(fields: [arrival_id], references: [id])
-  AssetType                                     AssetType               @relation(fields: [asset_type_id], references: [id])
   AvailabilityStatus                            AvailabilityStatus      @relation(fields: [availability_status_id], references: [id])
   departure                                     Departure?              @relation(fields: [departure_id], references: [id])
   hold                                          Hold?                   @relation(fields: [hold_id], references: [id])
@@ -59,7 +57,6 @@ model Asset {
   @@index([sales_invoice_id])
   @@index([created_at(sort: Desc)])
   @@index([asset_location])
-  @@index([asset_type_id])
   @@index([availability_status_id])
   @@index([technical_status_id])
   @@index([tracking_status_id])
@@ -448,7 +445,6 @@ model Action {
 model AssetType {
   id         Int     @id @default(autoincrement())
   asset_type String  @unique
-  Asset      Asset[]
   Model      Model[]
 }
 
@@ -492,4 +488,13 @@ model TrackingStatus {
   id     Int     @id @default(autoincrement())
   status String  @unique
   Asset  Asset[]
+}
+
+model Sequence {
+  entity_type    String
+  warehouse_code String
+  sequence_date  DateTime @db.Date
+  last_number    Int      @default(0)
+
+  @@id([entity_type, warehouse_code, sequence_date])
 }

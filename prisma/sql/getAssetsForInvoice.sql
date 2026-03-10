@@ -15,7 +15,7 @@ from "Invoice" i
   join "TechnicalSpecification" t on t.asset_id = a.id
   join "Model" m on m.id = a.model_id
   join "Brand" b on b.id = m.brand_id
-  join "AssetType" at on at.id = a.asset_type_id
+  join "AssetType" at on at.id = m.asset_type_id
   join "TrackingStatus" tr on tr.id = a.tracking_status_id
   join "AvailabilityStatus" av on av.id = a.availability_status_id
   join "TechnicalStatus" te on te.id = a.technical_status_id
