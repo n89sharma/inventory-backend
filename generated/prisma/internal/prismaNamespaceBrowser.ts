@@ -108,8 +108,6 @@ export const AssetScalarFieldEnum = {
   barcode: 'barcode',
   serial_number: 'serial_number',
   model_id: 'model_id',
-  warehouse_id: 'warehouse_id',
-  asset_location: 'asset_location',
   tracking_status_id: 'tracking_status_id',
   availability_status_id: 'availability_status_id',
   technical_status_id: 'technical_status_id',
@@ -119,7 +117,8 @@ export const AssetScalarFieldEnum = {
   departure_id: 'departure_id',
   hold_id: 'hold_id',
   created_at: 'created_at',
-  is_held: 'is_held'
+  is_held: 'is_held',
+  location_id: 'location_id'
 } as const
 
 export type AssetScalarFieldEnum = (typeof AssetScalarFieldEnum)[keyof typeof AssetScalarFieldEnum]
@@ -313,7 +312,8 @@ export type WarehouseScalarFieldEnum = (typeof WarehouseScalarFieldEnum)[keyof t
 
 export const LocationScalarFieldEnum = {
   warehouse_id: 'warehouse_id',
-  location: 'location'
+  location: 'location',
+  id: 'id'
 } as const
 
 export type LocationScalarFieldEnum = (typeof LocationScalarFieldEnum)[keyof typeof LocationScalarFieldEnum]

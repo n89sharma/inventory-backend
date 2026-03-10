@@ -7,7 +7,7 @@ select
 	t."name" as transporter,
 	u."name"  as created_by
 from "Arrival" a
-join "User" u on u.id = a.created_by_id 
+left join "User" u on u.id = a.created_by_id 
 join "Warehouse" w on w.id = a.destination_id 
 join "Organization" o on o.id = a.origin_id 
 join "Organization" t on t.id = a.transporter_id 

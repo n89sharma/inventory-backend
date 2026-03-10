@@ -20,5 +20,6 @@ from "AssetTransfer" tt
   join "TrackingStatus" tr on tr.id = a.tracking_status_id
   join "AvailabilityStatus" av on av.id = a.availability_status_id
   join "TechnicalStatus" te on te.id = a.technical_status_id
-  left join "Warehouse" w on w.id = a.warehouse_id
+  left join "Location" l on l.id = a.location_id
+  left join "Warehouse" w on w.id = l.warehouse_id
 where t.transfer_number = $1

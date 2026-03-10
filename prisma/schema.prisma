@@ -13,8 +13,6 @@ model Asset {
   barcode                                       String                  @unique @db.VarChar(50)
   serial_number                                 String                  @db.VarChar(50)
   model_id                                      Int
-  warehouse_id                                  Int?
-  asset_location                                String?                 @db.VarChar(50)
   tracking_status_id                            Int
   availability_status_id                        Int
   technical_status_id                           Int
@@ -25,17 +23,17 @@ model Asset {
   hold_id                                       Int?
   created_at                                    DateTime
   is_held                                       Boolean
+  location_id                                   Int?
   arrival                                       Arrival?                @relation(fields: [arrival_id], references: [id])
   AvailabilityStatus                            AvailabilityStatus      @relation(fields: [availability_status_id], references: [id])
   departure                                     Departure?              @relation(fields: [departure_id], references: [id])
   hold                                          Hold?                   @relation(fields: [hold_id], references: [id])
+  Location                                      Location?               @relation(fields: [location_id], references: [id])
   model                                         Model                   @relation(fields: [model_id], references: [id])
   purchase_invoice                              Invoice?                @relation("PurchaseInvoice", fields: [purchase_invoice_id], references: [id])
   sales_invoice                                 Invoice?                @relation("SalesInvoice", fields: [sales_invoice_id], references: [id])
   TechnicalStatus                               TechnicalStatus         @relation(fields: [technical_status_id], references: [id])
   TrackingStatus                                TrackingStatus          @relation(fields: [tracking_status_id], references: [id])
-  location                                      Location?               @relation(fields: [warehouse_id, asset_location], references: [warehouse_id, location])
-  warehouse                                     Warehouse?              @relation(fields: [warehouse_id], references: [id])
   asset_accessories                             AssetAccessory[]
   asset_errors                                  AssetError[]
   asset_history                                 AssetHistory[]
@@ -48,7 +46,6 @@ model Asset {
   technical_specification                       TechnicalSpecification?
 
   @@index([serial_number])
-  @@index([warehouse_id])
   @@index([model_id])
   @@index([arrival_id])
   @@index([departure_id])
@@ -56,10 +53,10 @@ model Asset {
   @@index([purchase_invoice_id])
   @@index([sales_invoice_id])
   @@index([created_at(sort: Desc)])
-  @@index([asset_location])
   @@index([availability_status_id])
   @@index([technical_status_id])
   @@index([tracking_status_id])
+  @@index([location_id])
 }
 
 model TechnicalSpecification {
@@ -292,7 +289,6 @@ model Warehouse {
   street                String
   is_active             Boolean     @default(false)
   arrivals              Arrival[]
-  assets                Asset[]
   departures            Departure[]
   locations             Location[]
   destination_transfers Transfer[]  @relation("TransferDestination")
@@ -304,10 +300,11 @@ model Warehouse {
 model Location {
   warehouse_id Int
   location     String    @db.VarChar(50)
-  assets       Asset[]
+  id           Int       @id @default(autoincrement())
+  Asset        Asset[]
   warehouse    Warehouse @relation(fields: [warehouse_id], references: [id])
 
-  @@id([warehouse_id, location])
+  @@unique([warehouse_id, location])
 }
 
 model Brand {

@@ -27,7 +27,7 @@ export async function getAssetsForArrival(req: Request, res: Response) {
 export async function createArrival(req: Request, res: Response, next: NextFunction) {
   try {
     const validatedArrival: NewArrival = NewArrivalSchema.parse(req.body)
-    const arrivalNumber = createArrivalSer(validatedArrival)
+    const arrivalNumber = await createArrivalSer(validatedArrival)
     res.status(201).json({ arrivalNumber: arrivalNumber })
   } catch (error) {
     next(error)

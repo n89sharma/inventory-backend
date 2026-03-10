@@ -1,5 +1,5 @@
 import { prisma } from "../prisma.js"
-import { format, startOfDay } from 'date-fns'
+import { format } from 'date-fns'
 import { NewArrival, NewAsset } from "../schema/arrival-validator.js"
 
 const sequenceArrivalEntity = 'ARRIVAL'
@@ -7,20 +7,18 @@ const sequenceAssetEntity = 'ASSET'
 
 export async function createArrival(newArrival: NewArrival) {
 
-  const unknownUserId = 289 //UNKNOWN
   const arrivalLocation = 'ARRIVAL'
   const arrivalTrackingStatus = 'RECEIVING'
   const arrivalAvailabilityStatus = 'AVAILABLE'
   const warehouseCode = newArrival.warehouse.city_code
-  const date = new Date()
-  const barcodes = await generateBarcodes(newArrival.assets, warehouseCode, startOfDay(date))
+  const currentDateTime = new Date()
+  const barcodes = await generateBarcodes(newArrival.assets, warehouseCode, currentDateTime)
 
   const arrival = await prisma.arrival.create({
     data: {
-      arrival_number: await getNewArrivalNumber(warehouseCode, startOfDay(date)),
+      arrival_number: await getNewArrivalNumber(warehouseCode, currentDateTime),
       notes: newArrival.comment,
-      created_at: date,
-      created_by: { connect: { id: unknownUserId } },
+      created_at: currentDateTime,
       destination: { connect: { id: newArrival.warehouse.id } },
       origin: { connect: { id: newArrival.vendor.id } },
       transporter: { connect: { id: newArrival.transporter.id } },
@@ -29,13 +27,24 @@ export async function createArrival(newArrival: NewArrival) {
           barcode: barcodes[a.serialNumber],
           serial_number: a.serialNumber,
           model: { connect: { id: a.model.id } },
-          warehouse: { connect: { id: newArrival.warehouse.id } },
-          asset_location: arrivalLocation,
-          created_at: date,
+          Location: { connect: { warehouse_id_location: { warehouse_id: newArrival.warehouse.id, location: arrivalLocation } } },
+          created_at: currentDateTime,
           is_held: false,
           TrackingStatus: { connect: { status: arrivalTrackingStatus } },
           AvailabilityStatus: { connect: { status: arrivalAvailabilityStatus } },
-          TechnicalStatus: { connect: { id: a.technicalStatus.id } }
+          TechnicalStatus: { connect: { id: a.technicalStatus.id } },
+          technical_specification: {
+            create: {
+              meter_black: parseInt(a.meterBlack),
+              meter_colour: parseInt(a.meterColour),
+              meter_total: parseInt(a.meterBlack) + parseInt(a.meterColour)
+            }
+          },
+          cost: {
+            create: {
+              
+            }
+          }
         }))
       }
     }
@@ -66,6 +75,7 @@ async function getNewAssetBarcode(warehouseCode: string, date: Date): Promise<st
 }
 
 async function getNextSequence(entityType: string, warehouseCode: string, date: Date): Promise<number> {
-  const result = await prisma.$queryRaw<[{ get_next_sequence: number }]>`SELECT get_next_sequence(${entityType}, ${warehouseCode}, date)`
+  const formattedDate = format(date, 'yyyy-MM-dd')
+  const result = await prisma.$queryRaw<[{ get_next_sequence: number }]>`SELECT get_next_sequence(${entityType}, ${warehouseCode}, ${formattedDate})`
   return result[0].get_next_sequence
 }

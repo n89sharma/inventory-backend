@@ -209,7 +209,6 @@ export type WarehouseWhereInput = {
   street?: Prisma.StringFilter<"Warehouse"> | string
   is_active?: Prisma.BoolFilter<"Warehouse"> | boolean
   arrivals?: Prisma.ArrivalListRelationFilter
-  assets?: Prisma.AssetListRelationFilter
   departures?: Prisma.DepartureListRelationFilter
   locations?: Prisma.LocationListRelationFilter
   destination_transfers?: Prisma.TransferListRelationFilter
@@ -222,7 +221,6 @@ export type WarehouseOrderByWithRelationInput = {
   street?: Prisma.SortOrder
   is_active?: Prisma.SortOrder
   arrivals?: Prisma.ArrivalOrderByRelationAggregateInput
-  assets?: Prisma.AssetOrderByRelationAggregateInput
   departures?: Prisma.DepartureOrderByRelationAggregateInput
   locations?: Prisma.LocationOrderByRelationAggregateInput
   destination_transfers?: Prisma.TransferOrderByRelationAggregateInput
@@ -239,7 +237,6 @@ export type WarehouseWhereUniqueInput = Prisma.AtLeast<{
   street?: Prisma.StringFilter<"Warehouse"> | string
   is_active?: Prisma.BoolFilter<"Warehouse"> | boolean
   arrivals?: Prisma.ArrivalListRelationFilter
-  assets?: Prisma.AssetListRelationFilter
   departures?: Prisma.DepartureListRelationFilter
   locations?: Prisma.LocationListRelationFilter
   destination_transfers?: Prisma.TransferListRelationFilter
@@ -273,7 +270,6 @@ export type WarehouseCreateInput = {
   street: string
   is_active?: boolean
   arrivals?: Prisma.ArrivalCreateNestedManyWithoutDestinationInput
-  assets?: Prisma.AssetCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureCreateNestedManyWithoutOriginInput
   locations?: Prisma.LocationCreateNestedManyWithoutWarehouseInput
   destination_transfers?: Prisma.TransferCreateNestedManyWithoutDestinationInput
@@ -286,7 +282,6 @@ export type WarehouseUncheckedCreateInput = {
   street: string
   is_active?: boolean
   arrivals?: Prisma.ArrivalUncheckedCreateNestedManyWithoutDestinationInput
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureUncheckedCreateNestedManyWithoutOriginInput
   locations?: Prisma.LocationUncheckedCreateNestedManyWithoutWarehouseInput
   destination_transfers?: Prisma.TransferUncheckedCreateNestedManyWithoutDestinationInput
@@ -298,7 +293,6 @@ export type WarehouseUpdateInput = {
   street?: Prisma.StringFieldUpdateOperationsInput | string
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUpdateManyWithoutDestinationNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUpdateManyWithoutOriginNestedInput
   locations?: Prisma.LocationUpdateManyWithoutWarehouseNestedInput
   destination_transfers?: Prisma.TransferUpdateManyWithoutDestinationNestedInput
@@ -311,7 +305,6 @@ export type WarehouseUncheckedUpdateInput = {
   street?: Prisma.StringFieldUpdateOperationsInput | string
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUncheckedUpdateManyWithoutDestinationNestedInput
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUncheckedUpdateManyWithoutOriginNestedInput
   locations?: Prisma.LocationUncheckedUpdateManyWithoutWarehouseNestedInput
   destination_transfers?: Prisma.TransferUncheckedUpdateManyWithoutDestinationNestedInput
@@ -338,14 +331,14 @@ export type WarehouseUncheckedUpdateManyInput = {
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
-export type WarehouseNullableScalarRelationFilter = {
-  is?: Prisma.WarehouseWhereInput | null
-  isNot?: Prisma.WarehouseWhereInput | null
-}
-
 export type WarehouseScalarRelationFilter = {
   is?: Prisma.WarehouseWhereInput
   isNot?: Prisma.WarehouseWhereInput
+}
+
+export type WarehouseNullableScalarRelationFilter = {
+  is?: Prisma.WarehouseWhereInput | null
+  isNot?: Prisma.WarehouseWhereInput | null
 }
 
 export type WarehouseCity_codeStreetCompoundUniqueInput = {
@@ -380,22 +373,6 @@ export type WarehouseMinOrderByAggregateInput = {
 
 export type WarehouseSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-}
-
-export type WarehouseCreateNestedOneWithoutAssetsInput = {
-  create?: Prisma.XOR<Prisma.WarehouseCreateWithoutAssetsInput, Prisma.WarehouseUncheckedCreateWithoutAssetsInput>
-  connectOrCreate?: Prisma.WarehouseCreateOrConnectWithoutAssetsInput
-  connect?: Prisma.WarehouseWhereUniqueInput
-}
-
-export type WarehouseUpdateOneWithoutAssetsNestedInput = {
-  create?: Prisma.XOR<Prisma.WarehouseCreateWithoutAssetsInput, Prisma.WarehouseUncheckedCreateWithoutAssetsInput>
-  connectOrCreate?: Prisma.WarehouseCreateOrConnectWithoutAssetsInput
-  upsert?: Prisma.WarehouseUpsertWithoutAssetsInput
-  disconnect?: Prisma.WarehouseWhereInput | boolean
-  delete?: Prisma.WarehouseWhereInput | boolean
-  connect?: Prisma.WarehouseWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.WarehouseUpdateToOneWithWhereWithoutAssetsInput, Prisma.WarehouseUpdateWithoutAssetsInput>, Prisma.WarehouseUncheckedUpdateWithoutAssetsInput>
 }
 
 export type WarehouseCreateNestedOneWithoutDestination_transfersInput = {
@@ -470,74 +447,11 @@ export type WarehouseUpdateOneRequiredWithoutLocationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.WarehouseUpdateToOneWithWhereWithoutLocationsInput, Prisma.WarehouseUpdateWithoutLocationsInput>, Prisma.WarehouseUncheckedUpdateWithoutLocationsInput>
 }
 
-export type WarehouseCreateWithoutAssetsInput = {
-  city_code: string
-  street: string
-  is_active?: boolean
-  arrivals?: Prisma.ArrivalCreateNestedManyWithoutDestinationInput
-  departures?: Prisma.DepartureCreateNestedManyWithoutOriginInput
-  locations?: Prisma.LocationCreateNestedManyWithoutWarehouseInput
-  destination_transfers?: Prisma.TransferCreateNestedManyWithoutDestinationInput
-  origin_transfers?: Prisma.TransferCreateNestedManyWithoutOriginInput
-}
-
-export type WarehouseUncheckedCreateWithoutAssetsInput = {
-  id?: number
-  city_code: string
-  street: string
-  is_active?: boolean
-  arrivals?: Prisma.ArrivalUncheckedCreateNestedManyWithoutDestinationInput
-  departures?: Prisma.DepartureUncheckedCreateNestedManyWithoutOriginInput
-  locations?: Prisma.LocationUncheckedCreateNestedManyWithoutWarehouseInput
-  destination_transfers?: Prisma.TransferUncheckedCreateNestedManyWithoutDestinationInput
-  origin_transfers?: Prisma.TransferUncheckedCreateNestedManyWithoutOriginInput
-}
-
-export type WarehouseCreateOrConnectWithoutAssetsInput = {
-  where: Prisma.WarehouseWhereUniqueInput
-  create: Prisma.XOR<Prisma.WarehouseCreateWithoutAssetsInput, Prisma.WarehouseUncheckedCreateWithoutAssetsInput>
-}
-
-export type WarehouseUpsertWithoutAssetsInput = {
-  update: Prisma.XOR<Prisma.WarehouseUpdateWithoutAssetsInput, Prisma.WarehouseUncheckedUpdateWithoutAssetsInput>
-  create: Prisma.XOR<Prisma.WarehouseCreateWithoutAssetsInput, Prisma.WarehouseUncheckedCreateWithoutAssetsInput>
-  where?: Prisma.WarehouseWhereInput
-}
-
-export type WarehouseUpdateToOneWithWhereWithoutAssetsInput = {
-  where?: Prisma.WarehouseWhereInput
-  data: Prisma.XOR<Prisma.WarehouseUpdateWithoutAssetsInput, Prisma.WarehouseUncheckedUpdateWithoutAssetsInput>
-}
-
-export type WarehouseUpdateWithoutAssetsInput = {
-  city_code?: Prisma.StringFieldUpdateOperationsInput | string
-  street?: Prisma.StringFieldUpdateOperationsInput | string
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  arrivals?: Prisma.ArrivalUpdateManyWithoutDestinationNestedInput
-  departures?: Prisma.DepartureUpdateManyWithoutOriginNestedInput
-  locations?: Prisma.LocationUpdateManyWithoutWarehouseNestedInput
-  destination_transfers?: Prisma.TransferUpdateManyWithoutDestinationNestedInput
-  origin_transfers?: Prisma.TransferUpdateManyWithoutOriginNestedInput
-}
-
-export type WarehouseUncheckedUpdateWithoutAssetsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  city_code?: Prisma.StringFieldUpdateOperationsInput | string
-  street?: Prisma.StringFieldUpdateOperationsInput | string
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  arrivals?: Prisma.ArrivalUncheckedUpdateManyWithoutDestinationNestedInput
-  departures?: Prisma.DepartureUncheckedUpdateManyWithoutOriginNestedInput
-  locations?: Prisma.LocationUncheckedUpdateManyWithoutWarehouseNestedInput
-  destination_transfers?: Prisma.TransferUncheckedUpdateManyWithoutDestinationNestedInput
-  origin_transfers?: Prisma.TransferUncheckedUpdateManyWithoutOriginNestedInput
-}
-
 export type WarehouseCreateWithoutDestination_transfersInput = {
   city_code: string
   street: string
   is_active?: boolean
   arrivals?: Prisma.ArrivalCreateNestedManyWithoutDestinationInput
-  assets?: Prisma.AssetCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureCreateNestedManyWithoutOriginInput
   locations?: Prisma.LocationCreateNestedManyWithoutWarehouseInput
   origin_transfers?: Prisma.TransferCreateNestedManyWithoutOriginInput
@@ -549,7 +463,6 @@ export type WarehouseUncheckedCreateWithoutDestination_transfersInput = {
   street: string
   is_active?: boolean
   arrivals?: Prisma.ArrivalUncheckedCreateNestedManyWithoutDestinationInput
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureUncheckedCreateNestedManyWithoutOriginInput
   locations?: Prisma.LocationUncheckedCreateNestedManyWithoutWarehouseInput
   origin_transfers?: Prisma.TransferUncheckedCreateNestedManyWithoutOriginInput
@@ -565,7 +478,6 @@ export type WarehouseCreateWithoutOrigin_transfersInput = {
   street: string
   is_active?: boolean
   arrivals?: Prisma.ArrivalCreateNestedManyWithoutDestinationInput
-  assets?: Prisma.AssetCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureCreateNestedManyWithoutOriginInput
   locations?: Prisma.LocationCreateNestedManyWithoutWarehouseInput
   destination_transfers?: Prisma.TransferCreateNestedManyWithoutDestinationInput
@@ -577,7 +489,6 @@ export type WarehouseUncheckedCreateWithoutOrigin_transfersInput = {
   street: string
   is_active?: boolean
   arrivals?: Prisma.ArrivalUncheckedCreateNestedManyWithoutDestinationInput
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureUncheckedCreateNestedManyWithoutOriginInput
   locations?: Prisma.LocationUncheckedCreateNestedManyWithoutWarehouseInput
   destination_transfers?: Prisma.TransferUncheckedCreateNestedManyWithoutDestinationInput
@@ -604,7 +515,6 @@ export type WarehouseUpdateWithoutDestination_transfersInput = {
   street?: Prisma.StringFieldUpdateOperationsInput | string
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUpdateManyWithoutDestinationNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUpdateManyWithoutOriginNestedInput
   locations?: Prisma.LocationUpdateManyWithoutWarehouseNestedInput
   origin_transfers?: Prisma.TransferUpdateManyWithoutOriginNestedInput
@@ -616,7 +526,6 @@ export type WarehouseUncheckedUpdateWithoutDestination_transfersInput = {
   street?: Prisma.StringFieldUpdateOperationsInput | string
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUncheckedUpdateManyWithoutDestinationNestedInput
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUncheckedUpdateManyWithoutOriginNestedInput
   locations?: Prisma.LocationUncheckedUpdateManyWithoutWarehouseNestedInput
   origin_transfers?: Prisma.TransferUncheckedUpdateManyWithoutOriginNestedInput
@@ -638,7 +547,6 @@ export type WarehouseUpdateWithoutOrigin_transfersInput = {
   street?: Prisma.StringFieldUpdateOperationsInput | string
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUpdateManyWithoutDestinationNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUpdateManyWithoutOriginNestedInput
   locations?: Prisma.LocationUpdateManyWithoutWarehouseNestedInput
   destination_transfers?: Prisma.TransferUpdateManyWithoutDestinationNestedInput
@@ -650,7 +558,6 @@ export type WarehouseUncheckedUpdateWithoutOrigin_transfersInput = {
   street?: Prisma.StringFieldUpdateOperationsInput | string
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUncheckedUpdateManyWithoutDestinationNestedInput
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUncheckedUpdateManyWithoutOriginNestedInput
   locations?: Prisma.LocationUncheckedUpdateManyWithoutWarehouseNestedInput
   destination_transfers?: Prisma.TransferUncheckedUpdateManyWithoutDestinationNestedInput
@@ -660,7 +567,6 @@ export type WarehouseCreateWithoutArrivalsInput = {
   city_code: string
   street: string
   is_active?: boolean
-  assets?: Prisma.AssetCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureCreateNestedManyWithoutOriginInput
   locations?: Prisma.LocationCreateNestedManyWithoutWarehouseInput
   destination_transfers?: Prisma.TransferCreateNestedManyWithoutDestinationInput
@@ -672,7 +578,6 @@ export type WarehouseUncheckedCreateWithoutArrivalsInput = {
   city_code: string
   street: string
   is_active?: boolean
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureUncheckedCreateNestedManyWithoutOriginInput
   locations?: Prisma.LocationUncheckedCreateNestedManyWithoutWarehouseInput
   destination_transfers?: Prisma.TransferUncheckedCreateNestedManyWithoutDestinationInput
@@ -699,7 +604,6 @@ export type WarehouseUpdateWithoutArrivalsInput = {
   city_code?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  assets?: Prisma.AssetUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUpdateManyWithoutOriginNestedInput
   locations?: Prisma.LocationUpdateManyWithoutWarehouseNestedInput
   destination_transfers?: Prisma.TransferUpdateManyWithoutDestinationNestedInput
@@ -711,7 +615,6 @@ export type WarehouseUncheckedUpdateWithoutArrivalsInput = {
   city_code?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUncheckedUpdateManyWithoutOriginNestedInput
   locations?: Prisma.LocationUncheckedUpdateManyWithoutWarehouseNestedInput
   destination_transfers?: Prisma.TransferUncheckedUpdateManyWithoutDestinationNestedInput
@@ -723,7 +626,6 @@ export type WarehouseCreateWithoutDeparturesInput = {
   street: string
   is_active?: boolean
   arrivals?: Prisma.ArrivalCreateNestedManyWithoutDestinationInput
-  assets?: Prisma.AssetCreateNestedManyWithoutWarehouseInput
   locations?: Prisma.LocationCreateNestedManyWithoutWarehouseInput
   destination_transfers?: Prisma.TransferCreateNestedManyWithoutDestinationInput
   origin_transfers?: Prisma.TransferCreateNestedManyWithoutOriginInput
@@ -735,7 +637,6 @@ export type WarehouseUncheckedCreateWithoutDeparturesInput = {
   street: string
   is_active?: boolean
   arrivals?: Prisma.ArrivalUncheckedCreateNestedManyWithoutDestinationInput
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutWarehouseInput
   locations?: Prisma.LocationUncheckedCreateNestedManyWithoutWarehouseInput
   destination_transfers?: Prisma.TransferUncheckedCreateNestedManyWithoutDestinationInput
   origin_transfers?: Prisma.TransferUncheckedCreateNestedManyWithoutOriginInput
@@ -762,7 +663,6 @@ export type WarehouseUpdateWithoutDeparturesInput = {
   street?: Prisma.StringFieldUpdateOperationsInput | string
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUpdateManyWithoutDestinationNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutWarehouseNestedInput
   locations?: Prisma.LocationUpdateManyWithoutWarehouseNestedInput
   destination_transfers?: Prisma.TransferUpdateManyWithoutDestinationNestedInput
   origin_transfers?: Prisma.TransferUpdateManyWithoutOriginNestedInput
@@ -774,7 +674,6 @@ export type WarehouseUncheckedUpdateWithoutDeparturesInput = {
   street?: Prisma.StringFieldUpdateOperationsInput | string
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUncheckedUpdateManyWithoutDestinationNestedInput
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutWarehouseNestedInput
   locations?: Prisma.LocationUncheckedUpdateManyWithoutWarehouseNestedInput
   destination_transfers?: Prisma.TransferUncheckedUpdateManyWithoutDestinationNestedInput
   origin_transfers?: Prisma.TransferUncheckedUpdateManyWithoutOriginNestedInput
@@ -785,7 +684,6 @@ export type WarehouseCreateWithoutLocationsInput = {
   street: string
   is_active?: boolean
   arrivals?: Prisma.ArrivalCreateNestedManyWithoutDestinationInput
-  assets?: Prisma.AssetCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureCreateNestedManyWithoutOriginInput
   destination_transfers?: Prisma.TransferCreateNestedManyWithoutDestinationInput
   origin_transfers?: Prisma.TransferCreateNestedManyWithoutOriginInput
@@ -797,7 +695,6 @@ export type WarehouseUncheckedCreateWithoutLocationsInput = {
   street: string
   is_active?: boolean
   arrivals?: Prisma.ArrivalUncheckedCreateNestedManyWithoutDestinationInput
-  assets?: Prisma.AssetUncheckedCreateNestedManyWithoutWarehouseInput
   departures?: Prisma.DepartureUncheckedCreateNestedManyWithoutOriginInput
   destination_transfers?: Prisma.TransferUncheckedCreateNestedManyWithoutDestinationInput
   origin_transfers?: Prisma.TransferUncheckedCreateNestedManyWithoutOriginInput
@@ -824,7 +721,6 @@ export type WarehouseUpdateWithoutLocationsInput = {
   street?: Prisma.StringFieldUpdateOperationsInput | string
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUpdateManyWithoutDestinationNestedInput
-  assets?: Prisma.AssetUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUpdateManyWithoutOriginNestedInput
   destination_transfers?: Prisma.TransferUpdateManyWithoutDestinationNestedInput
   origin_transfers?: Prisma.TransferUpdateManyWithoutOriginNestedInput
@@ -836,7 +732,6 @@ export type WarehouseUncheckedUpdateWithoutLocationsInput = {
   street?: Prisma.StringFieldUpdateOperationsInput | string
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   arrivals?: Prisma.ArrivalUncheckedUpdateManyWithoutDestinationNestedInput
-  assets?: Prisma.AssetUncheckedUpdateManyWithoutWarehouseNestedInput
   departures?: Prisma.DepartureUncheckedUpdateManyWithoutOriginNestedInput
   destination_transfers?: Prisma.TransferUncheckedUpdateManyWithoutDestinationNestedInput
   origin_transfers?: Prisma.TransferUncheckedUpdateManyWithoutOriginNestedInput
@@ -849,7 +744,6 @@ export type WarehouseUncheckedUpdateWithoutLocationsInput = {
 
 export type WarehouseCountOutputType = {
   arrivals: number
-  assets: number
   departures: number
   locations: number
   destination_transfers: number
@@ -858,7 +752,6 @@ export type WarehouseCountOutputType = {
 
 export type WarehouseCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   arrivals?: boolean | WarehouseCountOutputTypeCountArrivalsArgs
-  assets?: boolean | WarehouseCountOutputTypeCountAssetsArgs
   departures?: boolean | WarehouseCountOutputTypeCountDeparturesArgs
   locations?: boolean | WarehouseCountOutputTypeCountLocationsArgs
   destination_transfers?: boolean | WarehouseCountOutputTypeCountDestination_transfersArgs
@@ -880,13 +773,6 @@ export type WarehouseCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ex
  */
 export type WarehouseCountOutputTypeCountArrivalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ArrivalWhereInput
-}
-
-/**
- * WarehouseCountOutputType without action
- */
-export type WarehouseCountOutputTypeCountAssetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AssetWhereInput
 }
 
 /**
@@ -924,7 +810,6 @@ export type WarehouseSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   street?: boolean
   is_active?: boolean
   arrivals?: boolean | Prisma.Warehouse$arrivalsArgs<ExtArgs>
-  assets?: boolean | Prisma.Warehouse$assetsArgs<ExtArgs>
   departures?: boolean | Prisma.Warehouse$departuresArgs<ExtArgs>
   locations?: boolean | Prisma.Warehouse$locationsArgs<ExtArgs>
   destination_transfers?: boolean | Prisma.Warehouse$destination_transfersArgs<ExtArgs>
@@ -956,7 +841,6 @@ export type WarehouseSelectScalar = {
 export type WarehouseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "city_code" | "street" | "is_active", ExtArgs["result"]["warehouse"]>
 export type WarehouseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   arrivals?: boolean | Prisma.Warehouse$arrivalsArgs<ExtArgs>
-  assets?: boolean | Prisma.Warehouse$assetsArgs<ExtArgs>
   departures?: boolean | Prisma.Warehouse$departuresArgs<ExtArgs>
   locations?: boolean | Prisma.Warehouse$locationsArgs<ExtArgs>
   destination_transfers?: boolean | Prisma.Warehouse$destination_transfersArgs<ExtArgs>
@@ -970,7 +854,6 @@ export type $WarehousePayload<ExtArgs extends runtime.Types.Extensions.InternalA
   name: "Warehouse"
   objects: {
     arrivals: Prisma.$ArrivalPayload<ExtArgs>[]
-    assets: Prisma.$AssetPayload<ExtArgs>[]
     departures: Prisma.$DeparturePayload<ExtArgs>[]
     locations: Prisma.$LocationPayload<ExtArgs>[]
     destination_transfers: Prisma.$TransferPayload<ExtArgs>[]
@@ -1376,7 +1259,6 @@ readonly fields: WarehouseFieldRefs;
 export interface Prisma__WarehouseClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   arrivals<T extends Prisma.Warehouse$arrivalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Warehouse$arrivalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ArrivalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  assets<T extends Prisma.Warehouse$assetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Warehouse$assetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   departures<T extends Prisma.Warehouse$departuresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Warehouse$departuresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeparturePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   locations<T extends Prisma.Warehouse$locationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Warehouse$locationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   destination_transfers<T extends Prisma.Warehouse$destination_transfersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Warehouse$destination_transfersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1832,30 +1714,6 @@ export type Warehouse$arrivalsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.ArrivalScalarFieldEnum | Prisma.ArrivalScalarFieldEnum[]
-}
-
-/**
- * Warehouse.assets
- */
-export type Warehouse$assetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Asset
-   */
-  select?: Prisma.AssetSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Asset
-   */
-  omit?: Prisma.AssetOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AssetInclude<ExtArgs> | null
-  where?: Prisma.AssetWhereInput
-  orderBy?: Prisma.AssetOrderByWithRelationInput | Prisma.AssetOrderByWithRelationInput[]
-  cursor?: Prisma.AssetWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.AssetScalarFieldEnum | Prisma.AssetScalarFieldEnum[]
 }
 
 /**

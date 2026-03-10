@@ -571,6 +571,10 @@ export type TechnicalSpecificationUncheckedUpdateOneWithoutAssetNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TechnicalSpecificationUpdateToOneWithWhereWithoutAssetInput, Prisma.TechnicalSpecificationUpdateWithoutAssetInput>, Prisma.TechnicalSpecificationUncheckedUpdateWithoutAssetInput>
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
 export type NullableBigIntFieldUpdateOperationsInput = {
   set?: bigint | number | null
   increment?: bigint | number
