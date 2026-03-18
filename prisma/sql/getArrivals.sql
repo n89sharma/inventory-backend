@@ -12,4 +12,5 @@ join "Warehouse" w on w.id = a.destination_id
 join "Organization" o on o.id = a.origin_id 
 join "Organization" t on t.id = a.transporter_id 
 where a.created_at between $1 and $2
+and ($3 = 0 or w.id = $3)
 order by a.created_at desc

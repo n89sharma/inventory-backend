@@ -3,11 +3,13 @@ import { getArrivals as getArrivalsDb, getAssetsForArrival as getAssetsForArriva
 import { prisma } from '../prisma.js'
 import { NewArrival, NewArrivalSchema } from '../schema/arrival-validator.js'
 import { createArrival as createArrivalSer } from '../services/arrivalService.js'
+import { z } from 'zod'
+import { DateRangeWithWarehouseSchema } from '../middleware/validation.js'
 
 export async function getArrivals(req: Request, res: Response) {
   try {
-    const { fromDate, toDate } = res.locals.parsedDates
-    const arrivals = await prisma.$queryRawTyped(getArrivalsDb(fromDate, toDate))
+    const { fromDate, toDate, warehouse } = res.locals.query as z.infer<typeof DateRangeWithWarehouseSchema>
+    const arrivals = await prisma.$queryRawTyped(getArrivalsDb(fromDate, toDate, warehouse ?? 0))
     res.json(arrivals)
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch arrivals' })
