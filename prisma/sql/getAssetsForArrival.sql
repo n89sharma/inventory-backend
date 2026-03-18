@@ -22,3 +22,4 @@ from "Arrival" ar
   left join "Location" l on l.id = a.location_id
   left join "Warehouse" w on w.id = l.warehouse_id
 where ar.arrival_number  = $1
+and ($2 = 0 or w.id = $2)

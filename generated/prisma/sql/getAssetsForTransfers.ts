@@ -7,11 +7,13 @@ import * as $runtime from "@prisma/client/runtime/client"
 
 /**
  * @param text
+ * @param int4
+ * @param int4
  */
-export const getAssetsForTransfers = $runtime.makeTypedQueryFactory("select\nb.\"name\" as brand,\nm.\"name\" as model,\nat.asset_type as asset_type,\na.barcode as barcode,\na.serial_number as serial_number,\ns.meter_total as meter_total,\nw.city_code as warehouse_city_code,\nw.street as warehouse_street,\ntr.status as tracking_status,\nav.status as availability_status,\nte.status as technical_status\nfrom \"AssetTransfer\" tt\njoin \"Transfer\" t on t.id = tt.transfer_id\njoin \"Asset\" a on a.id = tt.asset_id\njoin \"TechnicalSpecification\" s on s.asset_id = a.id\njoin \"Model\" m on m.id = a.model_id\njoin \"Brand\" b on b.id = m.brand_id\njoin \"AssetType\" at on at.id = m.asset_type_id\njoin \"TrackingStatus\" tr on tr.id = a.tracking_status_id\njoin \"AvailabilityStatus\" av on av.id = a.availability_status_id\njoin \"TechnicalStatus\" te on te.id = a.technical_status_id\nleft join \"Location\" l on l.id = a.location_id\nleft join \"Warehouse\" w on w.id = l.warehouse_id\nwhere t.transfer_number = $1") as (text: string) => $runtime.TypedSql<getAssetsForTransfers.Parameters, getAssetsForTransfers.Result>
+export const getAssetsForTransfers = $runtime.makeTypedQueryFactory("select\nb.\"name\" as brand,\nm.\"name\" as model,\nat.asset_type as asset_type,\na.barcode as barcode,\na.serial_number as serial_number,\ns.meter_total as meter_total,\nwo.city_code as warehouse_city_code,\nwo.street as warehouse_street,\nwd.city_code as warehouse_city_code,\nwd.street as warehouse_street,\ntr.status as tracking_status,\nav.status as availability_status,\nte.status as technical_status\nfrom \"AssetTransfer\" tt\njoin \"Transfer\" t on t.id = tt.transfer_id\njoin \"Warehouse\" wo on wo.id = t.origin_id\njoin \"Warehouse\" wd on wd.id = t.destination_id\njoin \"Asset\" a on a.id = tt.asset_id\njoin \"TechnicalSpecification\" s on s.asset_id = a.id\njoin \"Model\" m on m.id = a.model_id\njoin \"Brand\" b on b.id = m.brand_id\njoin \"AssetType\" at on at.id = m.asset_type_id\njoin \"TrackingStatus\" tr on tr.id = a.tracking_status_id\njoin \"AvailabilityStatus\" av on av.id = a.availability_status_id\njoin \"TechnicalStatus\" te on te.id = a.technical_status_id\nwhere t.transfer_number = $1\nand ($2 = 0 or wo.id = $2)\nand ($3 = 0 or wd.id = $3)") as (text: string, int4: number, int4: number) => $runtime.TypedSql<getAssetsForTransfers.Parameters, getAssetsForTransfers.Result>
 
 export namespace getAssetsForTransfers {
-  export type Parameters = [text: string]
+  export type Parameters = [text: string, int4: number, int4: number]
   export type Result = {
     brand: string
     model: string
@@ -19,6 +21,8 @@ export namespace getAssetsForTransfers {
     barcode: string
     serial_number: string
     meter_total: bigint | null
+    warehouse_city_code: string
+    warehouse_street: string
     warehouse_city_code: string
     warehouse_street: string
     tracking_status: string

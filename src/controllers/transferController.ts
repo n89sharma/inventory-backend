@@ -13,9 +13,9 @@ export async function getTransfers(req: Request, res: Response) {
 }
 
 export async function getAssetsForTransfer(req: Request, res: Response) {
-  const { transferNumber } = req.params
+  const { transferNumber, origin, destination } = req.params
   try {
-    const assets = await prisma.$queryRawTyped(getAssetsForTransfersDb(transferNumber))
+    const assets = await prisma.$queryRawTyped(getAssetsForTransfersDb(transferNumber, origin, destination))
     res.json(assets)
   } catch (error) {
     res.status(500).json({ error: `Failed to fetch assets for transfer ${transferNumber}` })
