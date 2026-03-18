@@ -7,7 +7,7 @@
     "dev": "tsx watch src/index.ts",
     "build": "npx tsc",
     "start": "node dist/src/index.js",
-    "prisma": "npx prisma generate",
+    "prisma": "npx prisma generate --sql",
     "bs": "npx tsc && node dist/src/index.js"
   },
   "dependencies": {
