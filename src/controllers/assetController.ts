@@ -3,7 +3,7 @@ import { prisma } from '../prisma.js'
 import { getAssetsForQuery } from '../../generated/prisma/sql.js'
 import { z } from 'zod'
 
-const AssetQuerySchema = z.object({
+export const AssetQuerySchema = z.object({
   model: z.string(),
   trackingStatusId: z.string().optional().transform(Number),
   availabilityStatusId: z.string().optional().transform(Number),
@@ -14,19 +14,13 @@ const AssetQuerySchema = z.object({
 
 export async function getAssets(req: Request, res: Response) {
   try {
-    const result = AssetQuerySchema.safeParse(req.query)
-
-    if (!result.success) {
-      return res.status(400).json({ error: 'Request parameters incorrect' })
-    }
-
     const {
       model,
       trackingStatusId,
       availabilityStatusId,
       technicalStatusId,
       warehouseId,
-      meter } = result.data
+      meter } = res.locals.query as z.infer<typeof AssetQuerySchema>
 
     const assets = await prisma.$queryRawTyped(getAssetsForQuery(
       model,

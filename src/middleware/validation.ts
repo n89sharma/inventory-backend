@@ -1,5 +1,6 @@
 import { isAfter } from 'date-fns'
 import { Request, Response, NextFunction } from 'express'
+import { z } from 'zod'
 
 export function validateBarcode(req: Request, res: Response, next: NextFunction) {
   const barcode = req.body.barcode || req.params.barcode || req.query.barcode
@@ -13,6 +14,17 @@ export function validateBarcode(req: Request, res: Response, next: NextFunction)
   }
   
   next()
+}
+
+export function validateQuery<T extends z.ZodTypeAny>(schema: T) {
+  return (req: Request, res: Response, next: NextFunction) => {
+    const result = schema.safeParse(req.query)
+    if (!result.success) {
+      return res.status(400).json({ error: 'Request parameters incorrect' })
+    }
+    res.locals.query = result.data
+    next()
+  }
 }
 
 export function validateDateRange(req: Request, res: Response, next: NextFunction) {

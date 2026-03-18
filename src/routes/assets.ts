@@ -1,11 +1,12 @@
 import express from 'express';
 import { prisma } from '../prisma.js'
 import { getAssetComments, getAssetDetails, getAssetAccessories, getAssetErrors, getAssetParts, getAssetTransfers } from '../../generated/prisma/sql.js';
-import { getAssets } from '../controllers/assetController.js';
+import { AssetQuerySchema, getAssets } from '../controllers/assetController.js';
+import { validateQuery } from '../middleware/validation.js';
 
 const router = express.Router();
 
-router.get('/', getAssets)
+router.get('/', validateQuery(AssetQuerySchema), getAssets)
 
 router.get('/:barcode', async (req, res) => {
   const { barcode } = req.params;
