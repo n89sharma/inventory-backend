@@ -16,7 +16,7 @@ export async function getDepartures(req: Request, res: Response) {
 
 export async function getAssetsForDeparture(req: Request, res: Response) {
   const { departureNumber } = req.params
-  try {  
+  try {
     const assets = await prisma.$queryRawTyped(getAssetsForDeparturesDb(departureNumber))
     res.json(assets)
   } catch (error) {
