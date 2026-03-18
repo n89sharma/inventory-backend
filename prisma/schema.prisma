@@ -369,6 +369,7 @@ model User {
   name                 String
   googleId             String?        @unique
   role_id              Int
+  is_active            Boolean        @default(false)
   arrivals             Arrival[]
   asset_errors_added   AssetError[]   @relation("ErrorAddedBy")
   asset_errors_fixed   AssetError[]   @relation("ErrorFixedBy")

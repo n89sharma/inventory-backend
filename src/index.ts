@@ -10,6 +10,7 @@ import invoiceRoutes from './routes/invoices.js'
 import constantRoutes from './routes/constants.js'
 import modelRoutes from './routes/models.js'
 import organizationRoutes from './routes/organizations.js'
+import userRoutes from './routes/users.js'
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.use('/holds', holdRoutes);
 app.use('/invoices', invoiceRoutes);
 app.use('/models', modelRoutes)
 app.use('/organizations', organizationRoutes)
+app.use('/users', userRoutes)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
