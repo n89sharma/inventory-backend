@@ -35,14 +35,14 @@ export async function createArrival(newArrival: NewArrival) {
           TechnicalStatus: { connect: { id: a.technicalStatus.id } },
           technical_specification: {
             create: {
-              meter_black: parseInt(a.meterBlack),
-              meter_colour: parseInt(a.meterColour),
-              meter_total: parseInt(a.meterBlack) + parseInt(a.meterColour)
+              meter_black: a.meterBlack,
+              meter_colour: a.meterColour,
+              meter_total: a.meterBlack + a.meterColour
             }
           },
           cost: {
             create: {
-              
+
             }
           }
         }))

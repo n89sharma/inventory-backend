@@ -73,10 +73,10 @@ export type Organization = z.infer<typeof OrgSchema>
 export const NewAssetSchema = z.object({
   tempId: z.uuid(),
   model: ModelSchema.refine(val => !!val, "Model is required"),
-  serialNumber: z.string().min(1, "Serial number is required"),
-  meterBlack: z.string().min(1, "Meter must be positive"),
-  meterColour: z.string().min(1, "Meter must be positive"),
-  cassettes: z.string().min(1, "Cassettes are required"),
+  serialNumber: z.string().refine(val => val.length > 0, "Serial number is required"),
+  meterBlack: z.number().min(0, "Meter must be positive"),
+  meterColour: z.number().min(0, "Meter must be positive"),
+  cassettes: z.number().min(0, "Cassettes are required"),
   technicalStatus: StatusSchema.refine(val => !!val, "Technical status is required"),
   internalFinisher: z.string(),
   coreFunctions: z.array(CoreFunctionsSchema)
@@ -86,9 +86,9 @@ export type NewAsset = {
   tempId: string,
   model: Model,
   serialNumber: string,
-  meterBlack: string,
-  meterColour: string,
-  cassettes: string,
+  meterBlack: number,
+  meterColour: number,
+  cassettes: number,
   technicalStatus: Status,
   internalFinisher: string,
   coreFunctions: CoreFunction[]
