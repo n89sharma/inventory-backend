@@ -1,5 +1,5 @@
-import { prisma } from "../prisma.js"
 import { format } from 'date-fns'
+import { prisma } from "../prisma.js"
 import { NewArrival, NewAsset } from "../schema/arrival-validator.js"
 
 const sequenceArrivalEntity = 'ARRIVAL'
@@ -33,11 +33,16 @@ export async function createArrival(newArrival: NewArrival) {
           TrackingStatus: { connect: { status: arrivalTrackingStatus } },
           AvailabilityStatus: { connect: { status: arrivalAvailabilityStatus } },
           TechnicalStatus: { connect: { id: a.technicalStatus.id } },
+          asset_accessories: {
+            create: a.coreFunctions.map(c => ({ accessory_id: c.id }))
+          },
           technical_specification: {
             create: {
               meter_black: a.meterBlack,
               meter_colour: a.meterColour,
-              meter_total: a.meterBlack + a.meterColour
+              meter_total: a.meterBlack + a.meterColour,
+              internal_finisher: a.internalFinisher,
+              cassettes: a.cassettes
             }
           },
           cost: {
