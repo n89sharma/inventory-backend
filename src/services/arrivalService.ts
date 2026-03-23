@@ -1,11 +1,11 @@
 import { format } from 'date-fns'
 import { prisma } from "../prisma.js"
-import { NewArrival, NewAsset } from "../schema/arrival-validator.js"
+import { Arrival, Asset } from "../types/arrivalTypes.js"
 
 const sequenceArrivalEntity = 'ARRIVAL'
 const sequenceAssetEntity = 'ASSET'
 
-export async function createArrival(newArrival: NewArrival) {
+export async function createArrival(newArrival: Arrival) {
 
   const arrivalLocation = 'ARRIVAL'
   const arrivalTrackingStatus = 'RECEIVING'
@@ -59,7 +59,7 @@ export async function createArrival(newArrival: NewArrival) {
 }
 
 
-async function generateBarcodes(assets: NewAsset[], warehouseCode: string, date: Date) {
+async function generateBarcodes(assets: Asset[], warehouseCode: string, date: Date) {
   const barcodes: Record<string, string> = {}
   for (const asset of assets) {
     barcodes[asset.serialNumber] = await getNewAssetBarcode(warehouseCode, date)
@@ -83,4 +83,51 @@ async function getNextSequence(entityType: string, warehouseCode: string, date: 
   const formattedDate = format(date, 'yyyy-MM-dd')
   const result = await prisma.$queryRaw<[{ get_next_sequence: number }]>`SELECT get_next_sequence(${entityType}, ${warehouseCode}, ${formattedDate})`
   return result[0].get_next_sequence
+}
+export async function updateArrival(data: Arrival) {
+  const assetUpdates = data.assets.flatMap(asset => [
+    prisma.asset.update({
+      where: { id: asset.id },
+      data: {
+        model_id: asset.model.id,
+        serial_number: asset.serialNumber,
+        technical_status_id: asset.technicalStatus.id,
+        technical_specification: {
+          update: {
+            meter_black: BigInt(asset.meterBlack),
+            meter_colour: BigInt(asset.meterColour),
+            meter_total: BigInt(asset.meterBlack + asset.meterColour),
+            cassettes: asset.cassettes,
+            internal_finisher: asset.internalFinisher
+          }
+        }
+      }
+    }),
+    prisma.assetAccessory.deleteMany({
+      where: { asset_id: asset.id }
+    })
+  ])
+
+  const accessoryCreates = data.assets.flatMap(asset => asset.coreFunctions.map(cf => prisma.assetAccessory.create({
+    data: {
+      asset_id: asset.id!,
+      accessory_id: cf.id
+    }
+  })
+  )
+  )
+
+  await prisma.$transaction([
+    prisma.arrival.update({
+      where: { id: data.id },
+      data: {
+        origin_id: data.vendor.id,
+        transporter_id: data.transporter.id,
+        destination_id: data.warehouse.id,
+        notes: data.comment
+      }
+    }),
+    ...assetUpdates,
+    ...accessoryCreates
+  ])
 }
