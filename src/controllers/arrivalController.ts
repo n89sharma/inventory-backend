@@ -16,13 +16,34 @@ export async function getArrivals(req: Request, res: Response) {
   }
 }
 
-export async function getAssetsForArrival(req: Request, res: Response) {
+export async function getArrival(req: Request, res: Response) {
   const { arrivalNumber } = req.params
   try {
-    const assets = await prisma.$queryRawTyped(getAssetsForArrivalDb(arrivalNumber))
-    res.json(assets)
+    const [arrival, assets] = await Promise.all([
+      prisma.arrival.findUnique({
+        where: { arrival_number: arrivalNumber },
+        include: { origin: true, destination: true, transporter: true, created_by: true }
+      }),
+      prisma.$queryRawTyped(getAssetsForArrivalDb(arrivalNumber))
+    ])
+
+    if (!arrival) {
+      res.status(404).json({ error: `Arrival ${arrivalNumber} not found` })
+      return
+    }
+
+    res.json({
+      arrival_number: arrival.arrival_number,
+      vendor: arrival.origin,
+      transporter: arrival.transporter,
+      warehouse: arrival.destination,
+      comment: arrival.notes ?? null,
+      created_at: arrival.created_at,
+      created_by: arrival.created_by?.email ?? null,
+      assets,
+    })
   } catch (error) {
-    res.status(500).json({ error: `Failed to fetch assets for arrival ${arrivalNumber}` })
+    res.status(500).json({ error: `Failed to fetch arrival ${arrivalNumber}` })
   }
 }
 
