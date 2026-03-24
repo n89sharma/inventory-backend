@@ -5,11 +5,11 @@ import { Arrival, Asset } from "../types/arrivalTypes.js"
 const sequenceArrivalEntity = 'ARRIVAL'
 const sequenceAssetEntity = 'ASSET'
 
-export async function createArrival(newArrival: Arrival) {
+const arrivalLocation = 'ARRIVAL'
+const arrivalTrackingStatus = 'RECEIVING'
+const arrivalAvailabilityStatus = 'AVAILABLE'
 
-  const arrivalLocation = 'ARRIVAL'
-  const arrivalTrackingStatus = 'RECEIVING'
-  const arrivalAvailabilityStatus = 'AVAILABLE'
+export async function createArrival(newArrival: Arrival) {
   const warehouseCode = newArrival.warehouse.city_code
   const currentDateTime = new Date()
   const barcodes = await generateBarcodes(newArrival.assets, warehouseCode, currentDateTime)
@@ -23,39 +23,48 @@ export async function createArrival(newArrival: Arrival) {
       origin: { connect: { id: newArrival.vendor.id } },
       transporter: { connect: { id: newArrival.transporter.id } },
       assets: {
-        create: newArrival.assets.map(a => ({
-          barcode: barcodes[a.serialNumber],
-          serial_number: a.serialNumber,
-          model: { connect: { id: a.model.id } },
-          Location: { connect: { warehouse_id_location: { warehouse_id: newArrival.warehouse.id, location: arrivalLocation } } },
-          created_at: currentDateTime,
-          is_held: false,
-          TrackingStatus: { connect: { status: arrivalTrackingStatus } },
-          AvailabilityStatus: { connect: { status: arrivalAvailabilityStatus } },
-          TechnicalStatus: { connect: { id: a.technicalStatus.id } },
-          asset_accessories: {
-            create: a.coreFunctions.map(c => ({ accessory_id: c.id }))
-          },
-          technical_specification: {
-            create: {
-              meter_black: a.meterBlack,
-              meter_colour: a.meterColour,
-              meter_total: a.meterBlack + a.meterColour,
-              internal_finisher: a.internalFinisher,
-              cassettes: a.cassettes
-            }
-          },
-          cost: {
-            create: {
-
-            }
-          }
-        }))
+        create: newArrival.assets.map(a => mapAsset(
+          a,
+          barcodes,
+          newArrival.warehouse.id,
+          currentDateTime))
       }
     }
   })
 
   return arrival.arrival_number
+}
+
+function mapAsset(
+  asset: Asset,
+  barcodes: Record<string, string>,
+  warehouseId: number,
+  currentDateTime: Date) {
+
+  return {
+    barcode: barcodes[asset.serialNumber],
+    serial_number: asset.serialNumber,
+    model: { connect: { id: asset.model.id } },
+    Location: { connect: { warehouse_id_location: { warehouse_id: warehouseId, location: arrivalLocation } } },
+    created_at: currentDateTime,
+    is_held: false,
+    TrackingStatus: { connect: { status: arrivalTrackingStatus } },
+    AvailabilityStatus: { connect: { status: arrivalAvailabilityStatus } },
+    TechnicalStatus: { connect: { id: asset.technicalStatus.id } },
+    asset_accessories: {
+      create: asset.coreFunctions.map(c => ({ accessory_id: c.id }))
+    },
+    technical_specification: {
+      create: {
+        meter_black: BigInt(asset.meterBlack),
+        meter_colour: BigInt(asset.meterColour),
+        meter_total: BigInt(asset.meterBlack + asset.meterColour),
+        internal_finisher: asset.internalFinisher,
+        cassettes: asset.cassettes
+      }
+    },
+    cost: { create: {} }
+  }
 }
 
 
@@ -84,8 +93,24 @@ async function getNextSequence(entityType: string, warehouseCode: string, date: 
   const result = await prisma.$queryRaw<[{ get_next_sequence: number }]>`SELECT get_next_sequence(${entityType}, ${warehouseCode}, ${formattedDate})`
   return result[0].get_next_sequence
 }
-export async function updateArrival(data: Arrival) {
-  const assetUpdates = data.assets.flatMap(asset => [
+export async function updateArrival(arrival: Arrival) {
+  const assetsToUpdate = arrival.assets.filter(a => !!a.id)
+  const assetsToCreate = arrival.assets.filter(a => a.id === undefined || a.id === null)
+
+  let assetCreates: ReturnType<typeof prisma.asset.create>[] = []
+  if (assetsToCreate.length > 0) {
+    const warehouseCode = arrival.warehouse.city_code
+    const currentDateTime = new Date()
+    const barcodes = await generateBarcodes(assetsToCreate, warehouseCode, currentDateTime)
+    assetCreates = assetsToCreate.map(asset => prisma.asset.create({
+      data: {
+        ...mapAsset(asset, barcodes, arrival.warehouse.id, currentDateTime),
+        arrival: { connect: { id: arrival.id } }
+      }
+    }))
+  }
+
+  const assetUpdates = assetsToUpdate.map(asset =>
     prisma.asset.update({
       where: { id: asset.id },
       data: {
@@ -102,32 +127,39 @@ export async function updateArrival(data: Arrival) {
           }
         }
       }
-    }),
+    })
+  )
+
+  const accessoryDeletes = assetsToUpdate.map(asset =>
     prisma.assetAccessory.deleteMany({
       where: { asset_id: asset.id }
     })
-  ])
-
-  const accessoryCreates = data.assets.flatMap(asset => asset.coreFunctions.map(cf => prisma.assetAccessory.create({
-    data: {
-      asset_id: asset.id!,
-      accessory_id: cf.id
-    }
-  })
   )
+
+  const accessoryCreates = assetsToUpdate.flatMap(asset =>
+    asset.coreFunctions.map(cf =>
+      prisma.assetAccessory.create({
+        data: {
+          asset_id: asset.id!,
+          accessory_id: cf.id
+        }
+      })
+    )
   )
 
   await prisma.$transaction([
     prisma.arrival.update({
-      where: { id: data.id },
+      where: { id: arrival.id },
       data: {
-        origin_id: data.vendor.id,
-        transporter_id: data.transporter.id,
-        destination_id: data.warehouse.id,
-        notes: data.comment
+        origin_id: arrival.vendor.id,
+        transporter_id: arrival.transporter.id,
+        destination_id: arrival.warehouse.id,
+        notes: arrival.comment
       }
     }),
     ...assetUpdates,
-    ...accessoryCreates
+    ...accessoryDeletes,
+    ...accessoryCreates,
+    ...assetCreates
   ])
 }
