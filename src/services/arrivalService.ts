@@ -94,6 +94,14 @@ async function getNextSequence(entityType: string, warehouseCode: string, date: 
   return result[0].get_next_sequence
 }
 export async function updateArrival(arrival: Arrival) {
+  const existingAssetIds = (await prisma.asset.findMany({
+    where: { arrival_id: arrival.id },
+    select: { id: true }
+  })).map(a => a.id)
+
+  const receivedAssetIds = new Set(arrival.assets.map(a => a.id).filter(id => id != null))
+  const assetIdsToBeDeleted = existingAssetIds.filter(id => !receivedAssetIds.has(id))
+
   const assetsToUpdate = arrival.assets.filter(a => !!a.id)
   const assetsToCreate = arrival.assets.filter(a => a.id === undefined || a.id === null)
 
@@ -148,6 +156,7 @@ export async function updateArrival(arrival: Arrival) {
   )
 
   await prisma.$transaction([
+    prisma.asset.updateMany({ where: { id: { in: assetIdsToBeDeleted } }, data: { arrival_id: null } }),
     prisma.arrival.update({
       where: { id: arrival.id },
       data: {
